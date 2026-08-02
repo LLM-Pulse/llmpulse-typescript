@@ -1,0 +1,22 @@
+{
+  "name": "@llmpulse/sdk",
+  "version": "1.22.0",
+  "description": "OpenAPI client for @llmpulse/sdk",
+  "author": "OpenAPI-Generator",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LLM-Pulse/llmpulse-typescript.git"
+  },
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/esm/index.js",
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc && tsc -p tsconfig.esm.json",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^4.0 || ^5.0"
+  }
+}
