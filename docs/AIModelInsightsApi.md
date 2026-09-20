@@ -42,17 +42,17 @@ async function example() {
     range: 56,
     // Date (optional)
     from: 2013-10-20T19:20:30+01:00,
-    // Date (optional)
+    // Date | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. (optional)
     to: 2013-10-20T19:20:30+01:00,
     // 'day' | 'week' | 'month' (optional)
     granularity: granularity_example,
-    // number (optional)
-    collectionId: 56,
-    // string | ISO country code (e.g. US, GB, DE) (optional)
+    // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs (optional)
+    collectionId: ...,
+    // string | One ISO country code or a comma-separated list (e.g. US,GB,DE) (optional)
     countryCode: countryCode_example,
-    // string | ISO language code (e.g. en, es, de) (optional)
+    // string | One ISO language code or a comma-separated list (e.g. en,es,de) (optional)
     languageCode: languageCode_example,
-    // 'informational' | 'navigational' | 'commercial' | 'transactional' | Filter by prompt type (search intent) (optional)
+    // string | One prompt type or a comma-separated list: informational, navigational, commercial, transactional (optional)
     promptType: promptType_example,
     // 'brand' | 'brand_other' | 'non_brand' | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. (optional)
     brandKind: brandKind_example,
@@ -80,12 +80,12 @@ example().catch(console.error);
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
 | **range** | `number` | Number of days to look back (alternative to from/to) | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
-| **to** | `Date` |  | [Optional] [Defaults to `undefined`] |
+| **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
 | **granularity** | `day`, `week`, `month` |  | [Optional] [Defaults to `undefined`] [Enum: day, week, month] |
-| **collectionId** | `number` |  | [Optional] [Defaults to `undefined`] |
-| **countryCode** | `string` | ISO country code (e.g. US, GB, DE) | [Optional] [Defaults to `undefined`] |
-| **languageCode** | `string` | ISO language code (e.g. en, es, de) | [Optional] [Defaults to `undefined`] |
-| **promptType** | `informational`, `navigational`, `commercial`, `transactional` | Filter by prompt type (search intent) | [Optional] [Defaults to `undefined`] [Enum: informational, navigational, commercial, transactional] |
+| **collectionId** | [](.md) | One collection/tag ID or a comma-separated list of IDs | [Optional] [Defaults to `undefined`] |
+| **countryCode** | `string` | One ISO country code or a comma-separated list (e.g. US,GB,DE) | [Optional] [Defaults to `undefined`] |
+| **languageCode** | `string` | One ISO language code or a comma-separated list (e.g. en,es,de) | [Optional] [Defaults to `undefined`] |
+| **promptType** | `string` | One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [Optional] [Defaults to `undefined`] |
 | **brandKind** | `brand`, `brand_other`, `non_brand` | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [Optional] [Defaults to `undefined`] [Enum: brand, brand_other, non_brand] |
 | **competitors** | `string` | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) | [Optional] [Defaults to `undefined`] |
 
@@ -141,21 +141,21 @@ async function example() {
     range: 56,
     // Date (optional)
     from: 2013-10-20T19:20:30+01:00,
-    // Date (optional)
+    // Date | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. (optional)
     to: 2013-10-20T19:20:30+01:00,
     // 'day' | 'week' | 'month' (optional)
     granularity: granularity_example,
-    // number (optional)
-    collectionId: 56,
-    // string | ISO country code (e.g. US, GB, DE) (optional)
+    // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs (optional)
+    collectionId: ...,
+    // string | One ISO country code or a comma-separated list (e.g. US,GB,DE) (optional)
     countryCode: countryCode_example,
-    // string | ISO language code (e.g. en, es, de) (optional)
+    // string | One ISO language code or a comma-separated list (e.g. en,es,de) (optional)
     languageCode: languageCode_example,
-    // 'informational' | 'navigational' | 'commercial' | 'transactional' | Filter by prompt type (search intent) (optional)
+    // string | One prompt type or a comma-separated list: informational, navigational, commercial, transactional (optional)
     promptType: promptType_example,
     // 'brand' | 'brand_other' | 'non_brand' | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. (optional)
     brandKind: brandKind_example,
-    // 'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | Filter by AI model. Models the API key\'s user has not enabled are silently dropped. (optional)
+    // 'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai' | Filter by AI model. Models the API key\'s user has not enabled are silently dropped. (optional)
     model: model_example,
     // number | Competitor ID for the first comparison brand (omit to compare project brand) (optional)
     brand1: 56,
@@ -183,14 +183,14 @@ example().catch(console.error);
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
 | **range** | `number` | Number of days to look back (alternative to from/to) | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
-| **to** | `Date` |  | [Optional] [Defaults to `undefined`] |
+| **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
 | **granularity** | `day`, `week`, `month` |  | [Optional] [Defaults to `undefined`] [Enum: day, week, month] |
-| **collectionId** | `number` |  | [Optional] [Defaults to `undefined`] |
-| **countryCode** | `string` | ISO country code (e.g. US, GB, DE) | [Optional] [Defaults to `undefined`] |
-| **languageCode** | `string` | ISO language code (e.g. en, es, de) | [Optional] [Defaults to `undefined`] |
-| **promptType** | `informational`, `navigational`, `commercial`, `transactional` | Filter by prompt type (search intent) | [Optional] [Defaults to `undefined`] [Enum: informational, navigational, commercial, transactional] |
+| **collectionId** | [](.md) | One collection/tag ID or a comma-separated list of IDs | [Optional] [Defaults to `undefined`] |
+| **countryCode** | `string` | One ISO country code or a comma-separated list (e.g. US,GB,DE) | [Optional] [Defaults to `undefined`] |
+| **languageCode** | `string` | One ISO language code or a comma-separated list (e.g. en,es,de) | [Optional] [Defaults to `undefined`] |
+| **promptType** | `string` | One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [Optional] [Defaults to `undefined`] |
 | **brandKind** | `brand`, `brand_other`, `non_brand` | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [Optional] [Defaults to `undefined`] [Enum: brand, brand_other, non_brand] |
-| **model** | `chatgpt`, `perplexity`, `gemini`, `ai_overview`, `ai_mode`, `copilot`, `claude`, `grok`, `deepseek`, `meta_ai`, `amazon_rufus` | Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, gemini, ai_overview, ai_mode, copilot, claude, grok, deepseek, meta_ai, amazon_rufus] |
+| **model** | `chatgpt`, `perplexity`, `gemini`, `ai_overview`, `ai_mode`, `copilot`, `claude`, `grok`, `deepseek`, `meta_ai`, `amazon_rufus`, `naver_ai`, `baidu_ai` | Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, gemini, ai_overview, ai_mode, copilot, claude, grok, deepseek, meta_ai, amazon_rufus, naver_ai, baidu_ai] |
 | **brand1** | `number` | Competitor ID for the first comparison brand (omit to compare project brand) | [Optional] [Defaults to `undefined`] |
 | **brand2** | `number` |  | [Optional] [Defaults to `undefined`] |
 
@@ -246,17 +246,17 @@ async function example() {
     range: 56,
     // Date (optional)
     from: 2013-10-20T19:20:30+01:00,
-    // Date (optional)
+    // Date | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. (optional)
     to: 2013-10-20T19:20:30+01:00,
     // 'day' | 'week' | 'month' (optional)
     granularity: granularity_example,
-    // number (optional)
-    collectionId: 56,
-    // string | ISO country code (e.g. US, GB, DE) (optional)
+    // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs (optional)
+    collectionId: ...,
+    // string | One ISO country code or a comma-separated list (e.g. US,GB,DE) (optional)
     countryCode: countryCode_example,
-    // string | ISO language code (e.g. en, es, de) (optional)
+    // string | One ISO language code or a comma-separated list (e.g. en,es,de) (optional)
     languageCode: languageCode_example,
-    // 'informational' | 'navigational' | 'commercial' | 'transactional' | Filter by prompt type (search intent) (optional)
+    // string | One prompt type or a comma-separated list: informational, navigational, commercial, transactional (optional)
     promptType: promptType_example,
     // 'brand' | 'brand_other' | 'non_brand' | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. (optional)
     brandKind: brandKind_example,
@@ -286,12 +286,12 @@ example().catch(console.error);
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
 | **range** | `number` | Number of days to look back (alternative to from/to) | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
-| **to** | `Date` |  | [Optional] [Defaults to `undefined`] |
+| **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
 | **granularity** | `day`, `week`, `month` |  | [Optional] [Defaults to `undefined`] [Enum: day, week, month] |
-| **collectionId** | `number` |  | [Optional] [Defaults to `undefined`] |
-| **countryCode** | `string` | ISO country code (e.g. US, GB, DE) | [Optional] [Defaults to `undefined`] |
-| **languageCode** | `string` | ISO language code (e.g. en, es, de) | [Optional] [Defaults to `undefined`] |
-| **promptType** | `informational`, `navigational`, `commercial`, `transactional` | Filter by prompt type (search intent) | [Optional] [Defaults to `undefined`] [Enum: informational, navigational, commercial, transactional] |
+| **collectionId** | [](.md) | One collection/tag ID or a comma-separated list of IDs | [Optional] [Defaults to `undefined`] |
+| **countryCode** | `string` | One ISO country code or a comma-separated list (e.g. US,GB,DE) | [Optional] [Defaults to `undefined`] |
+| **languageCode** | `string` | One ISO language code or a comma-separated list (e.g. en,es,de) | [Optional] [Defaults to `undefined`] |
+| **promptType** | `string` | One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [Optional] [Defaults to `undefined`] |
 | **brandKind** | `brand`, `brand_other`, `non_brand` | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [Optional] [Defaults to `undefined`] [Enum: brand, brand_other, non_brand] |
 | **page** | `number` |  | [Optional] [Defaults to `1`] |
 | **perPage** | `number` |  | [Optional] [Defaults to `20`] |

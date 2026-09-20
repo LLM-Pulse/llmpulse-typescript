@@ -8,8 +8,11 @@ Name | Type
 ------------ | -------------
 `projectId` | number
 `brandName` | string
+`domain` | string
 `matchingNames` | Array&lt;string&gt;
 `color` | string
+`citationMatchMode` | string
+`citationMatchPath` | string
 
 ## Example
 
@@ -20,8 +23,11 @@ import type { UpdateCompetitorRequest } from '@llmpulse/sdk'
 const example = {
   "projectId": null,
   "brandName": null,
+  "domain": null,
   "matchingNames": null,
   "color": null,
+  "citationMatchMode": null,
+  "citationMatchPath": null,
 } satisfies UpdateCompetitorRequest
 
 console.log(example)

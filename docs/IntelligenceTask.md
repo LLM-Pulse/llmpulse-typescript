@@ -24,6 +24,8 @@ Name | Type
 `estimatedTime` | string
 `createdAt` | Date
 `processedAt` | Date
+`manuallyEditedAt` | Date
+`editedByUserId` | number
 `requestId` | string
 
 ## Example
@@ -51,6 +53,8 @@ const example = {
   "estimatedTime": null,
   "createdAt": null,
   "processedAt": null,
+  "manuallyEditedAt": null,
+  "editedByUserId": null,
   "requestId": null,
 } satisfies IntelligenceTask
 

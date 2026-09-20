@@ -4,195 +4,12 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getAgentTraffic**](MetricsApi.md#getagenttraffic) | **GET** /metrics/agent_traffic | AI bot crawler traffic (Scale+, Beta) |
-| [**getAiTraffic**](MetricsApi.md#getaitraffic) | **GET** /metrics/ai_traffic | AI referral traffic (Scale+) |
 | [**getPromptSummary**](MetricsApi.md#getpromptsummary) | **GET** /metrics/prompt_summary | Per-prompt metrics summary |
 | [**getShareOfVoice**](MetricsApi.md#getshareofvoice) | **GET** /metrics/sov | Share of Voice |
 | [**getSummary**](MetricsApi.md#getsummary) | **GET** /metrics/summary | Aggregated metrics summary |
 | [**getTimeseries**](MetricsApi.md#gettimeseries) | **GET** /metrics/timeseries | Time-series metrics |
 | [**getTopSources**](MetricsApi.md#gettopsources) | **GET** /metrics/top_sources | Top cited sources |
 
-
-
-## getAgentTraffic
-
-> AgentTrafficResponse getAgentTraffic(projectId, range, from, to, bot, company, groupBy, granularity)
-
-AI bot crawler traffic (Scale+, Beta)
-
-Aggregated AI bot traffic hitting the project\&#39;s origin server (GPTBot, PerplexityBot, ClaudeBot, OAI-SearchBot, Google-Extended, etc.). Sourced from Cloudflare or CSV uploads. Requires the Scale plan; lower tiers receive ERR_PLAN_REQUIRED.
-
-### Example
-
-```ts
-import {
-  Configuration,
-  MetricsApi,
-} from '@llmpulse/sdk';
-import type { GetAgentTrafficRequest } from '@llmpulse/sdk';
-
-async function example() {
-  console.log("🚀 Testing @llmpulse/sdk SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: BearerAuth
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new MetricsApi(config);
-
-  const body = {
-    // number | Project ID
-    projectId: 56,
-    // number | Number of days to look back (alternative to from/to) (optional)
-    range: 56,
-    // Date (optional)
-    from: 2013-10-20T19:20:30+01:00,
-    // Date (optional)
-    to: 2013-10-20T19:20:30+01:00,
-    // string | Filter by bot slug (e.g. gptbot, claudebot, perplexitybot) (optional)
-    bot: bot_example,
-    // string | Filter by company (e.g. openai, anthropic, google) (optional)
-    company: company_example,
-    // 'bot' | 'company' (optional)
-    groupBy: groupBy_example,
-    // 'day' | 'week' | 'month' (optional)
-    granularity: granularity_example,
-  } satisfies GetAgentTrafficRequest;
-
-  try {
-    const data = await api.getAgentTraffic(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **projectId** | `number` | Project ID | [Defaults to `undefined`] |
-| **range** | `number` | Number of days to look back (alternative to from/to) | [Optional] [Defaults to `undefined`] |
-| **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
-| **to** | `Date` |  | [Optional] [Defaults to `undefined`] |
-| **bot** | `string` | Filter by bot slug (e.g. gptbot, claudebot, perplexitybot) | [Optional] [Defaults to `undefined`] |
-| **company** | `string` | Filter by company (e.g. openai, anthropic, google) | [Optional] [Defaults to `undefined`] |
-| **groupBy** | `bot`, `company` |  | [Optional] [Defaults to `&#39;bot&#39;`] [Enum: bot, company] |
-| **granularity** | `day`, `week`, `month` |  | [Optional] [Defaults to `undefined`] [Enum: day, week, month] |
-
-### Return type
-
-[**AgentTrafficResponse**](AgentTrafficResponse.md)
-
-### Authorization
-
-[BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Agent traffic data |  -  |
-| **403** | Endpoint requires a higher plan tier |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
-## getAiTraffic
-
-> getAiTraffic(projectId, range, from, to, source, granularity)
-
-AI referral traffic (Scale+)
-
-AI referral traffic for a project: human visits arriving from AI assistants (ChatGPT, Perplexity, Gemini, Claude, etc.), measured from the connected web analytics provider (Google Analytics 4, Adobe Analytics, PostHog, Plausible or Piano). Returns per-source users, sessions and conversions with totals and a conversion rate. Requires a connected provider and the Scale plan; otherwise returns ERR_AI_TRAFFIC_NOT_CONNECTED or ERR_PLAN_REQUIRED.
-
-### Example
-
-```ts
-import {
-  Configuration,
-  MetricsApi,
-} from '@llmpulse/sdk';
-import type { GetAiTrafficRequest } from '@llmpulse/sdk';
-
-async function example() {
-  console.log("🚀 Testing @llmpulse/sdk SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: BearerAuth
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new MetricsApi(config);
-
-  const body = {
-    // number | Project ID
-    projectId: 56,
-    // number | Number of days to look back (alternative to from/to) (optional)
-    range: 56,
-    // Date (optional)
-    from: 2013-10-20T19:20:30+01:00,
-    // Date (optional)
-    to: 2013-10-20T19:20:30+01:00,
-    // string | Filter by a single AI source slug (e.g. chatgpt, perplexity, gemini, claude) (optional)
-    source: source_example,
-    // 'day' | 'week' | 'month' (optional)
-    granularity: granularity_example,
-  } satisfies GetAiTrafficRequest;
-
-  try {
-    const data = await api.getAiTraffic(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **projectId** | `number` | Project ID | [Defaults to `undefined`] |
-| **range** | `number` | Number of days to look back (alternative to from/to) | [Optional] [Defaults to `undefined`] |
-| **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
-| **to** | `Date` |  | [Optional] [Defaults to `undefined`] |
-| **source** | `string` | Filter by a single AI source slug (e.g. chatgpt, perplexity, gemini, claude) | [Optional] [Defaults to `undefined`] |
-| **granularity** | `day`, `week`, `month` |  | [Optional] [Defaults to `undefined`] [Enum: day, week, month] |
-
-### Return type
-
-`void` (Empty response body)
-
-### Authorization
-
-[BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | AI referral traffic data |  -  |
-| **403** | Endpoint requires a higher plan tier |  -  |
-| **404** | Resource not found |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
 ## getPromptSummary
@@ -227,21 +44,21 @@ async function example() {
     range: 56,
     // Date (optional)
     from: 2013-10-20T19:20:30+01:00,
-    // Date (optional)
+    // Date | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. (optional)
     to: 2013-10-20T19:20:30+01:00,
     // 'model' | Add per-(prompt, model) rows to the output (optional)
     breakdown: breakdown_example,
-    // 'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | Filter by AI model. Models the API key\'s user has not enabled are silently dropped. (optional)
+    // 'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai' | Filter by AI model. Models the API key\'s user has not enabled are silently dropped. (optional)
     model: model_example,
-    // number (optional)
-    collectionId: 56,
-    // string | ISO country code (e.g. US, GB, DE) (optional)
+    // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs (optional)
+    collectionId: ...,
+    // string | One ISO country code or a comma-separated list (e.g. US,GB,DE) (optional)
     countryCode: countryCode_example,
-    // string | ISO language code (e.g. en, es, de) (optional)
+    // string | One ISO language code or a comma-separated list (e.g. en,es,de) (optional)
     languageCode: languageCode_example,
     // number | Filter by prompt ID (optional)
     prompt: 56,
-    // 'informational' | 'navigational' | 'commercial' | 'transactional' | Filter by prompt type (search intent) (optional)
+    // string | One prompt type or a comma-separated list: informational, navigational, commercial, transactional (optional)
     promptType: promptType_example,
     // 'brand' | 'brand_other' | 'non_brand' | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. (optional)
     brandKind: brandKind_example,
@@ -277,14 +94,14 @@ example().catch(console.error);
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
 | **range** | `number` | Number of days to look back (alternative to from/to) | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
-| **to** | `Date` |  | [Optional] [Defaults to `undefined`] |
+| **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
 | **breakdown** | `model` | Add per-(prompt, model) rows to the output | [Optional] [Defaults to `undefined`] [Enum: model] |
-| **model** | `chatgpt`, `perplexity`, `gemini`, `ai_overview`, `ai_mode`, `copilot`, `claude`, `grok`, `deepseek`, `meta_ai`, `amazon_rufus` | Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, gemini, ai_overview, ai_mode, copilot, claude, grok, deepseek, meta_ai, amazon_rufus] |
-| **collectionId** | `number` |  | [Optional] [Defaults to `undefined`] |
-| **countryCode** | `string` | ISO country code (e.g. US, GB, DE) | [Optional] [Defaults to `undefined`] |
-| **languageCode** | `string` | ISO language code (e.g. en, es, de) | [Optional] [Defaults to `undefined`] |
+| **model** | `chatgpt`, `perplexity`, `gemini`, `ai_overview`, `ai_mode`, `copilot`, `claude`, `grok`, `deepseek`, `meta_ai`, `amazon_rufus`, `naver_ai`, `baidu_ai` | Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, gemini, ai_overview, ai_mode, copilot, claude, grok, deepseek, meta_ai, amazon_rufus, naver_ai, baidu_ai] |
+| **collectionId** | [](.md) | One collection/tag ID or a comma-separated list of IDs | [Optional] [Defaults to `undefined`] |
+| **countryCode** | `string` | One ISO country code or a comma-separated list (e.g. US,GB,DE) | [Optional] [Defaults to `undefined`] |
+| **languageCode** | `string` | One ISO language code or a comma-separated list (e.g. en,es,de) | [Optional] [Defaults to `undefined`] |
 | **prompt** | `number` | Filter by prompt ID | [Optional] [Defaults to `undefined`] |
-| **promptType** | `informational`, `navigational`, `commercial`, `transactional` | Filter by prompt type (search intent) | [Optional] [Defaults to `undefined`] [Enum: informational, navigational, commercial, transactional] |
+| **promptType** | `string` | One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [Optional] [Defaults to `undefined`] |
 | **brandKind** | `brand`, `brand_other`, `non_brand` | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [Optional] [Defaults to `undefined`] [Enum: brand, brand_other, non_brand] |
 | **sort** | `responses`, `mentions`, `citations`, `mention_rate`, `visibility`, `citation_rate`, `avg_mention_position`, `avg_position` |  | [Optional] [Defaults to `&#39;responses&#39;`] [Enum: responses, mentions, citations, mention_rate, visibility, citation_rate, avg_mention_position, avg_position] |
 | **sortDir** | `asc`, `desc` |  | [Optional] [Defaults to `&#39;desc&#39;`] [Enum: asc, desc] |
@@ -347,19 +164,19 @@ async function example() {
     range: 56,
     // Date (optional)
     from: 2013-10-20T19:20:30+01:00,
-    // Date (optional)
+    // Date | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. (optional)
     to: 2013-10-20T19:20:30+01:00,
     // 'day' | 'week' | 'month' (optional)
     granularity: granularity_example,
     // string | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) (optional)
     competitors: competitors_example,
-    // 'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | Filter by AI model. Models the API key\'s user has not enabled are silently dropped. (optional)
+    // 'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai' | Filter by AI model. Models the API key\'s user has not enabled are silently dropped. (optional)
     model: model_example,
-    // number (optional)
-    collectionId: 56,
+    // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs (optional)
+    collectionId: ...,
     // number | Filter by prompt ID (optional)
     prompt: 56,
-    // 'informational' | 'navigational' | 'commercial' | 'transactional' | Filter by prompt type (search intent) (optional)
+    // string | One prompt type or a comma-separated list: informational, navigational, commercial, transactional (optional)
     promptType: promptType_example,
     // 'brand' | 'brand_other' | 'non_brand' | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. (optional)
     brandKind: brandKind_example,
@@ -389,13 +206,13 @@ example().catch(console.error);
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
 | **range** | `number` | Number of days to look back (alternative to from/to) | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
-| **to** | `Date` |  | [Optional] [Defaults to `undefined`] |
+| **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
 | **granularity** | `day`, `week`, `month` |  | [Optional] [Defaults to `undefined`] [Enum: day, week, month] |
 | **competitors** | `string` | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) | [Optional] [Defaults to `undefined`] |
-| **model** | `chatgpt`, `perplexity`, `gemini`, `ai_overview`, `ai_mode`, `copilot`, `claude`, `grok`, `deepseek`, `meta_ai`, `amazon_rufus` | Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, gemini, ai_overview, ai_mode, copilot, claude, grok, deepseek, meta_ai, amazon_rufus] |
-| **collectionId** | `number` |  | [Optional] [Defaults to `undefined`] |
+| **model** | `chatgpt`, `perplexity`, `gemini`, `ai_overview`, `ai_mode`, `copilot`, `claude`, `grok`, `deepseek`, `meta_ai`, `amazon_rufus`, `naver_ai`, `baidu_ai` | Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, gemini, ai_overview, ai_mode, copilot, claude, grok, deepseek, meta_ai, amazon_rufus, naver_ai, baidu_ai] |
+| **collectionId** | [](.md) | One collection/tag ID or a comma-separated list of IDs | [Optional] [Defaults to `undefined`] |
 | **prompt** | `number` | Filter by prompt ID | [Optional] [Defaults to `undefined`] |
-| **promptType** | `informational`, `navigational`, `commercial`, `transactional` | Filter by prompt type (search intent) | [Optional] [Defaults to `undefined`] [Enum: informational, navigational, commercial, transactional] |
+| **promptType** | `string` | One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [Optional] [Defaults to `undefined`] |
 | **brandKind** | `brand`, `brand_other`, `non_brand` | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [Optional] [Defaults to `undefined`] [Enum: brand, brand_other, non_brand] |
 | **output** | `flat`, `csv` | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \&#39;flat\&#39; returns the same metadata plus \&#39;columns\&#39; and \&#39;rows\&#39;; \&#39;csv\&#39; returns those rows as text/csv. Errors are always returned as JSON. | [Optional] [Defaults to `undefined`] [Enum: flat, csv] |
 | **view** | `over_time`, `current`, `breakdown` | Which Share of Voice projection to flatten. Only valid together with \&#39;output\&#39;. \&#39;over_time\&#39; (default) is one row per date and actor, \&#39;current\&#39; the ranked snapshot, \&#39;breakdown\&#39; the Top 4 plus Others. | [Optional] [Defaults to `&#39;over_time&#39;`] [Enum: over_time, current, breakdown] |
@@ -458,17 +275,17 @@ async function example() {
     range: 56,
     // Date (optional)
     from: 2013-10-20T19:20:30+01:00,
-    // Date (optional)
+    // Date | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. (optional)
     to: 2013-10-20T19:20:30+01:00,
     // string | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) (optional)
     competitors: competitors_example,
-    // 'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | Filter by AI model. Models the API key\'s user has not enabled are silently dropped. (optional)
+    // 'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai' | Filter by AI model. Models the API key\'s user has not enabled are silently dropped. (optional)
     model: model_example,
-    // number (optional)
-    collectionId: 56,
+    // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs (optional)
+    collectionId: ...,
     // number | Filter by prompt ID (optional)
     prompt: 56,
-    // 'informational' | 'navigational' | 'commercial' | 'transactional' | Filter by prompt type (search intent) (optional)
+    // string | One prompt type or a comma-separated list: informational, navigational, commercial, transactional (optional)
     promptType: promptType_example,
     // 'brand' | 'brand_other' | 'non_brand' | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. (optional)
     brandKind: brandKind_example,
@@ -498,12 +315,12 @@ example().catch(console.error);
 | **granularity** | `day`, `week`, `month` |  | [Optional] [Defaults to `undefined`] [Enum: day, week, month] |
 | **range** | `number` | Number of days to look back (alternative to from/to) | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
-| **to** | `Date` |  | [Optional] [Defaults to `undefined`] |
+| **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
 | **competitors** | `string` | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) | [Optional] [Defaults to `undefined`] |
-| **model** | `chatgpt`, `perplexity`, `gemini`, `ai_overview`, `ai_mode`, `copilot`, `claude`, `grok`, `deepseek`, `meta_ai`, `amazon_rufus` | Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, gemini, ai_overview, ai_mode, copilot, claude, grok, deepseek, meta_ai, amazon_rufus] |
-| **collectionId** | `number` |  | [Optional] [Defaults to `undefined`] |
+| **model** | `chatgpt`, `perplexity`, `gemini`, `ai_overview`, `ai_mode`, `copilot`, `claude`, `grok`, `deepseek`, `meta_ai`, `amazon_rufus`, `naver_ai`, `baidu_ai` | Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, gemini, ai_overview, ai_mode, copilot, claude, grok, deepseek, meta_ai, amazon_rufus, naver_ai, baidu_ai] |
+| **collectionId** | [](.md) | One collection/tag ID or a comma-separated list of IDs | [Optional] [Defaults to `undefined`] |
 | **prompt** | `number` | Filter by prompt ID | [Optional] [Defaults to `undefined`] |
-| **promptType** | `informational`, `navigational`, `commercial`, `transactional` | Filter by prompt type (search intent) | [Optional] [Defaults to `undefined`] [Enum: informational, navigational, commercial, transactional] |
+| **promptType** | `string` | One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [Optional] [Defaults to `undefined`] |
 | **brandKind** | `brand`, `brand_other`, `non_brand` | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [Optional] [Defaults to `undefined`] [Enum: brand, brand_other, non_brand] |
 | **output** | `flat`, `csv` | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \&#39;flat\&#39; returns the same metadata plus \&#39;columns\&#39; and \&#39;rows\&#39;; \&#39;csv\&#39; returns those rows as text/csv. Errors are always returned as JSON. | [Optional] [Defaults to `undefined`] [Enum: flat, csv] |
 
@@ -567,21 +384,21 @@ async function example() {
     range: 56,
     // Date (optional)
     from: 2013-10-20T19:20:30+01:00,
-    // Date (optional)
+    // Date | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. (optional)
     to: 2013-10-20T19:20:30+01:00,
     // string | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) (optional)
     competitors: competitors_example,
-    // 'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | Filter by AI model. Models the API key\'s user has not enabled are silently dropped. (optional)
+    // 'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai' | Filter by AI model. Models the API key\'s user has not enabled are silently dropped. (optional)
     model: model_example,
-    // number (optional)
-    collectionId: 56,
-    // string | ISO country code (e.g. US, GB, DE) (optional)
+    // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs (optional)
+    collectionId: ...,
+    // string | One ISO country code or a comma-separated list (e.g. US,GB,DE) (optional)
     countryCode: countryCode_example,
-    // string | ISO language code (e.g. en, es, de) (optional)
+    // string | One ISO language code or a comma-separated list (e.g. en,es,de) (optional)
     languageCode: languageCode_example,
     // number | Filter by prompt ID (optional)
     prompt: 56,
-    // 'informational' | 'navigational' | 'commercial' | 'transactional' | Filter by prompt type (search intent) (optional)
+    // string | One prompt type or a comma-separated list: informational, navigational, commercial, transactional (optional)
     promptType: promptType_example,
     // 'brand' | 'brand_other' | 'non_brand' | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. (optional)
     brandKind: brandKind_example,
@@ -613,14 +430,14 @@ example().catch(console.error);
 | **granularity** | `day`, `week`, `month` |  | [Optional] [Defaults to `undefined`] [Enum: day, week, month] |
 | **range** | `number` | Number of days to look back (alternative to from/to) | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
-| **to** | `Date` |  | [Optional] [Defaults to `undefined`] |
+| **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
 | **competitors** | `string` | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) | [Optional] [Defaults to `undefined`] |
-| **model** | `chatgpt`, `perplexity`, `gemini`, `ai_overview`, `ai_mode`, `copilot`, `claude`, `grok`, `deepseek`, `meta_ai`, `amazon_rufus` | Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, gemini, ai_overview, ai_mode, copilot, claude, grok, deepseek, meta_ai, amazon_rufus] |
-| **collectionId** | `number` |  | [Optional] [Defaults to `undefined`] |
-| **countryCode** | `string` | ISO country code (e.g. US, GB, DE) | [Optional] [Defaults to `undefined`] |
-| **languageCode** | `string` | ISO language code (e.g. en, es, de) | [Optional] [Defaults to `undefined`] |
+| **model** | `chatgpt`, `perplexity`, `gemini`, `ai_overview`, `ai_mode`, `copilot`, `claude`, `grok`, `deepseek`, `meta_ai`, `amazon_rufus`, `naver_ai`, `baidu_ai` | Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, gemini, ai_overview, ai_mode, copilot, claude, grok, deepseek, meta_ai, amazon_rufus, naver_ai, baidu_ai] |
+| **collectionId** | [](.md) | One collection/tag ID or a comma-separated list of IDs | [Optional] [Defaults to `undefined`] |
+| **countryCode** | `string` | One ISO country code or a comma-separated list (e.g. US,GB,DE) | [Optional] [Defaults to `undefined`] |
+| **languageCode** | `string` | One ISO language code or a comma-separated list (e.g. en,es,de) | [Optional] [Defaults to `undefined`] |
 | **prompt** | `number` | Filter by prompt ID | [Optional] [Defaults to `undefined`] |
-| **promptType** | `informational`, `navigational`, `commercial`, `transactional` | Filter by prompt type (search intent) | [Optional] [Defaults to `undefined`] [Enum: informational, navigational, commercial, transactional] |
+| **promptType** | `string` | One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [Optional] [Defaults to `undefined`] |
 | **brandKind** | `brand`, `brand_other`, `non_brand` | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [Optional] [Defaults to `undefined`] [Enum: brand, brand_other, non_brand] |
 | **includeProject** | `boolean` |  | [Optional] [Defaults to `true`] |
 | **output** | `flat`, `csv` | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \&#39;flat\&#39; returns the same metadata plus \&#39;columns\&#39; and \&#39;rows\&#39;; \&#39;csv\&#39; returns those rows as text/csv. Errors are always returned as JSON. | [Optional] [Defaults to `undefined`] [Enum: flat, csv] |
@@ -682,19 +499,19 @@ async function example() {
     range: 56,
     // Date (optional)
     from: 2013-10-20T19:20:30+01:00,
-    // Date (optional)
+    // Date | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. (optional)
     to: 2013-10-20T19:20:30+01:00,
-    // 'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | Filter by AI model. Models the API key\'s user has not enabled are silently dropped. (optional)
+    // 'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai' | Filter by AI model. Models the API key\'s user has not enabled are silently dropped. (optional)
     model: model_example,
-    // number (optional)
-    collectionId: 56,
-    // string | ISO country code (e.g. US, GB, DE) (optional)
+    // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs (optional)
+    collectionId: ...,
+    // string | One ISO country code or a comma-separated list (e.g. US,GB,DE) (optional)
     countryCode: countryCode_example,
-    // string | ISO language code (e.g. en, es, de) (optional)
+    // string | One ISO language code or a comma-separated list (e.g. en,es,de) (optional)
     languageCode: languageCode_example,
     // number | Filter by prompt ID (optional)
     prompt: 56,
-    // 'informational' | 'navigational' | 'commercial' | 'transactional' | Filter by prompt type (search intent) (optional)
+    // string | One prompt type or a comma-separated list: informational, navigational, commercial, transactional (optional)
     promptType: promptType_example,
     // 'brand' | 'brand_other' | 'non_brand' | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. (optional)
     brandKind: brandKind_example,
@@ -730,13 +547,13 @@ example().catch(console.error);
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
 | **range** | `number` | Number of days to look back (alternative to from/to) | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
-| **to** | `Date` |  | [Optional] [Defaults to `undefined`] |
-| **model** | `chatgpt`, `perplexity`, `gemini`, `ai_overview`, `ai_mode`, `copilot`, `claude`, `grok`, `deepseek`, `meta_ai`, `amazon_rufus` | Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, gemini, ai_overview, ai_mode, copilot, claude, grok, deepseek, meta_ai, amazon_rufus] |
-| **collectionId** | `number` |  | [Optional] [Defaults to `undefined`] |
-| **countryCode** | `string` | ISO country code (e.g. US, GB, DE) | [Optional] [Defaults to `undefined`] |
-| **languageCode** | `string` | ISO language code (e.g. en, es, de) | [Optional] [Defaults to `undefined`] |
+| **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
+| **model** | `chatgpt`, `perplexity`, `gemini`, `ai_overview`, `ai_mode`, `copilot`, `claude`, `grok`, `deepseek`, `meta_ai`, `amazon_rufus`, `naver_ai`, `baidu_ai` | Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, gemini, ai_overview, ai_mode, copilot, claude, grok, deepseek, meta_ai, amazon_rufus, naver_ai, baidu_ai] |
+| **collectionId** | [](.md) | One collection/tag ID or a comma-separated list of IDs | [Optional] [Defaults to `undefined`] |
+| **countryCode** | `string` | One ISO country code or a comma-separated list (e.g. US,GB,DE) | [Optional] [Defaults to `undefined`] |
+| **languageCode** | `string` | One ISO language code or a comma-separated list (e.g. en,es,de) | [Optional] [Defaults to `undefined`] |
 | **prompt** | `number` | Filter by prompt ID | [Optional] [Defaults to `undefined`] |
-| **promptType** | `informational`, `navigational`, `commercial`, `transactional` | Filter by prompt type (search intent) | [Optional] [Defaults to `undefined`] [Enum: informational, navigational, commercial, transactional] |
+| **promptType** | `string` | One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [Optional] [Defaults to `undefined`] |
 | **brandKind** | `brand`, `brand_other`, `non_brand` | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [Optional] [Defaults to `undefined`] [Enum: brand, brand_other, non_brand] |
 | **sort** | `total_responses`, `avg_mention_rate`, `avg_visibility` |  | [Optional] [Defaults to `&#39;total_responses&#39;`] [Enum: total_responses, avg_mention_rate, avg_visibility] |
 | **query** | `string` | Filter domains by case-insensitive partial match | [Optional] [Defaults to `undefined`] |

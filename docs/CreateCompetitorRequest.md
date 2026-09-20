@@ -10,6 +10,8 @@ Name | Type
 `brandName` | string
 `domain` | string
 `matchingNames` | Array&lt;string&gt;
+`citationMatchMode` | string
+`citationMatchPath` | string
 
 ## Example
 
@@ -22,6 +24,8 @@ const example = {
   "brandName": null,
   "domain": null,
   "matchingNames": null,
+  "citationMatchMode": null,
+  "citationMatchPath": null,
 } satisfies CreateCompetitorRequest
 
 console.log(example)

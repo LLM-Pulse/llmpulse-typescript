@@ -14,9 +14,11 @@ Name | Type
 `matchingNames` | Array&lt;string&gt;
 `industry` | string
 `businessModel` | string
-`primaryProducts` | string
+`businessModelOther` | string
+`primaryProducts` | Array&lt;string&gt;
 `targetAudience` | string
 `brandVoice` | string
+`goals` | string
 `countryCode` | string
 `languageCode` | string
 `paused` | boolean
@@ -40,9 +42,11 @@ const example = {
   "matchingNames": null,
   "industry": null,
   "businessModel": null,
+  "businessModelOther": null,
   "primaryProducts": null,
   "targetAudience": null,
   "brandVoice": null,
+  "goals": null,
   "countryCode": null,
   "languageCode": null,
   "paused": null,

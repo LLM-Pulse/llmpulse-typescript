@@ -13,6 +13,12 @@ Name | Type
 `brandName` | string
 `description` | string
 `industry` | Array&lt;string&gt;
+`businessModel` | string
+`businessModelOther` | string
+`targetAudience` | string
+`brandVoice` | string
+`goals` | string
+`primaryProducts` | Array&lt;string&gt;
 `matchingNames` | Array&lt;string&gt;
 `prompts` | Array&lt;string&gt;
 `competitors` | [Array&lt;ProjectCreateRequestCompetitorsInner&gt;](ProjectCreateRequestCompetitorsInner.md)
@@ -36,6 +42,12 @@ const example = {
   "brandName": null,
   "description": null,
   "industry": ["SAAS"],
+  "businessModel": B2B_SAAS,
+  "businessModelOther": null,
+  "targetAudience": null,
+  "brandVoice": null,
+  "goals": null,
+  "primaryProducts": null,
   "matchingNames": null,
   "prompts": null,
   "competitors": null,
