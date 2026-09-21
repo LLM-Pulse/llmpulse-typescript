@@ -23,11 +23,6 @@ import {
     ApiErrorFromJSON,
     ApiErrorToJSON,
 } from '../models/ApiError';
-import {
-    type GetTimeseriesCollectionIdParameter,
-    GetTimeseriesCollectionIdParameterFromJSON,
-    GetTimeseriesCollectionIdParameterToJSON,
-} from '../models/GetTimeseriesCollectionIdParameter';
 
 export interface GetAnswerRequest {
     projectId: number;
@@ -38,7 +33,7 @@ export interface GetAnswerRequest {
 export interface ListAnswersRequest {
     projectId: number;
     model?: ListAnswersModelEnum;
-    collectionId?: GetTimeseriesCollectionIdParameter;
+    collectionId?: string;
     countryCode?: string;
     languageCode?: string;
     prompt?: number;
@@ -92,7 +87,7 @@ export interface AnswersApiInterface {
      * Creates request options for listAnswers without sending the request
      * @param {number} projectId Project ID
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {number} [prompt] Filter by prompt ID
@@ -115,7 +110,7 @@ export interface AnswersApiInterface {
      * @summary List AI responses
      * @param {number} projectId Project ID
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {number} [prompt] Filter by prompt ID

@@ -19,11 +19,6 @@ import {
     ApiErrorToJSON,
 } from '../models/ApiError';
 import {
-    type GetTimeseriesCollectionIdParameter,
-    GetTimeseriesCollectionIdParameterFromJSON,
-    GetTimeseriesCollectionIdParameterToJSON,
-} from '../models/GetTimeseriesCollectionIdParameter';
-import {
     type PromptsCreateRequest,
     PromptsCreateRequestFromJSON,
     PromptsCreateRequestToJSON,
@@ -48,7 +43,7 @@ export interface ListPromptExecutionsRequest {
     page?: number;
     perPage?: number;
     model?: ListPromptExecutionsModelEnum;
-    collectionId?: GetTimeseriesCollectionIdParameter;
+    collectionId?: string;
     countryCode?: string;
     languageCode?: string;
     prompt?: number;
@@ -65,7 +60,7 @@ export interface ListPromptsRequest {
     page?: number;
     perPage?: number;
     model?: ListPromptsModelEnum;
-    collectionId?: GetTimeseriesCollectionIdParameter;
+    collectionId?: string;
     countryCode?: string;
     languageCode?: string;
     promptType?: string;
@@ -84,7 +79,7 @@ export interface ListQueryFanOutsRequest {
     direction?: ListQueryFanOutsDirectionEnum;
     query?: string;
     model?: ListQueryFanOutsModelEnum;
-    collectionId?: GetTimeseriesCollectionIdParameter;
+    collectionId?: string;
     countryCode?: string;
     languageCode?: string;
     prompt?: number;
@@ -159,7 +154,7 @@ export interface PromptsApiInterface {
      * @param {number} [page] 
      * @param {number} [perPage] 
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {number} [prompt] Filter by prompt ID
@@ -181,7 +176,7 @@ export interface PromptsApiInterface {
      * @param {number} [page] 
      * @param {number} [perPage] 
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {number} [prompt] Filter by prompt ID
@@ -208,7 +203,7 @@ export interface PromptsApiInterface {
      * @param {number} [page] 
      * @param {number} [perPage] 
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {string} [promptType] One prompt type or a comma-separated list: informational, navigational, commercial, transactional
@@ -228,7 +223,7 @@ export interface PromptsApiInterface {
      * @param {number} [page] 
      * @param {number} [perPage] 
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {string} [promptType] One prompt type or a comma-separated list: informational, navigational, commercial, transactional
@@ -257,7 +252,7 @@ export interface PromptsApiInterface {
      * @param {'asc' | 'desc'} [direction] 
      * @param {string} [query] Case-insensitive substring filter on the sub-query text
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {number} [prompt] Filter by prompt ID
@@ -283,7 +278,7 @@ export interface PromptsApiInterface {
      * @param {'asc' | 'desc'} [direction] 
      * @param {string} [query] Case-insensitive substring filter on the sub-query text
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {number} [prompt] Filter by prompt ID

@@ -13,11 +13,6 @@
  */
 
 import * as runtime from '../runtime';
-import {
-    type GetTimeseriesCollectionIdParameter,
-    GetTimeseriesCollectionIdParameterFromJSON,
-    GetTimeseriesCollectionIdParameterToJSON,
-} from '../models/GetTimeseriesCollectionIdParameter';
 
 export interface ListAllCitationsRequest {
     projectId: number;
@@ -25,7 +20,7 @@ export interface ListAllCitationsRequest {
     page?: number;
     perPage?: number;
     model?: ListAllCitationsModelEnum;
-    collectionId?: GetTimeseriesCollectionIdParameter;
+    collectionId?: string;
     prompt?: number;
     from?: Date;
     to?: Date;
@@ -38,7 +33,7 @@ export interface ListAllMentionsRequest {
     page?: number;
     perPage?: number;
     model?: ListAllMentionsModelEnum;
-    collectionId?: GetTimeseriesCollectionIdParameter;
+    collectionId?: string;
     prompt?: number;
     from?: Date;
     to?: Date;
@@ -50,7 +45,7 @@ export interface ListCitationsRequest {
     page?: number;
     perPage?: number;
     model?: ListCitationsModelEnum;
-    collectionId?: GetTimeseriesCollectionIdParameter;
+    collectionId?: string;
     countryCode?: string;
     languageCode?: string;
     prompt?: number;
@@ -65,7 +60,7 @@ export interface ListCompetitorCitationsRequest {
     page?: number;
     perPage?: number;
     model?: ListCompetitorCitationsModelEnum;
-    collectionId?: GetTimeseriesCollectionIdParameter;
+    collectionId?: string;
     prompt?: number;
     from?: Date;
     to?: Date;
@@ -78,7 +73,7 @@ export interface ListCompetitorMentionsRequest {
     page?: number;
     perPage?: number;
     model?: ListCompetitorMentionsModelEnum;
-    collectionId?: GetTimeseriesCollectionIdParameter;
+    collectionId?: string;
     prompt?: number;
     from?: Date;
     to?: Date;
@@ -90,7 +85,7 @@ export interface ListMentionsRequest {
     page?: number;
     perPage?: number;
     model?: ListMentionsModelEnum;
-    collectionId?: GetTimeseriesCollectionIdParameter;
+    collectionId?: string;
     countryCode?: string;
     languageCode?: string;
     prompt?: number;
@@ -113,7 +108,7 @@ export interface MentionsCitationsApiInterface {
      * @param {number} [page] 
      * @param {number} [perPage] 
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {number} [prompt] Filter by prompt ID
      * @param {Date} [from] 
      * @param {Date} [to] End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
@@ -131,7 +126,7 @@ export interface MentionsCitationsApiInterface {
      * @param {number} [page] 
      * @param {number} [perPage] 
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {number} [prompt] Filter by prompt ID
      * @param {Date} [from] 
      * @param {Date} [to] End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
@@ -155,7 +150,7 @@ export interface MentionsCitationsApiInterface {
      * @param {number} [page] 
      * @param {number} [perPage] 
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {number} [prompt] Filter by prompt ID
      * @param {Date} [from] 
      * @param {Date} [to] End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
@@ -173,7 +168,7 @@ export interface MentionsCitationsApiInterface {
      * @param {number} [page] 
      * @param {number} [perPage] 
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {number} [prompt] Filter by prompt ID
      * @param {Date} [from] 
      * @param {Date} [to] End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
@@ -196,7 +191,7 @@ export interface MentionsCitationsApiInterface {
      * @param {number} [page] 
      * @param {number} [perPage] 
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {number} [prompt] Filter by prompt ID
@@ -215,7 +210,7 @@ export interface MentionsCitationsApiInterface {
      * @param {number} [page] 
      * @param {number} [perPage] 
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {number} [prompt] Filter by prompt ID
@@ -241,7 +236,7 @@ export interface MentionsCitationsApiInterface {
      * @param {number} [page] 
      * @param {number} [perPage] 
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {number} [prompt] Filter by prompt ID
      * @param {Date} [from] 
      * @param {Date} [to] End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
@@ -259,7 +254,7 @@ export interface MentionsCitationsApiInterface {
      * @param {number} [page] 
      * @param {number} [perPage] 
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {number} [prompt] Filter by prompt ID
      * @param {Date} [from] 
      * @param {Date} [to] End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
@@ -283,7 +278,7 @@ export interface MentionsCitationsApiInterface {
      * @param {number} [page] 
      * @param {number} [perPage] 
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {number} [prompt] Filter by prompt ID
      * @param {Date} [from] 
      * @param {Date} [to] End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
@@ -301,7 +296,7 @@ export interface MentionsCitationsApiInterface {
      * @param {number} [page] 
      * @param {number} [perPage] 
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {number} [prompt] Filter by prompt ID
      * @param {Date} [from] 
      * @param {Date} [to] End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
@@ -323,7 +318,7 @@ export interface MentionsCitationsApiInterface {
      * @param {number} [page] 
      * @param {number} [perPage] 
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {number} [prompt] Filter by prompt ID
@@ -342,7 +337,7 @@ export interface MentionsCitationsApiInterface {
      * @param {number} [page] 
      * @param {number} [perPage] 
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {number} [prompt] Filter by prompt ID

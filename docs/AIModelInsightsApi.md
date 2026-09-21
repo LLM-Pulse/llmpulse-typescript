@@ -46,8 +46,8 @@ async function example() {
     to: 2013-10-20T19:20:30+01:00,
     // 'day' | 'week' | 'month' (optional)
     granularity: granularity_example,
-    // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs (optional)
-    collectionId: ...,
+    // string | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. (optional)
+    collectionId: 12,34,
     // string | One ISO country code or a comma-separated list (e.g. US,GB,DE) (optional)
     countryCode: countryCode_example,
     // string | One ISO language code or a comma-separated list (e.g. en,es,de) (optional)
@@ -82,7 +82,7 @@ example().catch(console.error);
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
 | **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
 | **granularity** | `day`, `week`, `month` |  | [Optional] [Defaults to `undefined`] [Enum: day, week, month] |
-| **collectionId** | [](.md) | One collection/tag ID or a comma-separated list of IDs | [Optional] [Defaults to `undefined`] |
+| **collectionId** | `string` | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [Optional] [Defaults to `undefined`] |
 | **countryCode** | `string` | One ISO country code or a comma-separated list (e.g. US,GB,DE) | [Optional] [Defaults to `undefined`] |
 | **languageCode** | `string` | One ISO language code or a comma-separated list (e.g. en,es,de) | [Optional] [Defaults to `undefined`] |
 | **promptType** | `string` | One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [Optional] [Defaults to `undefined`] |
@@ -145,8 +145,8 @@ async function example() {
     to: 2013-10-20T19:20:30+01:00,
     // 'day' | 'week' | 'month' (optional)
     granularity: granularity_example,
-    // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs (optional)
-    collectionId: ...,
+    // string | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. (optional)
+    collectionId: 12,34,
     // string | One ISO country code or a comma-separated list (e.g. US,GB,DE) (optional)
     countryCode: countryCode_example,
     // string | One ISO language code or a comma-separated list (e.g. en,es,de) (optional)
@@ -185,7 +185,7 @@ example().catch(console.error);
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
 | **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
 | **granularity** | `day`, `week`, `month` |  | [Optional] [Defaults to `undefined`] [Enum: day, week, month] |
-| **collectionId** | [](.md) | One collection/tag ID or a comma-separated list of IDs | [Optional] [Defaults to `undefined`] |
+| **collectionId** | `string` | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [Optional] [Defaults to `undefined`] |
 | **countryCode** | `string` | One ISO country code or a comma-separated list (e.g. US,GB,DE) | [Optional] [Defaults to `undefined`] |
 | **languageCode** | `string` | One ISO language code or a comma-separated list (e.g. en,es,de) | [Optional] [Defaults to `undefined`] |
 | **promptType** | `string` | One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [Optional] [Defaults to `undefined`] |
@@ -250,8 +250,8 @@ async function example() {
     to: 2013-10-20T19:20:30+01:00,
     // 'day' | 'week' | 'month' (optional)
     granularity: granularity_example,
-    // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs (optional)
-    collectionId: ...,
+    // string | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. (optional)
+    collectionId: 12,34,
     // string | One ISO country code or a comma-separated list (e.g. US,GB,DE) (optional)
     countryCode: countryCode_example,
     // string | One ISO language code or a comma-separated list (e.g. en,es,de) (optional)
@@ -288,7 +288,7 @@ example().catch(console.error);
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
 | **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
 | **granularity** | `day`, `week`, `month` |  | [Optional] [Defaults to `undefined`] [Enum: day, week, month] |
-| **collectionId** | [](.md) | One collection/tag ID or a comma-separated list of IDs | [Optional] [Defaults to `undefined`] |
+| **collectionId** | `string` | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [Optional] [Defaults to `undefined`] |
 | **countryCode** | `string` | One ISO country code or a comma-separated list (e.g. US,GB,DE) | [Optional] [Defaults to `undefined`] |
 | **languageCode** | `string` | One ISO language code or a comma-separated list (e.g. en,es,de) | [Optional] [Defaults to `undefined`] |
 | **promptType** | `string` | One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [Optional] [Defaults to `undefined`] |

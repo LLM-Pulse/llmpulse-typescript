@@ -18,11 +18,6 @@ import {
     ApiErrorFromJSON,
     ApiErrorToJSON,
 } from '../models/ApiError';
-import {
-    type GetTimeseriesCollectionIdParameter,
-    GetTimeseriesCollectionIdParameterFromJSON,
-    GetTimeseriesCollectionIdParameterToJSON,
-} from '../models/GetTimeseriesCollectionIdParameter';
 
 export interface ListAdsRequest {
     projectId: number;
@@ -34,7 +29,7 @@ export interface ListAdsRequest {
     direction?: ListAdsDirectionEnum;
     query?: string;
     model?: ListAdsModelEnum;
-    collectionId?: GetTimeseriesCollectionIdParameter;
+    collectionId?: string;
     countryCode?: string;
     languageCode?: string;
     prompt?: number;
@@ -56,7 +51,7 @@ export interface ListShoppingRequest {
     direction?: ListShoppingDirectionEnum;
     query?: string;
     model?: ListShoppingModelEnum;
-    collectionId?: GetTimeseriesCollectionIdParameter;
+    collectionId?: string;
     countryCode?: string;
     languageCode?: string;
     prompt?: number;
@@ -86,7 +81,7 @@ export interface ShoppingAdsApiInterface {
      * @param {'asc' | 'desc'} [direction] Sort direction for view&#x3D;advertisers. Defaults to desc, except avg_position and domain which default to asc.
      * @param {string} [query] Case-insensitive substring filter on the ad title, domain or snippet
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {number} [prompt] Filter by prompt ID
@@ -113,7 +108,7 @@ export interface ShoppingAdsApiInterface {
      * @param {'asc' | 'desc'} [direction] Sort direction for view&#x3D;advertisers. Defaults to desc, except avg_position and domain which default to asc.
      * @param {string} [query] Case-insensitive substring filter on the ad title, domain or snippet
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {number} [prompt] Filter by prompt ID
@@ -146,7 +141,7 @@ export interface ShoppingAdsApiInterface {
      * @param {'asc' | 'desc'} [direction] 
      * @param {string} [query] Case-insensitive substring filter on the product title
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {number} [prompt] Filter by prompt ID
@@ -173,7 +168,7 @@ export interface ShoppingAdsApiInterface {
      * @param {'asc' | 'desc'} [direction] 
      * @param {string} [query] Case-insensitive substring filter on the product title
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {number} [prompt] Filter by prompt ID

@@ -13,11 +13,6 @@
  */
 
 import * as runtime from '../runtime';
-import {
-    type GetTimeseriesCollectionIdParameter,
-    GetTimeseriesCollectionIdParameterFromJSON,
-    GetTimeseriesCollectionIdParameterToJSON,
-} from '../models/GetTimeseriesCollectionIdParameter';
 
 export interface GetAiModelInsightsSummaryRequest {
     projectId: number;
@@ -25,7 +20,7 @@ export interface GetAiModelInsightsSummaryRequest {
     from?: Date;
     to?: Date;
     granularity?: GetAiModelInsightsSummaryGranularityEnum;
-    collectionId?: GetTimeseriesCollectionIdParameter;
+    collectionId?: string;
     countryCode?: string;
     languageCode?: string;
     promptType?: string;
@@ -39,7 +34,7 @@ export interface GetAiModelPositionDistributionRequest {
     from?: Date;
     to?: Date;
     granularity?: GetAiModelPositionDistributionGranularityEnum;
-    collectionId?: GetTimeseriesCollectionIdParameter;
+    collectionId?: string;
     countryCode?: string;
     languageCode?: string;
     promptType?: string;
@@ -55,7 +50,7 @@ export interface GetAiOverviewResultsRequest {
     from?: Date;
     to?: Date;
     granularity?: GetAiOverviewResultsGranularityEnum;
-    collectionId?: GetTimeseriesCollectionIdParameter;
+    collectionId?: string;
     countryCode?: string;
     languageCode?: string;
     promptType?: string;
@@ -78,7 +73,7 @@ export interface AIModelInsightsApiInterface {
      * @param {Date} [from] 
      * @param {Date} [to] End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
      * @param {'day' | 'week' | 'month'} [granularity] 
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {string} [promptType] One prompt type or a comma-separated list: informational, navigational, commercial, transactional
@@ -97,7 +92,7 @@ export interface AIModelInsightsApiInterface {
      * @param {Date} [from] 
      * @param {Date} [to] End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
      * @param {'day' | 'week' | 'month'} [granularity] 
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {string} [promptType] One prompt type or a comma-separated list: informational, navigational, commercial, transactional
@@ -122,7 +117,7 @@ export interface AIModelInsightsApiInterface {
      * @param {Date} [from] 
      * @param {Date} [to] End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
      * @param {'day' | 'week' | 'month'} [granularity] 
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {string} [promptType] One prompt type or a comma-separated list: informational, navigational, commercial, transactional
@@ -143,7 +138,7 @@ export interface AIModelInsightsApiInterface {
      * @param {Date} [from] 
      * @param {Date} [to] End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
      * @param {'day' | 'week' | 'month'} [granularity] 
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {string} [promptType] One prompt type or a comma-separated list: informational, navigational, commercial, transactional
@@ -169,7 +164,7 @@ export interface AIModelInsightsApiInterface {
      * @param {Date} [from] 
      * @param {Date} [to] End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
      * @param {'day' | 'week' | 'month'} [granularity] 
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {string} [promptType] One prompt type or a comma-separated list: informational, navigational, commercial, transactional
@@ -189,7 +184,7 @@ export interface AIModelInsightsApiInterface {
      * @param {Date} [from] 
      * @param {Date} [to] End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
      * @param {'day' | 'week' | 'month'} [granularity] 
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {string} [promptType] One prompt type or a comma-separated list: informational, navigational, commercial, transactional

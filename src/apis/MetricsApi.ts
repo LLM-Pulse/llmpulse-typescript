@@ -19,11 +19,6 @@ import {
     ApiErrorToJSON,
 } from '../models/ApiError';
 import {
-    type GetTimeseriesCollectionIdParameter,
-    GetTimeseriesCollectionIdParameterFromJSON,
-    GetTimeseriesCollectionIdParameterToJSON,
-} from '../models/GetTimeseriesCollectionIdParameter';
-import {
     type PromptSummaryResponse,
     PromptSummaryResponseFromJSON,
     PromptSummaryResponseToJSON,
@@ -56,7 +51,7 @@ export interface GetPromptSummaryRequest {
     to?: Date;
     breakdown?: GetPromptSummaryBreakdownEnum;
     model?: GetPromptSummaryModelEnum;
-    collectionId?: GetTimeseriesCollectionIdParameter;
+    collectionId?: string;
     countryCode?: string;
     languageCode?: string;
     prompt?: number;
@@ -77,7 +72,7 @@ export interface GetShareOfVoiceRequest {
     granularity?: GetShareOfVoiceGranularityEnum;
     competitors?: string;
     model?: GetShareOfVoiceModelEnum;
-    collectionId?: GetTimeseriesCollectionIdParameter;
+    collectionId?: string;
     prompt?: number;
     promptType?: string;
     brandKind?: GetShareOfVoiceBrandKindEnum;
@@ -94,7 +89,7 @@ export interface GetSummaryRequest {
     to?: Date;
     competitors?: string;
     model?: GetSummaryModelEnum;
-    collectionId?: GetTimeseriesCollectionIdParameter;
+    collectionId?: string;
     prompt?: number;
     promptType?: string;
     brandKind?: GetSummaryBrandKindEnum;
@@ -110,7 +105,7 @@ export interface GetTimeseriesRequest {
     to?: Date;
     competitors?: string;
     model?: GetTimeseriesModelEnum;
-    collectionId?: GetTimeseriesCollectionIdParameter;
+    collectionId?: string;
     countryCode?: string;
     languageCode?: string;
     prompt?: number;
@@ -126,7 +121,7 @@ export interface GetTopSourcesRequest {
     from?: Date;
     to?: Date;
     model?: GetTopSourcesModelEnum;
-    collectionId?: GetTimeseriesCollectionIdParameter;
+    collectionId?: string;
     countryCode?: string;
     languageCode?: string;
     prompt?: number;
@@ -154,7 +149,7 @@ export interface MetricsApiInterface {
      * @param {Date} [to] End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
      * @param {'model'} [breakdown] Add per-(prompt, model) rows to the output
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {number} [prompt] Filter by prompt ID
@@ -179,7 +174,7 @@ export interface MetricsApiInterface {
      * @param {Date} [to] End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
      * @param {'model'} [breakdown] Add per-(prompt, model) rows to the output
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {number} [prompt] Filter by prompt ID
@@ -211,7 +206,7 @@ export interface MetricsApiInterface {
      * @param {'day' | 'week' | 'month'} [granularity] 
      * @param {string} [competitors] Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {number} [prompt] Filter by prompt ID
      * @param {string} [promptType] One prompt type or a comma-separated list: informational, navigational, commercial, transactional
      * @param {'brand' | 'brand_other' | 'non_brand'} [brandKind] Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
@@ -232,7 +227,7 @@ export interface MetricsApiInterface {
      * @param {'day' | 'week' | 'month'} [granularity] 
      * @param {string} [competitors] Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {number} [prompt] Filter by prompt ID
      * @param {string} [promptType] One prompt type or a comma-separated list: informational, navigational, commercial, transactional
      * @param {'brand' | 'brand_other' | 'non_brand'} [brandKind] Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
@@ -260,7 +255,7 @@ export interface MetricsApiInterface {
      * @param {Date} [to] End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
      * @param {string} [competitors] Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {number} [prompt] Filter by prompt ID
      * @param {string} [promptType] One prompt type or a comma-separated list: informational, navigational, commercial, transactional
      * @param {'brand' | 'brand_other' | 'non_brand'} [brandKind] Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
@@ -281,7 +276,7 @@ export interface MetricsApiInterface {
      * @param {Date} [to] End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
      * @param {string} [competitors] Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {number} [prompt] Filter by prompt ID
      * @param {string} [promptType] One prompt type or a comma-separated list: informational, navigational, commercial, transactional
      * @param {'brand' | 'brand_other' | 'non_brand'} [brandKind] Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default.
@@ -308,7 +303,7 @@ export interface MetricsApiInterface {
      * @param {Date} [to] End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
      * @param {string} [competitors] Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {number} [prompt] Filter by prompt ID
@@ -332,7 +327,7 @@ export interface MetricsApiInterface {
      * @param {Date} [to] End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
      * @param {string} [competitors] Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM)
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {number} [prompt] Filter by prompt ID
@@ -359,7 +354,7 @@ export interface MetricsApiInterface {
      * @param {Date} [from] 
      * @param {Date} [to] End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {number} [prompt] Filter by prompt ID
@@ -383,7 +378,7 @@ export interface MetricsApiInterface {
      * @param {Date} [from] 
      * @param {Date} [to] End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier.
      * @param {'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai'} [model] Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped.
-     * @param {GetTimeseriesCollectionIdParameter} [collectionId] One collection/tag ID or a comma-separated list of IDs
+     * @param {string} [collectionId] One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize.
      * @param {string} [countryCode] One ISO country code or a comma-separated list (e.g. US,GB,DE)
      * @param {string} [languageCode] One ISO language code or a comma-separated list (e.g. en,es,de)
      * @param {number} [prompt] Filter by prompt ID

@@ -26,7 +26,6 @@ export * from './GetAccount200Response';
 export * from './GetAccount200ResponseLimits';
 export * from './GetAccount200ResponseRateLimits';
 export * from './GetAccount200ResponseSubscription';
-export * from './GetTimeseriesCollectionIdParameter';
 export * from './IntelligenceTask';
 export * from './IntelligenceTaskCreateRequest';
 export * from './IntelligenceTaskUpdateRequest';

@@ -49,8 +49,8 @@ async function example() {
     perPage: 56,
     // 'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai' | Filter by AI model. Models the API key\'s user has not enabled are silently dropped. (optional)
     model: model_example,
-    // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs (optional)
-    collectionId: ...,
+    // string | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. (optional)
+    collectionId: 12,34,
     // number | Filter by prompt ID (optional)
     prompt: 56,
     // Date (optional)
@@ -83,7 +83,7 @@ example().catch(console.error);
 | **page** | `number` |  | [Optional] [Defaults to `1`] |
 | **perPage** | `number` |  | [Optional] [Defaults to `20`] |
 | **model** | `chatgpt`, `perplexity`, `gemini`, `ai_overview`, `ai_mode`, `copilot`, `claude`, `grok`, `deepseek`, `meta_ai`, `amazon_rufus`, `naver_ai`, `baidu_ai` | Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, gemini, ai_overview, ai_mode, copilot, claude, grok, deepseek, meta_ai, amazon_rufus, naver_ai, baidu_ai] |
-| **collectionId** | [](.md) | One collection/tag ID or a comma-separated list of IDs | [Optional] [Defaults to `undefined`] |
+| **collectionId** | `string` | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [Optional] [Defaults to `undefined`] |
 | **prompt** | `number` | Filter by prompt ID | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
 | **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
@@ -147,8 +147,8 @@ async function example() {
     perPage: 56,
     // 'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai' | Filter by AI model. Models the API key\'s user has not enabled are silently dropped. (optional)
     model: model_example,
-    // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs (optional)
-    collectionId: ...,
+    // string | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. (optional)
+    collectionId: 12,34,
     // number | Filter by prompt ID (optional)
     prompt: 56,
     // Date (optional)
@@ -181,7 +181,7 @@ example().catch(console.error);
 | **page** | `number` |  | [Optional] [Defaults to `1`] |
 | **perPage** | `number` |  | [Optional] [Defaults to `20`] |
 | **model** | `chatgpt`, `perplexity`, `gemini`, `ai_overview`, `ai_mode`, `copilot`, `claude`, `grok`, `deepseek`, `meta_ai`, `amazon_rufus`, `naver_ai`, `baidu_ai` | Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, gemini, ai_overview, ai_mode, copilot, claude, grok, deepseek, meta_ai, amazon_rufus, naver_ai, baidu_ai] |
-| **collectionId** | [](.md) | One collection/tag ID or a comma-separated list of IDs | [Optional] [Defaults to `undefined`] |
+| **collectionId** | `string` | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [Optional] [Defaults to `undefined`] |
 | **prompt** | `number` | Filter by prompt ID | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
 | **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
@@ -243,8 +243,8 @@ async function example() {
     perPage: 56,
     // 'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai' | Filter by AI model. Models the API key\'s user has not enabled are silently dropped. (optional)
     model: model_example,
-    // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs (optional)
-    collectionId: ...,
+    // string | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. (optional)
+    collectionId: 12,34,
     // string | One ISO country code or a comma-separated list (e.g. US,GB,DE) (optional)
     countryCode: countryCode_example,
     // string | One ISO language code or a comma-separated list (e.g. en,es,de) (optional)
@@ -280,7 +280,7 @@ example().catch(console.error);
 | **page** | `number` |  | [Optional] [Defaults to `1`] |
 | **perPage** | `number` |  | [Optional] [Defaults to `20`] |
 | **model** | `chatgpt`, `perplexity`, `gemini`, `ai_overview`, `ai_mode`, `copilot`, `claude`, `grok`, `deepseek`, `meta_ai`, `amazon_rufus`, `naver_ai`, `baidu_ai` | Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, gemini, ai_overview, ai_mode, copilot, claude, grok, deepseek, meta_ai, amazon_rufus, naver_ai, baidu_ai] |
-| **collectionId** | [](.md) | One collection/tag ID or a comma-separated list of IDs | [Optional] [Defaults to `undefined`] |
+| **collectionId** | `string` | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [Optional] [Defaults to `undefined`] |
 | **countryCode** | `string` | One ISO country code or a comma-separated list (e.g. US,GB,DE) | [Optional] [Defaults to `undefined`] |
 | **languageCode** | `string` | One ISO language code or a comma-separated list (e.g. en,es,de) | [Optional] [Defaults to `undefined`] |
 | **prompt** | `number` | Filter by prompt ID | [Optional] [Defaults to `undefined`] |
@@ -346,8 +346,8 @@ async function example() {
     perPage: 56,
     // 'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai' | Filter by AI model. Models the API key\'s user has not enabled are silently dropped. (optional)
     model: model_example,
-    // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs (optional)
-    collectionId: ...,
+    // string | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. (optional)
+    collectionId: 12,34,
     // number | Filter by prompt ID (optional)
     prompt: 56,
     // Date (optional)
@@ -380,7 +380,7 @@ example().catch(console.error);
 | **page** | `number` |  | [Optional] [Defaults to `1`] |
 | **perPage** | `number` |  | [Optional] [Defaults to `20`] |
 | **model** | `chatgpt`, `perplexity`, `gemini`, `ai_overview`, `ai_mode`, `copilot`, `claude`, `grok`, `deepseek`, `meta_ai`, `amazon_rufus`, `naver_ai`, `baidu_ai` | Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, gemini, ai_overview, ai_mode, copilot, claude, grok, deepseek, meta_ai, amazon_rufus, naver_ai, baidu_ai] |
-| **collectionId** | [](.md) | One collection/tag ID or a comma-separated list of IDs | [Optional] [Defaults to `undefined`] |
+| **collectionId** | `string` | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [Optional] [Defaults to `undefined`] |
 | **prompt** | `number` | Filter by prompt ID | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
 | **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
@@ -442,8 +442,8 @@ async function example() {
     perPage: 56,
     // 'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai' | Filter by AI model. Models the API key\'s user has not enabled are silently dropped. (optional)
     model: model_example,
-    // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs (optional)
-    collectionId: ...,
+    // string | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. (optional)
+    collectionId: 12,34,
     // number | Filter by prompt ID (optional)
     prompt: 56,
     // Date (optional)
@@ -476,7 +476,7 @@ example().catch(console.error);
 | **page** | `number` |  | [Optional] [Defaults to `1`] |
 | **perPage** | `number` |  | [Optional] [Defaults to `20`] |
 | **model** | `chatgpt`, `perplexity`, `gemini`, `ai_overview`, `ai_mode`, `copilot`, `claude`, `grok`, `deepseek`, `meta_ai`, `amazon_rufus`, `naver_ai`, `baidu_ai` | Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, gemini, ai_overview, ai_mode, copilot, claude, grok, deepseek, meta_ai, amazon_rufus, naver_ai, baidu_ai] |
-| **collectionId** | [](.md) | One collection/tag ID or a comma-separated list of IDs | [Optional] [Defaults to `undefined`] |
+| **collectionId** | `string` | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [Optional] [Defaults to `undefined`] |
 | **prompt** | `number` | Filter by prompt ID | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
 | **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
@@ -536,8 +536,8 @@ async function example() {
     perPage: 56,
     // 'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai' | Filter by AI model. Models the API key\'s user has not enabled are silently dropped. (optional)
     model: model_example,
-    // GetTimeseriesCollectionIdParameter | One collection/tag ID or a comma-separated list of IDs (optional)
-    collectionId: ...,
+    // string | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. (optional)
+    collectionId: 12,34,
     // string | One ISO country code or a comma-separated list (e.g. US,GB,DE) (optional)
     countryCode: countryCode_example,
     // string | One ISO language code or a comma-separated list (e.g. en,es,de) (optional)
@@ -573,7 +573,7 @@ example().catch(console.error);
 | **page** | `number` |  | [Optional] [Defaults to `1`] |
 | **perPage** | `number` |  | [Optional] [Defaults to `20`] |
 | **model** | `chatgpt`, `perplexity`, `gemini`, `ai_overview`, `ai_mode`, `copilot`, `claude`, `grok`, `deepseek`, `meta_ai`, `amazon_rufus`, `naver_ai`, `baidu_ai` | Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, gemini, ai_overview, ai_mode, copilot, claude, grok, deepseek, meta_ai, amazon_rufus, naver_ai, baidu_ai] |
-| **collectionId** | [](.md) | One collection/tag ID or a comma-separated list of IDs | [Optional] [Defaults to `undefined`] |
+| **collectionId** | `string` | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [Optional] [Defaults to `undefined`] |
 | **countryCode** | `string` | One ISO country code or a comma-separated list (e.g. US,GB,DE) | [Optional] [Defaults to `undefined`] |
 | **languageCode** | `string` | One ISO language code or a comma-separated list (e.g. en,es,de) | [Optional] [Defaults to `undefined`] |
 | **prompt** | `number` | Filter by prompt ID | [Optional] [Defaults to `undefined`] |
