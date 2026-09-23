@@ -9,6 +9,7 @@ Name | Type
 `projectId` | number
 `url` | string
 `countryCode` | string
+`outputLanguageCode` | string
 
 ## Example
 
@@ -20,6 +21,7 @@ const example = {
   "projectId": null,
   "url": null,
   "countryCode": null,
+  "outputLanguageCode": null,
 } satisfies CreateTechnicalGeoReportsRequest
 
 console.log(example)
