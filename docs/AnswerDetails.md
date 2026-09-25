@@ -26,6 +26,7 @@ Name | Type
 `brandEntities` | Array&lt;object&gt;
 `localBusinesses` | Array&lt;object&gt;
 `locale` | [AnswerDetailsLocale](AnswerDetailsLocale.md)
+`appUrl` | string
 
 ## Example
 
@@ -54,6 +55,7 @@ const example = {
   "brandEntities": null,
   "localBusinesses": null,
   "locale": null,
+  "appUrl": null,
 } satisfies AnswerDetails
 
 console.log(example)

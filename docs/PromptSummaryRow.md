@@ -17,6 +17,7 @@ Name | Type
 `citationRate` | number
 `avgMentionPosition` | number
 `avgPosition` | number
+`appUrl` | string
 
 ## Example
 
@@ -36,6 +37,7 @@ const example = {
   "citationRate": null,
   "avgMentionPosition": null,
   "avgPosition": null,
+  "appUrl": null,
 } satisfies PromptSummaryRow
 
 console.log(example)
