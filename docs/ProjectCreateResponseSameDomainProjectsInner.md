@@ -1,30 +1,28 @@
 
-# SovResponsePeriodsInner
+# ProjectCreateResponseSameDomainProjectsInner
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`date` | Date
-`mentions` | number
-`partial` | boolean
-`confidence` | string
-`marginOfError` | number
+`id` | number
+`name` | string
+`countryCode` | string
+`languageCode` | string
 
 ## Example
 
 ```typescript
-import type { SovResponsePeriodsInner } from '@llmpulse/sdk'
+import type { ProjectCreateResponseSameDomainProjectsInner } from '@llmpulse/sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "date": null,
-  "mentions": null,
-  "partial": null,
-  "confidence": low,
-  "marginOfError": 21.9,
-} satisfies SovResponsePeriodsInner
+  "id": null,
+  "name": null,
+  "countryCode": null,
+  "languageCode": null,
+} satisfies ProjectCreateResponseSameDomainProjectsInner
 
 console.log(example)
 
@@ -33,7 +31,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as SovResponsePeriodsInner
+const exampleParsed = JSON.parse(exampleJSON) as ProjectCreateResponseSameDomainProjectsInner
 console.log(exampleParsed)
 ```
 

@@ -1,6 +1,7 @@
 
-# SovResponsePeriodsInner
+# SovResponseSample
 
+The period the current shares were computed on (the last one with mentions), same shape as a periods item; null when the window has no mentions.
 
 ## Properties
 
@@ -15,16 +16,16 @@ Name | Type
 ## Example
 
 ```typescript
-import type { SovResponsePeriodsInner } from '@llmpulse/sdk'
+import type { SovResponseSample } from '@llmpulse/sdk'
 
 // TODO: Update the object below with actual values
 const example = {
   "date": null,
   "mentions": null,
   "partial": null,
-  "confidence": low,
-  "marginOfError": 21.9,
-} satisfies SovResponsePeriodsInner
+  "confidence": null,
+  "marginOfError": null,
+} satisfies SovResponseSample
 
 console.log(example)
 
@@ -33,7 +34,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as SovResponsePeriodsInner
+const exampleParsed = JSON.parse(exampleJSON) as SovResponseSample
 console.log(exampleParsed)
 ```
 

@@ -9,6 +9,8 @@ Name | Type
 `project` | object
 `prompts` | [ProjectCreateResponsePrompts](ProjectCreateResponsePrompts.md)
 `competitors` | [ProjectCreateResponseCompetitors](ProjectCreateResponseCompetitors.md)
+`collections` | [Array&lt;ProjectCreateResponseCollectionsInner&gt;](ProjectCreateResponseCollectionsInner.md)
+`sameDomainProjects` | [Array&lt;ProjectCreateResponseSameDomainProjectsInner&gt;](ProjectCreateResponseSameDomainProjectsInner.md)
 `emailSubscription` | [ProjectCreateResponseEmailSubscription](ProjectCreateResponseEmailSubscription.md)
 `limits` | [ProjectCreateResponseLimits](ProjectCreateResponseLimits.md)
 `idempotent` | boolean
@@ -24,6 +26,8 @@ const example = {
   "project": null,
   "prompts": null,
   "competitors": null,
+  "collections": null,
+  "sameDomainProjects": null,
   "emailSubscription": null,
   "limits": null,
   "idempotent": null,

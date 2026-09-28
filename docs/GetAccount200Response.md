@@ -7,6 +7,7 @@
 Name | Type
 ------------ | -------------
 `plan` | string
+`planName` | string
 `trackingFrequency` | string
 `role` | string
 `subscription` | [GetAccount200ResponseSubscription](GetAccount200ResponseSubscription.md)
@@ -22,6 +23,7 @@ import type { GetAccount200Response } from '@llmpulse/sdk'
 // TODO: Update the object below with actual values
 const example = {
   "plan": null,
+  "planName": null,
   "trackingFrequency": null,
   "role": null,
   "subscription": null,

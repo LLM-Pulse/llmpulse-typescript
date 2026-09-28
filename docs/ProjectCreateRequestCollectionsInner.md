@@ -1,30 +1,24 @@
 
-# SovResponsePeriodsInner
+# ProjectCreateRequestCollectionsInner
 
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`date` | Date
-`mentions` | number
-`partial` | boolean
-`confidence` | string
-`marginOfError` | number
+`name` | string
+`prompts` | Array&lt;string&gt;
 
 ## Example
 
 ```typescript
-import type { SovResponsePeriodsInner } from '@llmpulse/sdk'
+import type { ProjectCreateRequestCollectionsInner } from '@llmpulse/sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "date": null,
-  "mentions": null,
-  "partial": null,
-  "confidence": low,
-  "marginOfError": 21.9,
-} satisfies SovResponsePeriodsInner
+  "name": Comparisons,
+  "prompts": ["top crm tools 2026"],
+} satisfies ProjectCreateRequestCollectionsInner
 
 console.log(example)
 
@@ -33,7 +27,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as SovResponsePeriodsInner
+const exampleParsed = JSON.parse(exampleJSON) as ProjectCreateRequestCollectionsInner
 console.log(exampleParsed)
 ```
 

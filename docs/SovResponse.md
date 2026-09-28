@@ -8,6 +8,7 @@ Name | Type
 ------------ | -------------
 `projectId` | number
 `periods` | [Array&lt;SovResponsePeriodsInner&gt;](SovResponsePeriodsInner.md)
+`sample` | [SovResponseSample](SovResponseSample.md)
 `overTime` | [Array&lt;SovResponseOverTimeInner&gt;](SovResponseOverTimeInner.md)
 `current` | [Array&lt;SovResponseCurrentInner&gt;](SovResponseCurrentInner.md)
 `breakdown` | [Array&lt;SovResponseBreakdownInner&gt;](SovResponseBreakdownInner.md)
@@ -22,6 +23,7 @@ import type { SovResponse } from '@llmpulse/sdk'
 const example = {
   "projectId": null,
   "periods": null,
+  "sample": null,
   "overTime": null,
   "current": null,
   "breakdown": null,

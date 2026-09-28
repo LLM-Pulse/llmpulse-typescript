@@ -21,6 +21,7 @@ Name | Type
 `primaryProducts` | Array&lt;string&gt;
 `matchingNames` | Array&lt;string&gt;
 `prompts` | Array&lt;string&gt;
+`collections` | [Array&lt;ProjectCreateRequestCollectionsInner&gt;](ProjectCreateRequestCollectionsInner.md)
 `competitors` | [Array&lt;ProjectCreateRequestCompetitorsInner&gt;](ProjectCreateRequestCompetitorsInner.md)
 `ownedMedia` | [ProjectCreateRequestOwnedMedia](ProjectCreateRequestOwnedMedia.md)
 `useSubdomain` | boolean
@@ -50,6 +51,7 @@ const example = {
   "primaryProducts": null,
   "matchingNames": null,
   "prompts": null,
+  "collections": null,
   "competitors": null,
   "ownedMedia": null,
   "useSubdomain": null,

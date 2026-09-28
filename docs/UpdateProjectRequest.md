@@ -6,6 +6,7 @@
 
 Name | Type
 ------------ | -------------
+`name` | string
 `brandName` | string
 `description` | string
 `industry` | string
@@ -24,6 +25,7 @@ import type { UpdateProjectRequest } from '@llmpulse/sdk'
 
 // TODO: Update the object below with actual values
 const example = {
+  "name": null,
   "brandName": null,
   "description": null,
   "industry": null,

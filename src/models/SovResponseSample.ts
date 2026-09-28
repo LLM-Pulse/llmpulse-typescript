@@ -14,55 +14,55 @@
 
 import { mapValues } from '../runtime';
 /**
- * 
+ * The period the current shares were computed on (the last one with mentions), same shape as a periods item; null when the window has no mentions.
  * @export
- * @interface SovResponsePeriodsInner
+ * @interface SovResponseSample
  */
-export interface SovResponsePeriodsInner {
+export interface SovResponseSample {
     /**
      * 
      * @type {Date}
-     * @memberof SovResponsePeriodsInner
+     * @memberof SovResponseSample
      */
     date?: Date;
     /**
      * 
      * @type {number}
-     * @memberof SovResponsePeriodsInner
+     * @memberof SovResponseSample
      */
     mentions?: number;
     /**
      * 
      * @type {boolean}
-     * @memberof SovResponsePeriodsInner
+     * @memberof SovResponseSample
      */
     partial?: boolean;
     /**
-     * How far the shares of this period can be trusted, from its mentions: none (0), low (under 30), medium (under 100) or high (100 or more).
+     * 
      * @type {string}
-     * @memberof SovResponsePeriodsInner
+     * @memberof SovResponseSample
      */
     confidence?: string;
     /**
-     * Worst-case 95% margin of a share in percentage points, 98 / sqrt(mentions); mentions within one answer are not independent, so the real margin is at least this wide. null with no mentions.
+     * 
      * @type {number}
-     * @memberof SovResponsePeriodsInner
+     * @memberof SovResponseSample
      */
     marginOfError?: number | null;
 }
 
 /**
- * Check if a given object implements the SovResponsePeriodsInner interface.
+ * Check if a given object implements the SovResponseSample interface.
  */
-export function instanceOfSovResponsePeriodsInner(value: object): value is SovResponsePeriodsInner {
+export function instanceOfSovResponseSample(value: object): value is SovResponseSample {
     return true;
 }
 
-export function SovResponsePeriodsInnerFromJSON(json: any): SovResponsePeriodsInner {
-    return SovResponsePeriodsInnerFromJSONTyped(json, false);
+export function SovResponseSampleFromJSON(json: any): SovResponseSample {
+    return SovResponseSampleFromJSONTyped(json, false);
 }
 
-export function SovResponsePeriodsInnerFromJSONTyped(json: any, ignoreDiscriminator: boolean): SovResponsePeriodsInner {
+export function SovResponseSampleFromJSONTyped(json: any, ignoreDiscriminator: boolean): SovResponseSample {
     if (json == null) {
         return json;
     }
@@ -76,11 +76,11 @@ export function SovResponsePeriodsInnerFromJSONTyped(json: any, ignoreDiscrimina
     };
 }
 
-export function SovResponsePeriodsInnerToJSON(json: any): SovResponsePeriodsInner {
-    return SovResponsePeriodsInnerToJSONTyped(json, false);
+export function SovResponseSampleToJSON(json: any): SovResponseSample {
+    return SovResponseSampleToJSONTyped(json, false);
 }
 
-export function SovResponsePeriodsInnerToJSONTyped(value?: SovResponsePeriodsInner | null, ignoreDiscriminator: boolean = false): any {
+export function SovResponseSampleToJSONTyped(value?: SovResponseSample | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

@@ -12,7 +12,7 @@ Name | Type
 `url` | string
 `description` | string
 `matchingNames` | Array&lt;string&gt;
-`industry` | string
+`industry` | any
 `businessModel` | string
 `businessModelOther` | string
 `primaryProducts` | Array&lt;string&gt;
