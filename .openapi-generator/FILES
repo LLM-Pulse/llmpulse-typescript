@@ -46,6 +46,8 @@ docs/ListCompetitors200Response.md
 docs/ListProjects200Response.md
 docs/ListWebhooks200Response.md
 docs/ListWebhooks200ResponseDataInner.md
+docs/LlmsTxtTechnicalGeoReport.md
+docs/LlmsTxtTechnicalGeoReportResultData.md
 docs/MentionsCitationsApi.md
 docs/MetricsApi.md
 docs/OwnedMediaCommunitiesApi.md
@@ -90,6 +92,10 @@ docs/SummaryResponse.md
 docs/SummaryResponseAllOfPositionDistribution.md
 docs/SummaryResponseAllOfSummaryValueInner.md
 docs/TechnicalGEOReportsApi.md
+docs/TechnicalGeoReportContentRevertRequest.md
+docs/TechnicalGeoReportContentUpdateRequest.md
+docs/TechnicalGeoReportContentUpdateRequestEdits.md
+docs/TechnicalGeoReportContentUpdateResponse.md
 docs/TimeseriesPoint.md
 docs/TimeseriesResponse.md
 docs/TimeseriesSeries.md
@@ -161,6 +167,8 @@ src/models/ListCompetitors200Response.ts
 src/models/ListProjects200Response.ts
 src/models/ListWebhooks200Response.ts
 src/models/ListWebhooks200ResponseDataInner.ts
+src/models/LlmsTxtTechnicalGeoReport.ts
+src/models/LlmsTxtTechnicalGeoReportResultData.ts
 src/models/Ping200Response.ts
 src/models/Project.ts
 src/models/ProjectCreateRequest.ts
@@ -193,6 +201,10 @@ src/models/SovResponseSample.ts
 src/models/SummaryResponse.ts
 src/models/SummaryResponseAllOfPositionDistribution.ts
 src/models/SummaryResponseAllOfSummaryValueInner.ts
+src/models/TechnicalGeoReportContentRevertRequest.ts
+src/models/TechnicalGeoReportContentUpdateRequest.ts
+src/models/TechnicalGeoReportContentUpdateRequestEdits.ts
+src/models/TechnicalGeoReportContentUpdateResponse.ts
 src/models/TimeseriesPoint.ts
 src/models/TimeseriesResponse.ts
 src/models/TimeseriesSeries.ts
