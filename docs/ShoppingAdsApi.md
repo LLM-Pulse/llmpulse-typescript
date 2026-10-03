@@ -5,6 +5,7 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**listAds**](ShoppingAdsApi.md#listads) | **GET** /dimensions/ads | List AI ad placements |
+| [**listLocalBusinesses**](ShoppingAdsApi.md#listlocalbusinesses) | **GET** /dimensions/local_businesses | List local businesses |
 | [**listShopping**](ShoppingAdsApi.md#listshopping) | **GET** /dimensions/shopping | List shopping results |
 
 
@@ -130,6 +131,129 @@ example().catch(console.error);
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Paginated ad rows plus totals |  -  |
+| **422** | Invalid parameters |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## listLocalBusinesses
+
+> LocalBusinessesResponse listLocalBusinesses(projectId, page, perPage, owned, order, direction, query, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, range, from, to, output)
+
+List local businesses
+
+Local businesses (shops, restaurants, services) listed inside AI answers, one row per business: its name at its address, so two locations of a chain are two rows. Each row carries its appearance count, the number of prompts that listed it, its average rating and average position in the list, its review count, and whether it is yours or a tracked competitor. Every response also carries a totals block matching the KPI cards in the app. Local business lists come from a subset of models and only for prompts with local intent. Available on every plan.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ShoppingAdsApi,
+} from '@llmpulse/sdk';
+import type { ListLocalBusinessesRequest } from '@llmpulse/sdk';
+
+async function example() {
+  console.log("🚀 Testing @llmpulse/sdk SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new ShoppingAdsApi(config);
+
+  const body = {
+    // number | Project ID
+    projectId: 56,
+    // number (optional)
+    page: 56,
+    // number (optional)
+    perPage: 56,
+    // boolean | Return only listings identified as the tracked brand\'s own locations. The totals block stays account-wide. (optional)
+    owned: true,
+    // 'appearances' | 'business' | 'rating' | 'reviews' | 'avg_position' | 'prompts' | Sort field (optional)
+    order: order_example,
+    // 'asc' | 'desc' (optional)
+    direction: direction_example,
+    // string | Case-insensitive substring filter on the business name or address (optional)
+    query: query_example,
+    // 'chatgpt' | 'perplexity' | 'gemini' | 'ai_overview' | 'ai_mode' | 'copilot' | 'claude' | 'grok' | 'deepseek' | 'meta_ai' | 'amazon_rufus' | 'naver_ai' | 'baidu_ai' | Filter by AI model. Models the API key\'s user has not enabled are silently dropped. (optional)
+    model: model_example,
+    // string | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. (optional)
+    collectionId: 12,34,
+    // string | One ISO country code or a comma-separated list (e.g. US,GB,DE) (optional)
+    countryCode: countryCode_example,
+    // string | One ISO language code or a comma-separated list (e.g. en,es,de) (optional)
+    languageCode: languageCode_example,
+    // number | Filter by prompt ID (optional)
+    prompt: 56,
+    // string | One prompt type or a comma-separated list: informational, navigational, commercial, transactional (optional)
+    promptType: promptType_example,
+    // 'brand' | 'brand_other' | 'non_brand' | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. (optional)
+    brandKind: brandKind_example,
+    // number | Number of days to look back (alternative to from/to) (optional)
+    range: 56,
+    // Date (optional)
+    from: 2013-10-20T19:20:30+01:00,
+    // Date | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. (optional)
+    to: 2013-10-20T19:20:30+01:00,
+    // 'flat' | 'csv' | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \'flat\' returns the same metadata plus \'columns\' and \'rows\'; \'csv\' returns those rows as text/csv. Errors are always returned as JSON. (optional)
+    output: output_example,
+  } satisfies ListLocalBusinessesRequest;
+
+  try {
+    const data = await api.listLocalBusinesses(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | `number` | Project ID | [Defaults to `undefined`] |
+| **page** | `number` |  | [Optional] [Defaults to `1`] |
+| **perPage** | `number` |  | [Optional] [Defaults to `20`] |
+| **owned** | `boolean` | Return only listings identified as the tracked brand\&#39;s own locations. The totals block stays account-wide. | [Optional] [Defaults to `undefined`] |
+| **order** | `appearances`, `business`, `rating`, `reviews`, `avg_position`, `prompts` | Sort field | [Optional] [Defaults to `&#39;appearances&#39;`] [Enum: appearances, business, rating, reviews, avg_position, prompts] |
+| **direction** | `asc`, `desc` |  | [Optional] [Defaults to `&#39;desc&#39;`] [Enum: asc, desc] |
+| **query** | `string` | Case-insensitive substring filter on the business name or address | [Optional] [Defaults to `undefined`] |
+| **model** | `chatgpt`, `perplexity`, `gemini`, `ai_overview`, `ai_mode`, `copilot`, `claude`, `grok`, `deepseek`, `meta_ai`, `amazon_rufus`, `naver_ai`, `baidu_ai` | Filter by AI model. Models the API key\&#39;s user has not enabled are silently dropped. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, gemini, ai_overview, ai_mode, copilot, claude, grok, deepseek, meta_ai, amazon_rufus, naver_ai, baidu_ai] |
+| **collectionId** | `string` | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [Optional] [Defaults to `undefined`] |
+| **countryCode** | `string` | One ISO country code or a comma-separated list (e.g. US,GB,DE) | [Optional] [Defaults to `undefined`] |
+| **languageCode** | `string` | One ISO language code or a comma-separated list (e.g. en,es,de) | [Optional] [Defaults to `undefined`] |
+| **prompt** | `number` | Filter by prompt ID | [Optional] [Defaults to `undefined`] |
+| **promptType** | `string` | One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [Optional] [Defaults to `undefined`] |
+| **brandKind** | `brand`, `brand_other`, `non_brand` | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [Optional] [Defaults to `undefined`] [Enum: brand, brand_other, non_brand] |
+| **range** | `number` | Number of days to look back (alternative to from/to) | [Optional] [Defaults to `undefined`] |
+| **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
+| **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
+| **output** | `flat`, `csv` | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \&#39;flat\&#39; returns the same metadata plus \&#39;columns\&#39; and \&#39;rows\&#39;; \&#39;csv\&#39; returns those rows as text/csv. Errors are always returned as JSON. | [Optional] [Defaults to `undefined`] [Enum: flat, csv] |
+
+### Return type
+
+[**LocalBusinessesResponse**](LocalBusinessesResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Paginated local business rows plus totals |  -  |
 | **422** | Invalid parameters |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
