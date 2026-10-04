@@ -14,6 +14,8 @@ Name | Type
 `outputLanguageCode` | string
 `existingContent` | string
 `existingContentUrl` | string
+`product` | [IntelligenceTaskProduct](IntelligenceTaskProduct.md)
+`promptIds` | Array&lt;number&gt;
 
 ## Example
 
@@ -30,6 +32,8 @@ const example = {
   "outputLanguageCode": null,
   "existingContent": null,
   "existingContentUrl": null,
+  "product": null,
+  "promptIds": null,
 } satisfies IntelligenceTaskCreateRequest
 
 console.log(example)

@@ -10,6 +10,7 @@ Name | Type
 `planName` | string
 `trackingFrequency` | string
 `role` | string
+`apiKeyProjectIds` | Array&lt;number&gt;
 `subscription` | [GetAccount200ResponseSubscription](GetAccount200ResponseSubscription.md)
 `limits` | [GetAccount200ResponseLimits](GetAccount200ResponseLimits.md)
 `rateLimits` | [GetAccount200ResponseRateLimits](GetAccount200ResponseRateLimits.md)
@@ -26,6 +27,7 @@ const example = {
   "planName": null,
   "trackingFrequency": null,
   "role": null,
+  "apiKeyProjectIds": null,
   "subscription": null,
   "limits": null,
   "rateLimits": null,

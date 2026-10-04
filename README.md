@@ -1,4 +1,4 @@
-# @llmpulse/sdk@1.53.0
+# @llmpulse/sdk@1.55.0
 
 A TypeScript SDK client for the api.llmpulse.ai API.
 
@@ -149,6 +149,13 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 *SourcesCitationIntelligenceApi* | [**listCitationGroups**](docs/SourcesCitationIntelligenceApi.md#listcitationgroups) | **GET** /citation_intelligence/groups | Grouped citation intelligence
 *SourcesCitationIntelligenceApi* | [**listCitedUrlOccurrences**](docs/SourcesCitationIntelligenceApi.md#listcitedurloccurrences) | **GET** /citation_intelligence/urls/{url_sha256}/occurrences | Cited URL occurrences
 *SourcesCitationIntelligenceApi* | [**listSources**](docs/SourcesCitationIntelligenceApi.md#listsources) | **GET** /dimensions/sources | List source URLs
+*StoreIntegrationsApi* | [**acceptCatalogPromptSuggestions**](docs/StoreIntegrationsApi.md#acceptcatalogpromptsuggestions) | **POST** /catalog_prompt_suggestions/accept | Accept catalog prompt suggestions
+*StoreIntegrationsApi* | [**createCatalogPromptSuggestions**](docs/StoreIntegrationsApi.md#createcatalogpromptsuggestions) | **POST** /catalog_prompt_suggestions | Suggest buyer prompts from catalog products
+*StoreIntegrationsApi* | [**getStoreConnection**](docs/StoreIntegrationsApi.md#getstoreconnection) | **GET** /store_connection | Match a store to a project
+*StoreIntegrationsApi* | [**listAiOrders**](docs/StoreIntegrationsApi.md#listaiorders) | **GET** /ai_orders | Read AI-referred store orders
+*StoreIntegrationsApi* | [**listCatalogPromptSuggestions**](docs/StoreIntegrationsApi.md#listcatalogpromptsuggestions) | **GET** /catalog_prompt_suggestions | List catalog prompt suggestions
+*StoreIntegrationsApi* | [**rejectCatalogPromptSuggestions**](docs/StoreIntegrationsApi.md#rejectcatalogpromptsuggestions) | **POST** /catalog_prompt_suggestions/reject | Reject catalog prompt suggestions
+*StoreIntegrationsApi* | [**replaceAiOrders**](docs/StoreIntegrationsApi.md#replaceaiorders) | **PUT** /ai_orders | Replace AI-referred store orders for a window
 *TechnicalGEOReportsApi* | [**createTechnicalGeoReports**](docs/TechnicalGEOReportsApi.md#createtechnicalgeoreportsoperation) | **POST** /technical_geo_reports | Run technical GEO analysis
 *TechnicalGEOReportsApi* | [**getTechnicalGeoReport**](docs/TechnicalGEOReportsApi.md#gettechnicalgeoreport) | **GET** /technical_geo_reports/{id} | Get a technical GEO report
 *TechnicalGEOReportsApi* | [**listTechnicalGeoReports**](docs/TechnicalGEOReportsApi.md#listtechnicalgeoreports) | **GET** /technical_geo_reports | List technical GEO reports
@@ -168,11 +175,29 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [AgentBot](docs/AgentBot.md)
 - [AgentBotsResponse](docs/AgentBotsResponse.md)
 - [AgentTrafficResponse](docs/AgentTrafficResponse.md)
+- [AiOrdersResponse](docs/AiOrdersResponse.md)
+- [AiOrdersResponseBySourceInner](docs/AiOrdersResponseBySourceInner.md)
+- [AiOrdersResponseSeriesInner](docs/AiOrdersResponseSeriesInner.md)
+- [AiOrdersResponseTotals](docs/AiOrdersResponseTotals.md)
+- [AiOrdersUpdateRequest](docs/AiOrdersUpdateRequest.md)
+- [AiOrdersUpdateRequestDaysInner](docs/AiOrdersUpdateRequestDaysInner.md)
+- [AiOrdersUpdateResponse](docs/AiOrdersUpdateResponse.md)
 - [AnswerDetails](docs/AnswerDetails.md)
 - [AnswerDetailsLocale](docs/AnswerDetailsLocale.md)
 - [ApiError](docs/ApiError.md)
 - [ApiErrorError](docs/ApiErrorError.md)
 - [AssignPromptTagsRequest](docs/AssignPromptTagsRequest.md)
+- [CatalogProduct](docs/CatalogProduct.md)
+- [CatalogPromptSuggestion](docs/CatalogPromptSuggestion.md)
+- [CatalogPromptSuggestionIdsRequest](docs/CatalogPromptSuggestionIdsRequest.md)
+- [CatalogPromptSuggestionProduct](docs/CatalogPromptSuggestionProduct.md)
+- [CatalogPromptSuggestionsAcceptResponse](docs/CatalogPromptSuggestionsAcceptResponse.md)
+- [CatalogPromptSuggestionsAcceptResponseAcceptedInner](docs/CatalogPromptSuggestionsAcceptResponseAcceptedInner.md)
+- [CatalogPromptSuggestionsAcceptResponseSkippedInner](docs/CatalogPromptSuggestionsAcceptResponseSkippedInner.md)
+- [CatalogPromptSuggestionsCreateRequest](docs/CatalogPromptSuggestionsCreateRequest.md)
+- [CatalogPromptSuggestionsCreateResponse](docs/CatalogPromptSuggestionsCreateResponse.md)
+- [CatalogPromptSuggestionsRejectResponse](docs/CatalogPromptSuggestionsRejectResponse.md)
+- [CatalogPromptSuggestionsResponse](docs/CatalogPromptSuggestionsResponse.md)
 - [Competitor](docs/Competitor.md)
 - [CompetitorDetails](docs/CompetitorDetails.md)
 - [CreateAnnotationRequest](docs/CreateAnnotationRequest.md)
@@ -190,6 +215,8 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [GetAccount200ResponseSubscription](docs/GetAccount200ResponseSubscription.md)
 - [IntelligenceTask](docs/IntelligenceTask.md)
 - [IntelligenceTaskCreateRequest](docs/IntelligenceTaskCreateRequest.md)
+- [IntelligenceTaskProduct](docs/IntelligenceTaskProduct.md)
+- [IntelligenceTaskProductImagesInner](docs/IntelligenceTaskProductImagesInner.md)
 - [IntelligenceTaskUpdateRequest](docs/IntelligenceTaskUpdateRequest.md)
 - [IntelligenceTaskUpdateResponse](docs/IntelligenceTaskUpdateResponse.md)
 - [LaunchRecommendationsRequest](docs/LaunchRecommendationsRequest.md)
@@ -231,6 +258,10 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [SovResponseOverTimeInner](docs/SovResponseOverTimeInner.md)
 - [SovResponsePeriodsInner](docs/SovResponsePeriodsInner.md)
 - [SovResponseSample](docs/SovResponseSample.md)
+- [StoreConnectionResponse](docs/StoreConnectionResponse.md)
+- [StoreConnectionResponseAccount](docs/StoreConnectionResponseAccount.md)
+- [StoreConnectionResponseCandidatesInner](docs/StoreConnectionResponseCandidatesInner.md)
+- [StoreConnectionResponseProject](docs/StoreConnectionResponseProject.md)
 - [SummaryResponse](docs/SummaryResponse.md)
 - [SummaryResponseAllOfPositionDistribution](docs/SummaryResponseAllOfPositionDistribution.md)
 - [SummaryResponseAllOfSummaryValueInner](docs/SummaryResponseAllOfSummaryValueInner.md)
@@ -265,8 +296,8 @@ This TypeScript SDK client supports the [Fetch API](https://fetch.spec.whatwg.or
 and is automatically generated by the
 [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `1.53.0`
-- Package version: `1.53.0`
+- API version: `1.55.0`
+- Package version: `1.55.0`
 - Generator version: `7.24.0`
 - Build package: `org.openapitools.codegen.languages.TypeScriptFetchClientCodegen`
 

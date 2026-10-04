@@ -1,7 +1,7 @@
 
 # AccountQuota
 
-A consumable quota. limit and remaining are null when unlimited is true.
+A consumable quota. limit and remaining are null when unlimited is true. For a key limited to some projects, prompts and intelligence_tasks carry no limit (and intelligence_tasks no used): only the capacity left.
 
 ## Properties
 

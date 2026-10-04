@@ -18,6 +18,8 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 
 Create a GEO Writer task
 
+Creates a GEO Writer task, processed asynchronously: poll GET /intelligence_tasks/{id} until status is completed. Prompt-based mode takes prompt_id; agentic mode takes custom_topic and/or user_instructions. task_type product_listing is API-only and serves store apps: send a product object (title required) and optionally prompt_ids, and the completed result_data holds ready-to-apply product page copy. Edit and revert it with PATCH /intelligence_tasks/{id} and POST /intelligence_tasks/{id}/revert. Requires a &#x60;read_write&#x60; scope API key.
+
 ### Example
 
 ```ts
@@ -181,7 +183,7 @@ async function example() {
   const body = {
     // number | Project ID
     projectId: 56,
-    // 'brief' | 'create' | 'update' | 'pr_insights' | 'custom' (optional)
+    // 'brief' | 'create' | 'update' | 'pr_insights' | 'custom' | 'product_listing' (optional)
     taskType: taskType_example,
     // string (optional)
     status: status_example,
@@ -209,7 +211,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
-| **taskType** | `brief`, `create`, `update`, `pr_insights`, `custom` |  | [Optional] [Defaults to `undefined`] [Enum: brief, create, update, pr_insights, custom] |
+| **taskType** | `brief`, `create`, `update`, `pr_insights`, `custom`, `product_listing` |  | [Optional] [Defaults to `undefined`] [Enum: brief, create, update, pr_insights, custom, product_listing] |
 | **status** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **page** | `number` |  | [Optional] [Defaults to `1`] |
 | **perPage** | `number` |  | [Optional] [Defaults to `20`] |
