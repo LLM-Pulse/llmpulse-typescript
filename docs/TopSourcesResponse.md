@@ -9,11 +9,13 @@ Name | Type
 `projectId` | number
 `from` | Date
 `to` | Date
+`filters` | [MetricsFiltersEcho](MetricsFiltersEcho.md)
 `sort` | string
 `page` | number
 `perPage` | number
 `total` | number
 `data` | [Array&lt;TopSourcesResponseDataInner&gt;](TopSourcesResponseDataInner.md)
+`requestId` | string
 
 ## Example
 
@@ -25,11 +27,13 @@ const example = {
   "projectId": null,
   "from": null,
   "to": null,
+  "filters": null,
   "sort": null,
   "page": null,
   "perPage": null,
   "total": null,
   "data": null,
+  "requestId": null,
 } satisfies TopSourcesResponse
 
 console.log(example)

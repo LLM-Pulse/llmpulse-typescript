@@ -9,7 +9,7 @@ Name | Type
 `projectId` | number
 `from` | Date
 `to` | Date
-`filters` | object
+`filters` | [MetricsFiltersEcho](MetricsFiltersEcho.md)
 `breakdown` | string
 `sort` | string
 `sortDir` | string

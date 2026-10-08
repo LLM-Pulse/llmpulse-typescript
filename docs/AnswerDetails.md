@@ -15,6 +15,7 @@ Name | Type
 `executedAt` | Date
 `durationMs` | number
 `success` | boolean
+`noResult` | boolean
 `fanOutQueries` | Array&lt;string&gt;
 `mentions` | Array&lt;object&gt;
 `citations` | Array&lt;object&gt;
@@ -27,6 +28,7 @@ Name | Type
 `localBusinesses` | Array&lt;object&gt;
 `locale` | [AnswerDetailsLocale](AnswerDetailsLocale.md)
 `appUrl` | string
+`requestId` | string
 
 ## Example
 
@@ -44,6 +46,7 @@ const example = {
   "executedAt": null,
   "durationMs": null,
   "success": null,
+  "noResult": null,
   "fanOutQueries": null,
   "mentions": null,
   "citations": null,
@@ -56,6 +59,7 @@ const example = {
   "localBusinesses": null,
   "locale": null,
   "appUrl": null,
+  "requestId": null,
 } satisfies AnswerDetails
 
 console.log(example)

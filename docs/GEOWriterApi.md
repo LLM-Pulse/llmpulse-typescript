@@ -159,7 +159,7 @@ example().catch(console.error);
 
 ## listIntelligenceTasks
 
-> listIntelligenceTasks(projectId, taskType, status, page, perPage)
+> IntelligenceTasksResponse listIntelligenceTasks(projectId, taskType, status, page, perPage)
 
 List GEO Writer tasks
 
@@ -218,7 +218,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**IntelligenceTasksResponse**](IntelligenceTasksResponse.md)
 
 ### Authorization
 
@@ -227,7 +227,7 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details

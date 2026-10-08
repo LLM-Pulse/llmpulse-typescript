@@ -265,7 +265,7 @@ async function example() {
   const api = new WebhooksApi(config);
 
   const body = {
-    // 'mention.created' | 'competitor_mention.created' | 'citation.created' | 'prompt_execution.completed' | 'sentiment.negative_detected' | 'recommendation.completed' | 'intelligence_task.completed' | 'intelligence_task.updated'
+    // 'mention.created' | 'competitor_mention.created' | 'citation.created' | 'prompt_execution.completed' | 'sentiment.negative_detected' | 'recommendation.completed' | 'intelligence_task.completed' | 'intelligence_task.updated' | 'geo_audit_run.completed' | 'geo_audit_alert.triggered'
     eventType: eventType_example,
     // number
     projectId: 56,
@@ -288,7 +288,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **eventType** | `mention.created`, `competitor_mention.created`, `citation.created`, `prompt_execution.completed`, `sentiment.negative_detected`, `recommendation.completed`, `intelligence_task.completed`, `intelligence_task.updated` |  | [Defaults to `undefined`] [Enum: mention.created, competitor_mention.created, citation.created, prompt_execution.completed, sentiment.negative_detected, recommendation.completed, intelligence_task.completed, intelligence_task.updated] |
+| **eventType** | `mention.created`, `competitor_mention.created`, `citation.created`, `prompt_execution.completed`, `sentiment.negative_detected`, `recommendation.completed`, `intelligence_task.completed`, `intelligence_task.updated`, `geo_audit_run.completed`, `geo_audit_alert.triggered` |  | [Defaults to `undefined`] [Enum: mention.created, competitor_mention.created, citation.created, prompt_execution.completed, sentiment.negative_detected, recommendation.completed, intelligence_task.completed, intelligence_task.updated, geo_audit_run.completed, geo_audit_alert.triggered] |
 | **projectId** | `number` |  | [Defaults to `undefined`] |
 
 ### Return type

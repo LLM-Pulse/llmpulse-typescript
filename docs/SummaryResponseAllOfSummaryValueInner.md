@@ -7,7 +7,9 @@
 Name | Type
 ------------ | -------------
 `actor` | [Actor](Actor.md)
+`metric` | string
 `total` | number
+`aggregation` | string
 `min` | number
 `max` | number
 `last` | number
@@ -20,7 +22,9 @@ import type { SummaryResponseAllOfSummaryValueInner } from '@llmpulse/sdk'
 // TODO: Update the object below with actual values
 const example = {
   "actor": null,
+  "metric": null,
   "total": null,
+  "aggregation": null,
   "min": null,
   "max": null,
   "last": null,

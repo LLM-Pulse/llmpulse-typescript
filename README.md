@@ -1,4 +1,4 @@
-# @llmpulse/sdk@1.55.0
+# @llmpulse/sdk@1.56.0
 
 A TypeScript SDK client for the api.llmpulse.ai API.
 
@@ -92,6 +92,19 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 *CompetitorsApi* | [**getCompetitorDetails**](docs/CompetitorsApi.md#getcompetitordetails) | **GET** /dimensions/competitors/{id} | Competitor details
 *CompetitorsApi* | [**listCompetitors**](docs/CompetitorsApi.md#listcompetitors) | **GET** /dimensions/competitors | List competitors
 *CompetitorsApi* | [**updateCompetitor**](docs/CompetitorsApi.md#updatecompetitoroperation) | **PATCH** /competitors/{id} | Update a competitor
+*GEOAuditsApi* | [**compareGeoAuditRuns**](docs/GEOAuditsApi.md#comparegeoauditruns) | **GET** /geo_audits/{id}/comparison | Compare two GEO audit runs
+*GEOAuditsApi* | [**createGeoAudits**](docs/GEOAuditsApi.md#creategeoaudits) | **POST** /geo_audits | Create GEO audits
+*GEOAuditsApi* | [**deleteGeoAudit**](docs/GEOAuditsApi.md#deletegeoaudit) | **DELETE** /geo_audits/{id} | Delete (archive) a GEO audit
+*GEOAuditsApi* | [**getGeoAudit**](docs/GEOAuditsApi.md#getgeoaudit) | **GET** /geo_audits/{id} | Get a GEO audit
+*GEOAuditsApi* | [**getGeoAuditRun**](docs/GEOAuditsApi.md#getgeoauditrun) | **GET** /geo_audits/{geo_audit_id}/runs/{sequence} | Get a GEO audit run
+*GEOAuditsApi* | [**listGeoAlerts**](docs/GEOAuditsApi.md#listgeoalerts) | **GET** /geo_alerts | List GEO audit alerts
+*GEOAuditsApi* | [**listGeoAuditFindings**](docs/GEOAuditsApi.md#listgeoauditfindings) | **GET** /geo_audits/{geo_audit_id}/runs/{sequence}/findings | List the findings of a GEO audit run
+*GEOAuditsApi* | [**listGeoAuditIssues**](docs/GEOAuditsApi.md#listgeoauditissues) | **GET** /geo_audits/{geo_audit_id}/issues | List the issues of a GEO audit
+*GEOAuditsApi* | [**listGeoAuditRuns**](docs/GEOAuditsApi.md#listgeoauditruns) | **GET** /geo_audits/{geo_audit_id}/runs | List the runs of a GEO audit
+*GEOAuditsApi* | [**listGeoAudits**](docs/GEOAuditsApi.md#listgeoaudits) | **GET** /geo_audits | List GEO audits
+*GEOAuditsApi* | [**runGeoAudit**](docs/GEOAuditsApi.md#rungeoaudit) | **POST** /geo_audits/{geo_audit_id}/runs | Run a GEO audit now
+*GEOAuditsApi* | [**updateGeoAudit**](docs/GEOAuditsApi.md#updategeoaudit) | **PATCH** /geo_audits/{id} | Update a GEO audit
+*GEOAuditsApi* | [**updateGeoAuditIssue**](docs/GEOAuditsApi.md#updategeoauditissue) | **PATCH** /geo_audits/{geo_audit_id}/issues/{id} | Accept or reopen a GEO audit issue
 *GEOWriterApi* | [**createIntelligenceTask**](docs/GEOWriterApi.md#createintelligencetask) | **POST** /intelligence_tasks | Create a GEO Writer task
 *GEOWriterApi* | [**getIntelligenceTask**](docs/GEOWriterApi.md#getintelligencetask) | **GET** /intelligence_tasks/{id} | Get a GEO Writer task
 *GEOWriterApi* | [**listIntelligenceTasks**](docs/GEOWriterApi.md#listintelligencetasks) | **GET** /intelligence_tasks | List GEO Writer tasks
@@ -182,6 +195,8 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [AiOrdersUpdateRequest](docs/AiOrdersUpdateRequest.md)
 - [AiOrdersUpdateRequestDaysInner](docs/AiOrdersUpdateRequestDaysInner.md)
 - [AiOrdersUpdateResponse](docs/AiOrdersUpdateResponse.md)
+- [AnnotationCreateResponse](docs/AnnotationCreateResponse.md)
+- [AnnotationCreateResponseAnnotation](docs/AnnotationCreateResponseAnnotation.md)
 - [AnswerDetails](docs/AnswerDetails.md)
 - [AnswerDetailsLocale](docs/AnswerDetailsLocale.md)
 - [ApiError](docs/ApiError.md)
@@ -198,8 +213,18 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [CatalogPromptSuggestionsCreateResponse](docs/CatalogPromptSuggestionsCreateResponse.md)
 - [CatalogPromptSuggestionsRejectResponse](docs/CatalogPromptSuggestionsRejectResponse.md)
 - [CatalogPromptSuggestionsResponse](docs/CatalogPromptSuggestionsResponse.md)
+- [CitationMatchMode](docs/CitationMatchMode.md)
+- [CitationRecord](docs/CitationRecord.md)
+- [CitationsResponse](docs/CitationsResponse.md)
+- [CollectionCreateResponse](docs/CollectionCreateResponse.md)
+- [CollectionCreateResponseCollection](docs/CollectionCreateResponseCollection.md)
+- [CollectionsResponse](docs/CollectionsResponse.md)
 - [Competitor](docs/Competitor.md)
+- [CompetitorCreateResponse](docs/CompetitorCreateResponse.md)
+- [CompetitorCreateResponseCompetitor](docs/CompetitorCreateResponseCompetitor.md)
 - [CompetitorDetails](docs/CompetitorDetails.md)
+- [CompetitorMentionRecord](docs/CompetitorMentionRecord.md)
+- [CompetitorMentionsResponse](docs/CompetitorMentionsResponse.md)
 - [CreateAnnotationRequest](docs/CreateAnnotationRequest.md)
 - [CreateCollectionRequest](docs/CreateCollectionRequest.md)
 - [CreateCompetitorRequest](docs/CreateCompetitorRequest.md)
@@ -209,6 +234,29 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [CreateWebhookRequest](docs/CreateWebhookRequest.md)
 - [DeleteWebhook200Response](docs/DeleteWebhook200Response.md)
 - [FinalizeProjectDraftRequest](docs/FinalizeProjectDraftRequest.md)
+- [GeoAlert](docs/GeoAlert.md)
+- [GeoAlertEventsInner](docs/GeoAlertEventsInner.md)
+- [GeoAlertList](docs/GeoAlertList.md)
+- [GeoAudit](docs/GeoAudit.md)
+- [GeoAuditArchived](docs/GeoAuditArchived.md)
+- [GeoAuditComparison](docs/GeoAuditComparison.md)
+- [GeoAuditComparisonChangesInner](docs/GeoAuditComparisonChangesInner.md)
+- [GeoAuditCreateRequest](docs/GeoAuditCreateRequest.md)
+- [GeoAuditCreateResponse](docs/GeoAuditCreateResponse.md)
+- [GeoAuditFinding](docs/GeoAuditFinding.md)
+- [GeoAuditFindingList](docs/GeoAuditFindingList.md)
+- [GeoAuditIssue](docs/GeoAuditIssue.md)
+- [GeoAuditIssueList](docs/GeoAuditIssueList.md)
+- [GeoAuditIssueResponse](docs/GeoAuditIssueResponse.md)
+- [GeoAuditIssueUpdateRequest](docs/GeoAuditIssueUpdateRequest.md)
+- [GeoAuditList](docs/GeoAuditList.md)
+- [GeoAuditResponse](docs/GeoAuditResponse.md)
+- [GeoAuditRun](docs/GeoAuditRun.md)
+- [GeoAuditRunDetail](docs/GeoAuditRunDetail.md)
+- [GeoAuditRunList](docs/GeoAuditRunList.md)
+- [GeoAuditRunResponse](docs/GeoAuditRunResponse.md)
+- [GeoAuditSchedule](docs/GeoAuditSchedule.md)
+- [GeoAuditUpdateRequest](docs/GeoAuditUpdateRequest.md)
 - [GetAccount200Response](docs/GetAccount200Response.md)
 - [GetAccount200ResponseLimits](docs/GetAccount200ResponseLimits.md)
 - [GetAccount200ResponseRateLimits](docs/GetAccount200ResponseRateLimits.md)
@@ -217,8 +265,10 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [IntelligenceTaskCreateRequest](docs/IntelligenceTaskCreateRequest.md)
 - [IntelligenceTaskProduct](docs/IntelligenceTaskProduct.md)
 - [IntelligenceTaskProductImagesInner](docs/IntelligenceTaskProductImagesInner.md)
+- [IntelligenceTaskSummary](docs/IntelligenceTaskSummary.md)
 - [IntelligenceTaskUpdateRequest](docs/IntelligenceTaskUpdateRequest.md)
 - [IntelligenceTaskUpdateResponse](docs/IntelligenceTaskUpdateResponse.md)
+- [IntelligenceTasksResponse](docs/IntelligenceTasksResponse.md)
 - [LaunchRecommendationsRequest](docs/LaunchRecommendationsRequest.md)
 - [ListCompetitors200Response](docs/ListCompetitors200Response.md)
 - [ListProjects200Response](docs/ListProjects200Response.md)
@@ -229,6 +279,12 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [LocalBusiness](docs/LocalBusiness.md)
 - [LocalBusinessesResponse](docs/LocalBusinessesResponse.md)
 - [LocalBusinessesTotals](docs/LocalBusinessesTotals.md)
+- [LocalesResponse](docs/LocalesResponse.md)
+- [MentionRecord](docs/MentionRecord.md)
+- [MentionsResponse](docs/MentionsResponse.md)
+- [MetricsFiltersEcho](docs/MetricsFiltersEcho.md)
+- [ModelsResponse](docs/ModelsResponse.md)
+- [PaginatedEnvelope](docs/PaginatedEnvelope.md)
 - [Ping200Response](docs/Ping200Response.md)
 - [Project](docs/Project.md)
 - [ProjectCreateRequest](docs/ProjectCreateRequest.md)
@@ -243,18 +299,31 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [ProjectCreateResponsePrompts](docs/ProjectCreateResponsePrompts.md)
 - [ProjectCreateResponseSameDomainProjectsInner](docs/ProjectCreateResponseSameDomainProjectsInner.md)
 - [ProjectDetails](docs/ProjectDetails.md)
+- [ProjectDetailsAllOfDataCoverage](docs/ProjectDetailsAllOfDataCoverage.md)
 - [ProjectDetailsAllOfStats](docs/ProjectDetailsAllOfStats.md)
+- [ProjectDetailsAllOfStatsPromptsByBrandKind](docs/ProjectDetailsAllOfStatsPromptsByBrandKind.md)
+- [PromptExecutionRecord](docs/PromptExecutionRecord.md)
+- [PromptExecutionsResponse](docs/PromptExecutionsResponse.md)
+- [PromptRecord](docs/PromptRecord.md)
 - [PromptSummaryResponse](docs/PromptSummaryResponse.md)
 - [PromptSummaryRow](docs/PromptSummaryRow.md)
+- [PromptTagsAssignResponse](docs/PromptTagsAssignResponse.md)
 - [PromptsCreateRequest](docs/PromptsCreateRequest.md)
 - [PromptsCreateResponse](docs/PromptsCreateResponse.md)
 - [PromptsCreateResponseDataInner](docs/PromptsCreateResponseDataInner.md)
+- [PromptsResponse](docs/PromptsResponse.md)
+- [RecommendationSummary](docs/RecommendationSummary.md)
+- [RecommendationSummarySummary](docs/RecommendationSummarySummary.md)
+- [RecommendationsResponse](docs/RecommendationsResponse.md)
 - [SampleWebhookPayloads200Response](docs/SampleWebhookPayloads200Response.md)
 - [SampleWebhookPayloads200ResponseDataInner](docs/SampleWebhookPayloads200ResponseDataInner.md)
 - [SearchConsoleFiltersInner](docs/SearchConsoleFiltersInner.md)
+- [SentimentRecord](docs/SentimentRecord.md)
+- [SentimentsResponse](docs/SentimentsResponse.md)
 - [SovResponse](docs/SovResponse.md)
 - [SovResponseBreakdownInner](docs/SovResponseBreakdownInner.md)
 - [SovResponseCurrentInner](docs/SovResponseCurrentInner.md)
+- [SovResponseOthersInner](docs/SovResponseOthersInner.md)
 - [SovResponseOverTimeInner](docs/SovResponseOverTimeInner.md)
 - [SovResponsePeriodsInner](docs/SovResponsePeriodsInner.md)
 - [SovResponseSample](docs/SovResponseSample.md)
@@ -265,6 +334,7 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [SummaryResponse](docs/SummaryResponse.md)
 - [SummaryResponseAllOfPositionDistribution](docs/SummaryResponseAllOfPositionDistribution.md)
 - [SummaryResponseAllOfSummaryValueInner](docs/SummaryResponseAllOfSummaryValueInner.md)
+- [TagRef](docs/TagRef.md)
 - [TechnicalGeoReportContentRevertRequest](docs/TechnicalGeoReportContentRevertRequest.md)
 - [TechnicalGeoReportContentUpdateRequest](docs/TechnicalGeoReportContentUpdateRequest.md)
 - [TechnicalGeoReportContentUpdateRequestEdits](docs/TechnicalGeoReportContentUpdateRequestEdits.md)
@@ -296,8 +366,8 @@ This TypeScript SDK client supports the [Fetch API](https://fetch.spec.whatwg.or
 and is automatically generated by the
 [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `1.55.0`
-- Package version: `1.55.0`
+- API version: `1.56.0`
+- Package version: `1.56.0`
 - Generator version: `7.24.0`
 - Build package: `org.openapitools.codegen.languages.TypeScriptFetchClientCodegen`
 

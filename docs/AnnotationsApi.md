@@ -13,7 +13,7 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 
 ## createAnnotation
 
-> createAnnotation(createAnnotationRequest)
+> AnnotationCreateResponse createAnnotation(createAnnotationRequest)
 
 Create a timeline annotation
 
@@ -62,7 +62,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**AnnotationCreateResponse**](AnnotationCreateResponse.md)
 
 ### Authorization
 

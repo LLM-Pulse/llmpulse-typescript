@@ -15,6 +15,7 @@ Name | Type
 `lastDeliveredAt` | Date
 `createdAt` | Date
 `secret` | string
+`requestId` | string
 
 ## Example
 
@@ -32,6 +33,7 @@ const example = {
   "lastDeliveredAt": null,
   "createdAt": null,
   "secret": null,
+  "requestId": null,
 } satisfies CreateWebhook201Response
 
 console.log(example)

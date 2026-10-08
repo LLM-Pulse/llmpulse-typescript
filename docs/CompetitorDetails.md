@@ -13,8 +13,16 @@ Name | Type
 `matchingNames` | Array&lt;string&gt;
 `googlePlayId` | string
 `appStoreId` | string
+`citationMatchMode` | [CitationMatchMode](CitationMatchMode.md)
+`citationMatchPath` | string
+`googlePlayName` | string
+`appStoreName` | string
+`googlePlayIconUrl` | string
+`appStoreIconUrl` | string
 `color` | string
+`processing` | boolean
 `createdAt` | Date
+`requestId` | string
 
 ## Example
 
@@ -30,8 +38,16 @@ const example = {
   "matchingNames": null,
   "googlePlayId": null,
   "appStoreId": null,
+  "citationMatchMode": null,
+  "citationMatchPath": null,
+  "googlePlayName": null,
+  "appStoreName": null,
+  "googlePlayIconUrl": null,
+  "appStoreIconUrl": null,
   "color": null,
+  "processing": null,
   "createdAt": null,
+  "requestId": null,
 } satisfies CompetitorDetails
 
 console.log(example)

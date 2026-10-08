@@ -8,6 +8,7 @@ Name | Type
 ------------ | -------------
 `projectId` | number
 `competitors` | [Array&lt;Competitor&gt;](Competitor.md)
+`requestId` | string
 
 ## Example
 
@@ -18,6 +19,7 @@ import type { ListCompetitors200Response } from '@llmpulse/sdk'
 const example = {
   "projectId": null,
   "competitors": null,
+  "requestId": null,
 } satisfies ListCompetitors200Response
 
 console.log(example)

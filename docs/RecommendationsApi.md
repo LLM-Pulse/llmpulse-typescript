@@ -164,7 +164,7 @@ example().catch(console.error);
 
 ## listRecommendations
 
-> listRecommendations(projectId, recommendationType, status, page, perPage)
+> RecommendationsResponse listRecommendations(projectId, recommendationType, status, page, perPage)
 
 List recommendation runs
 
@@ -223,7 +223,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**RecommendationsResponse**](RecommendationsResponse.md)
 
 ### Authorization
 
@@ -232,7 +232,7 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details

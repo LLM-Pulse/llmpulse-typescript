@@ -390,7 +390,7 @@ example().catch(console.error);
 
 ## listLocales
 
-> listLocales(projectId)
+> LocalesResponse listLocales(projectId)
 
 List locales with data
 
@@ -437,7 +437,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**LocalesResponse**](LocalesResponse.md)
 
 ### Authorization
 
@@ -446,7 +446,7 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
@@ -459,7 +459,7 @@ example().catch(console.error);
 
 ## listModels
 
-> listModels(projectId)
+> ModelsResponse listModels(projectId)
 
 List models with data
 
@@ -506,7 +506,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**ModelsResponse**](ModelsResponse.md)
 
 ### Authorization
 
@@ -515,7 +515,7 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details

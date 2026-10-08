@@ -6,6 +6,7 @@
 
 Name | Type
 ------------ | -------------
+`draftId` | string
 `project` | object
 `prompts` | [ProjectCreateResponsePrompts](ProjectCreateResponsePrompts.md)
 `competitors` | [ProjectCreateResponseCompetitors](ProjectCreateResponseCompetitors.md)
@@ -23,6 +24,7 @@ import type { ProjectCreateResponse } from '@llmpulse/sdk'
 
 // TODO: Update the object below with actual values
 const example = {
+  "draftId": null,
   "project": null,
   "prompts": null,
   "competitors": null,

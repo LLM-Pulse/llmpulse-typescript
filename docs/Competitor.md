@@ -9,6 +9,9 @@ Name | Type
 `id` | number
 `name` | string
 `domain` | string
+`matchingNames` | Array&lt;string&gt;
+`citationMatchMode` | [CitationMatchMode](CitationMatchMode.md)
+`citationMatchPath` | string
 `actorType` | string
 `isOwn` | boolean
 
@@ -22,6 +25,9 @@ const example = {
   "id": null,
   "name": null,
   "domain": null,
+  "matchingNames": null,
+  "citationMatchMode": null,
+  "citationMatchPath": null,
   "actorType": null,
   "isOwn": null,
 } satisfies Competitor

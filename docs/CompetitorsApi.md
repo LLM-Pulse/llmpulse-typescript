@@ -14,7 +14,7 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 
 ## createCompetitor
 
-> createCompetitor(createCompetitorRequest)
+> CompetitorCreateResponse createCompetitor(createCompetitorRequest)
 
 Add a competitor
 
@@ -63,7 +63,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**CompetitorCreateResponse**](CompetitorCreateResponse.md)
 
 ### Authorization
 

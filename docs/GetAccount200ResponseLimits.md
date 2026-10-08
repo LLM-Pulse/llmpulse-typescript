@@ -11,6 +11,8 @@ Name | Type
 `competitorsPerProject` | [AccountCapacity](AccountCapacity.md)
 `intelligenceTasks` | [AccountQuota](AccountQuota.md)
 `teamMembers` | [AccountCapacity](AccountCapacity.md)
+`recurringGeoAudits` | [AccountQuota](AccountQuota.md)
+`geoAuditManualRuns` | [AccountQuota](AccountQuota.md)
 
 ## Example
 
@@ -24,6 +26,8 @@ const example = {
   "competitorsPerProject": null,
   "intelligenceTasks": null,
   "teamMembers": null,
+  "recurringGeoAudits": null,
+  "geoAuditManualRuns": null,
 } satisfies GetAccount200ResponseLimits
 
 console.log(example)

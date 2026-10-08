@@ -10,7 +10,7 @@ Name | Type
 `from` | Date
 `to` | Date
 `granularity` | string
-`filters` | object
+`filters` | [MetricsFiltersEcho](MetricsFiltersEcho.md)
 `series` | { [key: string]: Array&lt;TimeseriesSeries&gt;; }
 `requestId` | string
 `summary` | { [key: string]: Array&lt;SummaryResponseAllOfSummaryValueInner&gt;; }

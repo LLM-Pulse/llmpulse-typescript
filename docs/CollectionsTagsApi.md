@@ -15,7 +15,7 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 
 ## assignPromptTags
 
-> assignPromptTags(assignPromptTagsRequest)
+> PromptTagsAssignResponse assignPromptTags(assignPromptTagsRequest)
 
 Bulk-attach tags to prompts
 
@@ -64,7 +64,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**PromptTagsAssignResponse**](PromptTagsAssignResponse.md)
 
 ### Authorization
 
@@ -88,7 +88,7 @@ example().catch(console.error);
 
 ## createCollection
 
-> createCollection(createCollectionRequest)
+> CollectionCreateResponse createCollection(createCollectionRequest)
 
 Create a tag
 
@@ -137,7 +137,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**CollectionCreateResponse**](CollectionCreateResponse.md)
 
 ### Authorization
 
@@ -237,7 +237,7 @@ example().catch(console.error);
 
 ## listCollections
 
-> listCollections(projectId, output)
+> CollectionsResponse listCollections(projectId, output)
 
 List tags/collections
 
@@ -287,7 +287,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**CollectionsResponse**](CollectionsResponse.md)
 
 ### Authorization
 
@@ -296,7 +296,7 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
@@ -309,7 +309,7 @@ example().catch(console.error);
 
 ## listTags
 
-> listTags(projectId, output)
+> CollectionsResponse listTags(projectId, output)
 
 List tags (alias for /collections)
 
@@ -359,7 +359,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**CollectionsResponse**](CollectionsResponse.md)
 
 ### Authorization
 
@@ -368,7 +368,7 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details

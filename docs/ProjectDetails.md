@@ -26,6 +26,8 @@ Name | Type
 `appStoreId` | string
 `createdAt` | Date
 `stats` | [ProjectDetailsAllOfStats](ProjectDetailsAllOfStats.md)
+`dataCoverage` | [ProjectDetailsAllOfDataCoverage](ProjectDetailsAllOfDataCoverage.md)
+`requestId` | string
 
 ## Example
 
@@ -54,6 +56,8 @@ const example = {
   "appStoreId": null,
   "createdAt": null,
   "stats": null,
+  "dataCoverage": null,
+  "requestId": null,
 } satisfies ProjectDetails
 
 console.log(example)

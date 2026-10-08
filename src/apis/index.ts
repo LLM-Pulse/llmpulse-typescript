@@ -7,6 +7,7 @@ export * from './AnnotationsApi';
 export * from './AnswersApi';
 export * from './CollectionsTagsApi';
 export * from './CompetitorsApi';
+export * from './GEOAuditsApi';
 export * from './GEOWriterApi';
 export * from './HealthApi';
 export * from './MentionsCitationsApi';

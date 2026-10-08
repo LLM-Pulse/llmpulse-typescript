@@ -7,12 +7,17 @@
 Name | Type
 ------------ | -------------
 `projectId` | number
+`from` | Date
+`to` | Date
+`granularity` | string
+`filters` | [MetricsFiltersEcho](MetricsFiltersEcho.md)
 `periods` | [Array&lt;SovResponsePeriodsInner&gt;](SovResponsePeriodsInner.md)
 `sample` | [SovResponseSample](SovResponseSample.md)
 `overTime` | [Array&lt;SovResponseOverTimeInner&gt;](SovResponseOverTimeInner.md)
 `current` | [Array&lt;SovResponseCurrentInner&gt;](SovResponseCurrentInner.md)
 `breakdown` | [Array&lt;SovResponseBreakdownInner&gt;](SovResponseBreakdownInner.md)
-`others` | Array&lt;object&gt;
+`others` | [Array&lt;SovResponseOthersInner&gt;](SovResponseOthersInner.md)
+`requestId` | string
 
 ## Example
 
@@ -22,12 +27,17 @@ import type { SovResponse } from '@llmpulse/sdk'
 // TODO: Update the object below with actual values
 const example = {
   "projectId": null,
+  "from": null,
+  "to": null,
+  "granularity": null,
+  "filters": null,
   "periods": null,
   "sample": null,
   "overTime": null,
   "current": null,
   "breakdown": null,
   "others": null,
+  "requestId": null,
 } satisfies SovResponse
 
 console.log(example)
