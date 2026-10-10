@@ -6,7 +6,9 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 |------------- | ------------- | -------------|
 | [**getAgentTraffic**](AIAgentTrafficApi.md#getagenttraffic) | **GET** /metrics/agent_traffic | AI bot crawler traffic (Scale plan or above, Beta) |
 | [**getAiTraffic**](AIAgentTrafficApi.md#getaitraffic) | **GET** /metrics/ai_traffic | AI referral traffic (Scale plan or above) |
+| [**getWebAnalyticsSchema**](AIAgentTrafficApi.md#getwebanalyticsschema) | **GET** /web_analytics/schema | Web analytics query format (Growth+) |
 | [**listAgentBots**](AIAgentTrafficApi.md#listagentbots) | **GET** /dimensions/agent_bots | AI bot catalog (Scale plan or above) |
+| [**queryWebAnalytics**](AIAgentTrafficApi.md#querywebanalyticsoperation) | **POST** /web_analytics/query | Live web analytics query (Growth+) |
 
 
 
@@ -191,6 +193,80 @@ example().catch(console.error);
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
+## getWebAnalyticsSchema
+
+> WebAnalyticsSchemaResponse getWebAnalyticsSchema(projectId)
+
+Web analytics query format (Growth+)
+
+How to query the web analytics provider connected to the project, live: the provider, the property every query runs on, the native query format it accepts, the allowed top-level fields, the rules the bridge enforces (the connected property is always used, only reads run, row limits), a worked example and, where the provider offers it, its live field list. Cached for an hour. Supported providers: Google Analytics 4, Adobe Analytics or Customer Journey Analytics, Matomo, PostHog, Plausible and Piano, connected on the AI Traffic page. Requires the Growth plan or above; otherwise ERR_PLAN_REQUIRED. Without a connected provider returns ERR_WEB_ANALYTICS_NOT_CONNECTED (404); a provider that refuses the stored credentials returns ERR_WEB_ANALYTICS_ACCESS_REVOKED (403); an unavailable provider, an exhausted provider quota, more than 20 uncached queries a minute or too many running at once for the project returns ERR_WEB_ANALYTICS_UPSTREAM (503): wait for the number of seconds in Retry-After before retrying.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  AIAgentTrafficApi,
+} from '@llmpulse/sdk';
+import type { GetWebAnalyticsSchemaRequest } from '@llmpulse/sdk';
+
+async function example() {
+  console.log("🚀 Testing @llmpulse/sdk SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new AIAgentTrafficApi(config);
+
+  const body = {
+    // number | Project ID
+    projectId: 56,
+  } satisfies GetWebAnalyticsSchemaRequest;
+
+  try {
+    const data = await api.getWebAnalyticsSchema(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | `number` | Project ID | [Defaults to `undefined`] |
+
+### Return type
+
+[**WebAnalyticsSchemaResponse**](WebAnalyticsSchemaResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Query format for the connected provider |  -  |
+| **403** | Access forbidden |  -  |
+| **404** | Resource not found |  -  |
+| **503** | Upstream provider unavailable, retry after the number of seconds in the Retry-After header |  * Retry-After - Seconds to wait before retrying: Google\&#39;s own value when it sent one, otherwise 900 after a quota error and 60 after an outage <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
 ## listAgentBots
 
 > AgentBotsResponse listAgentBots(projectId, output)
@@ -262,6 +338,81 @@ example().catch(console.error);
 |-------------|-------------|------------------|
 | **200** | Bot catalog |  -  |
 | **403** | Endpoint requires a higher plan tier |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## queryWebAnalytics
+
+> WebAnalyticsQueryResponse queryWebAnalytics(queryWebAnalyticsRequest)
+
+Live web analytics query (Growth+)
+
+Runs a read-only query, written in the connected provider\&#39;s native format, against the project\&#39;s property and returns columns and rows: a GA4 Data API runReport body, an Adobe Analytics or Customer Journey Analytics report request, Matomo Reporting API parameters (get methods only), PostHog HogQL, a Plausible Stats API v2 query or a Piano getData body. The connected property, site, report suite or project is always used and any property field in the query is ignored. Rows default to 100 and are capped at 5,000. Identical queries are answered from a 10-minute cache (cached: true). A query the provider rejects returns ERR_WEB_ANALYTICS_INVALID_QUERY (422) with the provider\&#39;s own validation message. Each uncached query spends the customer\&#39;s provider API quota. A read: no writable key is needed. Supported providers: Google Analytics 4, Adobe Analytics or Customer Journey Analytics, Matomo, PostHog, Plausible and Piano, connected on the AI Traffic page. Requires the Growth plan or above; otherwise ERR_PLAN_REQUIRED. Without a connected provider returns ERR_WEB_ANALYTICS_NOT_CONNECTED (404); a provider that refuses the stored credentials returns ERR_WEB_ANALYTICS_ACCESS_REVOKED (403); an unavailable provider, an exhausted provider quota, more than 20 uncached queries a minute or too many running at once for the project returns ERR_WEB_ANALYTICS_UPSTREAM (503): wait for the number of seconds in Retry-After before retrying.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  AIAgentTrafficApi,
+} from '@llmpulse/sdk';
+import type { QueryWebAnalyticsOperationRequest } from '@llmpulse/sdk';
+
+async function example() {
+  console.log("🚀 Testing @llmpulse/sdk SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new AIAgentTrafficApi(config);
+
+  const body = {
+    // QueryWebAnalyticsRequest
+    queryWebAnalyticsRequest: {"project_id":123,"query":{"dateRanges":[{"startDate":"28daysAgo","endDate":"yesterday"}],"dimensions":[{"name":"sessionDefaultChannelGroup"}],"metrics":[{"name":"sessions"},{"name":"keyEvents"}],"limit":20}},
+  } satisfies QueryWebAnalyticsOperationRequest;
+
+  try {
+    const data = await api.queryWebAnalytics(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **queryWebAnalyticsRequest** | [QueryWebAnalyticsRequest](QueryWebAnalyticsRequest.md) |  | |
+
+### Return type
+
+[**WebAnalyticsQueryResponse**](WebAnalyticsQueryResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Query result as columns and rows |  -  |
+| **403** | Access forbidden |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Invalid parameters |  -  |
+| **503** | Upstream provider unavailable, retry after the number of seconds in the Retry-After header |  * Retry-After - Seconds to wait before retrying: Google\&#39;s own value when it sent one, otherwise 900 after a quota error and 60 after an outage <br>  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

@@ -147,6 +147,7 @@ docs/PromptsCreateRequest.md
 docs/PromptsCreateResponse.md
 docs/PromptsCreateResponseDataInner.md
 docs/PromptsResponse.md
+docs/QueryWebAnalyticsRequest.md
 docs/RecommendationSummary.md
 docs/RecommendationSummarySummary.md
 docs/RecommendationsApi.md
@@ -192,6 +193,9 @@ docs/UpdateCollectionRequest.md
 docs/UpdateCompetitorRequest.md
 docs/UpdateProjectDraftRequest.md
 docs/UpdateProjectRequest.md
+docs/WebAnalyticsQueryResponse.md
+docs/WebAnalyticsQueryResponseColumnsInner.md
+docs/WebAnalyticsSchemaResponse.md
 docs/WebhooksApi.md
 package.json
 src/apis/AIAgentTrafficApi.ts
@@ -350,6 +354,7 @@ src/models/PromptsCreateRequest.ts
 src/models/PromptsCreateResponse.ts
 src/models/PromptsCreateResponseDataInner.ts
 src/models/PromptsResponse.ts
+src/models/QueryWebAnalyticsRequest.ts
 src/models/RecommendationSummary.ts
 src/models/RecommendationSummarySummary.ts
 src/models/RecommendationsResponse.ts
@@ -387,6 +392,9 @@ src/models/UpdateCollectionRequest.ts
 src/models/UpdateCompetitorRequest.ts
 src/models/UpdateProjectDraftRequest.ts
 src/models/UpdateProjectRequest.ts
+src/models/WebAnalyticsQueryResponse.ts
+src/models/WebAnalyticsQueryResponseColumnsInner.ts
+src/models/WebAnalyticsSchemaResponse.ts
 src/models/index.ts
 src/runtime.ts
 tsconfig.esm.json

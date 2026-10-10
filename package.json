@@ -1,6 +1,6 @@
 {
   "name": "@llmpulse/sdk",
-  "version": "1.56.0",
+  "version": "1.57.0",
   "description": "OpenAPI client for @llmpulse/sdk",
   "author": "OpenAPI-Generator",
   "repository": {
