@@ -26,6 +26,7 @@ Name | Type
 `processedAt` | Date
 `manuallyEditedAt` | Date
 `editedByUserId` | number
+`resultVersion` | string
 `requestId` | string
 
 ## Example
@@ -55,6 +56,7 @@ const example = {
   "processedAt": null,
   "manuallyEditedAt": null,
   "editedByUserId": null,
+  "resultVersion": 1775642580,
   "requestId": null,
 } satisfies IntelligenceTask
 

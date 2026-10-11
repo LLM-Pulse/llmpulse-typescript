@@ -1,4 +1,4 @@
-# @llmpulse/sdk@1.57.0
+# @llmpulse/sdk@1.59.0
 
 A TypeScript SDK client for the api.llmpulse.ai API.
 
@@ -151,6 +151,7 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 *ReputationStudiesApi* | [**listStudies**](docs/ReputationStudiesApi.md#liststudies) | **GET** /studies | List custom AI studies
 *SearchConsoleApi* | [**getSearchConsolePages**](docs/SearchConsoleApi.md#getsearchconsolepages) | **GET** /search_console/pages | Top Search Console pages (Growth+)
 *SearchConsoleApi* | [**getSearchConsoleQueries**](docs/SearchConsoleApi.md#getsearchconsolequeries) | **GET** /search_console/queries | Top Search Console queries (Growth+)
+*SearchConsoleApi* | [**getSearchConsoleRows**](docs/SearchConsoleApi.md#getsearchconsolerows) | **GET** /search_console/rows | Search Console rows by several dimensions (Growth+)
 *SearchConsoleApi* | [**getSearchConsoleSummary**](docs/SearchConsoleApi.md#getsearchconsolesummary) | **GET** /search_console/summary | Search Console summary (Growth+)
 *SearchConsoleApi* | [**getSearchConsoleTimeseries**](docs/SearchConsoleApi.md#getsearchconsoletimeseries) | **GET** /search_console/timeseries | Search Console time series (Growth+)
 *SentimentsApi* | [**listSentimentCategories**](docs/SentimentsApi.md#listsentimentcategories) | **GET** /dimensions/sentiments | List sentiment categories (Growth plan or above)
@@ -171,6 +172,11 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 *StoreIntegrationsApi* | [**listCatalogPromptSuggestions**](docs/StoreIntegrationsApi.md#listcatalogpromptsuggestions) | **GET** /catalog_prompt_suggestions | List catalog prompt suggestions
 *StoreIntegrationsApi* | [**rejectCatalogPromptSuggestions**](docs/StoreIntegrationsApi.md#rejectcatalogpromptsuggestions) | **POST** /catalog_prompt_suggestions/reject | Reject catalog prompt suggestions
 *StoreIntegrationsApi* | [**replaceAiOrders**](docs/StoreIntegrationsApi.md#replaceaiorders) | **PUT** /ai_orders | Replace AI-referred store orders for a window
+*TeamApi* | [**createTeamInvitation**](docs/TeamApi.md#createteaminvitationoperation) | **POST** /team_invitations | Invite a team member
+*TeamApi* | [**listTeamInvitations**](docs/TeamApi.md#listteaminvitations) | **GET** /team_invitations | List pending team invitations
+*TeamApi* | [**listTeamMembers**](docs/TeamApi.md#listteammembers) | **GET** /team_members | List team members
+*TeamApi* | [**removeTeamMember**](docs/TeamApi.md#removeteammember) | **DELETE** /team_members/{id} | Remove a team member
+*TeamApi* | [**revokeTeamInvitation**](docs/TeamApi.md#revoketeaminvitation) | **DELETE** /team_invitations/{id} | Revoke a pending team invitation
 *TechnicalGEOReportsApi* | [**createTechnicalGeoReports**](docs/TechnicalGEOReportsApi.md#createtechnicalgeoreportsoperation) | **POST** /technical_geo_reports | Run technical GEO analysis
 *TechnicalGEOReportsApi* | [**getTechnicalGeoReport**](docs/TechnicalGEOReportsApi.md#gettechnicalgeoreport) | **GET** /technical_geo_reports/{id} | Get a technical GEO report
 *TechnicalGEOReportsApi* | [**listTechnicalGeoReports**](docs/TechnicalGEOReportsApi.md#listtechnicalgeoreports) | **GET** /technical_geo_reports | List technical GEO reports
@@ -231,6 +237,8 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [CreateCollectionRequest](docs/CreateCollectionRequest.md)
 - [CreateCompetitorRequest](docs/CreateCompetitorRequest.md)
 - [CreateProjectDraftRequest](docs/CreateProjectDraftRequest.md)
+- [CreateTeamInvitation201Response](docs/CreateTeamInvitation201Response.md)
+- [CreateTeamInvitationRequest](docs/CreateTeamInvitationRequest.md)
 - [CreateTechnicalGeoReportsRequest](docs/CreateTechnicalGeoReportsRequest.md)
 - [CreateWebhook201Response](docs/CreateWebhook201Response.md)
 - [CreateWebhookRequest](docs/CreateWebhookRequest.md)
@@ -274,6 +282,8 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [LaunchRecommendationsRequest](docs/LaunchRecommendationsRequest.md)
 - [ListCompetitors200Response](docs/ListCompetitors200Response.md)
 - [ListProjects200Response](docs/ListProjects200Response.md)
+- [ListTeamInvitations200Response](docs/ListTeamInvitations200Response.md)
+- [ListTeamMembers200Response](docs/ListTeamMembers200Response.md)
 - [ListWebhooks200Response](docs/ListWebhooks200Response.md)
 - [ListWebhooks200ResponseDataInner](docs/ListWebhooks200ResponseDataInner.md)
 - [LlmsTxtTechnicalGeoReport](docs/LlmsTxtTechnicalGeoReport.md)
@@ -302,6 +312,7 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [ProjectCreateResponseSameDomainProjectsInner](docs/ProjectCreateResponseSameDomainProjectsInner.md)
 - [ProjectDetails](docs/ProjectDetails.md)
 - [ProjectDetailsAllOfDataCoverage](docs/ProjectDetailsAllOfDataCoverage.md)
+- [ProjectDetailsAllOfSearchConsole](docs/ProjectDetailsAllOfSearchConsole.md)
 - [ProjectDetailsAllOfStats](docs/ProjectDetailsAllOfStats.md)
 - [ProjectDetailsAllOfStatsPromptsByBrandKind](docs/ProjectDetailsAllOfStatsPromptsByBrandKind.md)
 - [PromptExecutionRecord](docs/PromptExecutionRecord.md)
@@ -318,9 +329,21 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [RecommendationSummary](docs/RecommendationSummary.md)
 - [RecommendationSummarySummary](docs/RecommendationSummarySummary.md)
 - [RecommendationsResponse](docs/RecommendationsResponse.md)
+- [RemoveTeamMember200Response](docs/RemoveTeamMember200Response.md)
+- [RevokeTeamInvitation200Response](docs/RevokeTeamInvitation200Response.md)
 - [SampleWebhookPayloads200Response](docs/SampleWebhookPayloads200Response.md)
 - [SampleWebhookPayloads200ResponseDataInner](docs/SampleWebhookPayloads200ResponseDataInner.md)
 - [SearchConsoleFiltersInner](docs/SearchConsoleFiltersInner.md)
+- [SearchConsoleListResponse](docs/SearchConsoleListResponse.md)
+- [SearchConsoleListResponseDataInner](docs/SearchConsoleListResponseDataInner.md)
+- [SearchConsoleMetrics](docs/SearchConsoleMetrics.md)
+- [SearchConsoleProperty](docs/SearchConsoleProperty.md)
+- [SearchConsoleRowsResponse](docs/SearchConsoleRowsResponse.md)
+- [SearchConsoleRowsResponseDataInner](docs/SearchConsoleRowsResponseDataInner.md)
+- [SearchConsoleSummaryResponse](docs/SearchConsoleSummaryResponse.md)
+- [SearchConsoleSummaryResponseBreakdownInner](docs/SearchConsoleSummaryResponseBreakdownInner.md)
+- [SearchConsoleTimeseriesResponse](docs/SearchConsoleTimeseriesResponse.md)
+- [SearchConsoleTimeseriesResponseDataInner](docs/SearchConsoleTimeseriesResponseDataInner.md)
 - [SentimentRecord](docs/SentimentRecord.md)
 - [SentimentsResponse](docs/SentimentsResponse.md)
 - [SovResponse](docs/SovResponse.md)
@@ -338,6 +361,9 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [SummaryResponseAllOfPositionDistribution](docs/SummaryResponseAllOfPositionDistribution.md)
 - [SummaryResponseAllOfSummaryValueInner](docs/SummaryResponseAllOfSummaryValueInner.md)
 - [TagRef](docs/TagRef.md)
+- [TeamAccountRole](docs/TeamAccountRole.md)
+- [TeamInvitation](docs/TeamInvitation.md)
+- [TeamMember](docs/TeamMember.md)
 - [TechnicalGeoReportContentRevertRequest](docs/TechnicalGeoReportContentRevertRequest.md)
 - [TechnicalGeoReportContentUpdateRequest](docs/TechnicalGeoReportContentUpdateRequest.md)
 - [TechnicalGeoReportContentUpdateRequestEdits](docs/TechnicalGeoReportContentUpdateRequestEdits.md)
@@ -372,8 +398,8 @@ This TypeScript SDK client supports the [Fetch API](https://fetch.spec.whatwg.or
 and is automatically generated by the
 [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `1.57.0`
-- Package version: `1.57.0`
+- API version: `1.59.0`
+- Package version: `1.59.0`
 - Generator version: `7.24.0`
 - Build package: `org.openapitools.codegen.languages.TypeScriptFetchClientCodegen`
 

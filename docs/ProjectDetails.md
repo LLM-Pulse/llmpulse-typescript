@@ -27,6 +27,7 @@ Name | Type
 `createdAt` | Date
 `stats` | [ProjectDetailsAllOfStats](ProjectDetailsAllOfStats.md)
 `dataCoverage` | [ProjectDetailsAllOfDataCoverage](ProjectDetailsAllOfDataCoverage.md)
+`searchConsole` | [ProjectDetailsAllOfSearchConsole](ProjectDetailsAllOfSearchConsole.md)
 `requestId` | string
 
 ## Example
@@ -57,6 +58,7 @@ const example = {
   "createdAt": null,
   "stats": null,
   "dataCoverage": null,
+  "searchConsole": null,
   "requestId": null,
 } satisfies ProjectDetails
 

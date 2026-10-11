@@ -8,6 +8,7 @@ Name | Type
 ------------ | -------------
 `projectId` | number
 `edits` | { [key: string]: string; }
+`resultVersion` | string
 
 ## Example
 
@@ -18,6 +19,7 @@ import type { IntelligenceTaskUpdateRequest } from '@llmpulse/sdk'
 const example = {
   "projectId": null,
   "edits": {"title":"How to measure AI visibility in 2026","sections.0.content":"AI visibility is the share of AI answers that mention your brand."},
+  "resultVersion": 1775642580,
 } satisfies IntelligenceTaskUpdateRequest
 
 console.log(example)

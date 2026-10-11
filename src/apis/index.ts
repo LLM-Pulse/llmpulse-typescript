@@ -22,5 +22,6 @@ export * from './SentimentsApi';
 export * from './ShoppingAdsApi';
 export * from './SourcesCitationIntelligenceApi';
 export * from './StoreIntegrationsApi';
+export * from './TeamApi';
 export * from './TechnicalGEOReportsApi';
 export * from './WebhooksApi';

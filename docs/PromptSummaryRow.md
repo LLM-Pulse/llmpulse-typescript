@@ -18,6 +18,18 @@ Name | Type
 `avgMentionPosition` | number
 `avgPosition` | number
 `appUrl` | string
+`countryCode` | string
+`languageCode` | string
+`promptType` | string
+`brandKind` | string
+`tags` | [Array&lt;TagRef&gt;](TagRef.md)
+`sentimentResponses` | number
+`sentimentVeryPositive` | number
+`sentimentPositive` | number
+`sentimentNeutral` | number
+`sentimentNegative` | number
+`sentimentVeryNegative` | number
+`netSentiment` | number
 
 ## Example
 
@@ -38,6 +50,18 @@ const example = {
   "avgMentionPosition": null,
   "avgPosition": null,
   "appUrl": null,
+  "countryCode": null,
+  "languageCode": null,
+  "promptType": null,
+  "brandKind": null,
+  "tags": null,
+  "sentimentResponses": null,
+  "sentimentVeryPositive": null,
+  "sentimentPositive": null,
+  "sentimentNeutral": null,
+  "sentimentNegative": null,
+  "sentimentVeryNegative": null,
+  "netSentiment": null,
 } satisfies PromptSummaryRow
 
 console.log(example)

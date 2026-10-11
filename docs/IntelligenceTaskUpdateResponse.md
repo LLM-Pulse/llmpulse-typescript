@@ -26,6 +26,7 @@ Name | Type
 `processedAt` | Date
 `manuallyEditedAt` | Date
 `editedByUserId` | number
+`resultVersion` | string
 `requestId` | string
 `changedPaths` | Array&lt;string&gt;
 
@@ -56,6 +57,7 @@ const example = {
   "processedAt": null,
   "manuallyEditedAt": null,
   "editedByUserId": null,
+  "resultVersion": 1775642580,
   "requestId": null,
   "changedPaths": null,
 } satisfies IntelligenceTaskUpdateResponse

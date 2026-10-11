@@ -17,6 +17,7 @@ Name | Type
 `manuallyEditedAt` | Date
 `createdAt` | Date
 `processedAt` | Date
+`resultVersion` | string
 
 ## Example
 
@@ -36,6 +37,7 @@ const example = {
   "manuallyEditedAt": null,
   "createdAt": null,
   "processedAt": null,
+  "resultVersion": 1775642580,
 } satisfies IntelligenceTaskSummary
 
 console.log(example)
