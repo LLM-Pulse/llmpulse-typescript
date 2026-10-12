@@ -125,6 +125,8 @@ export * from './ProjectDetailsAllOfDataCoverage';
 export * from './ProjectDetailsAllOfSearchConsole';
 export * from './ProjectDetailsAllOfStats';
 export * from './ProjectDetailsAllOfStatsPromptsByBrandKind';
+export * from './ProjectProfile';
+export * from './ProjectUpdateResponse';
 export * from './PromptExecutionRecord';
 export * from './PromptExecutionsResponse';
 export * from './PromptRecord';

@@ -295,7 +295,7 @@ async function example() {
   const api = new AIAgentTrafficApi(config);
 
   const body = {
-    // number | Project ID
+    // number | Accepted for compatibility and ignored. The catalog is the same for every project, so any value returns the same list and the project is not checked.
     projectId: 56,
     // 'flat' | 'csv' | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \'flat\' returns the same metadata plus \'columns\' and \'rows\'; \'csv\' returns those rows as text/csv. Errors are always returned as JSON. (optional)
     output: output_example,
@@ -318,7 +318,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **projectId** | `number` | Project ID | [Defaults to `undefined`] |
+| **projectId** | `number` | Accepted for compatibility and ignored. The catalog is the same for every project, so any value returns the same list and the project is not checked. | [Defaults to `undefined`] |
 | **output** | `flat`, `csv` | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \&#39;flat\&#39; returns the same metadata plus \&#39;columns\&#39; and \&#39;rows\&#39;; \&#39;csv\&#39; returns those rows as text/csv. Errors are always returned as JSON. | [Optional] [Defaults to `undefined`] [Enum: flat, csv] |
 
 ### Return type

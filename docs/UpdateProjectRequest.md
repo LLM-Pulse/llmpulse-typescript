@@ -17,6 +17,7 @@ Name | Type
 `goals` | string
 `primaryProducts` | Array&lt;string&gt;
 `matchingNames` | Array&lt;string&gt;
+`additionalOwnedDomains` | Array&lt;string&gt;
 
 ## Example
 
@@ -36,6 +37,7 @@ const example = {
   "goals": null,
   "primaryProducts": null,
   "matchingNames": null,
+  "additionalOwnedDomains": null,
 } satisfies UpdateProjectRequest
 
 console.log(example)

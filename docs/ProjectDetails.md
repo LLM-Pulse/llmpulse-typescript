@@ -12,6 +12,7 @@ Name | Type
 `url` | string
 `description` | string
 `matchingNames` | Array&lt;string&gt;
+`additionalOwnedDomains` | Array&lt;string&gt;
 `industry` | any
 `businessModel` | string
 `businessModelOther` | string
@@ -43,6 +44,7 @@ const example = {
   "url": null,
   "description": null,
   "matchingNames": null,
+  "additionalOwnedDomains": null,
   "industry": null,
   "businessModel": null,
   "businessModelOther": null,
