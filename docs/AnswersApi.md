@@ -141,7 +141,7 @@ async function example() {
     perPage: 56,
     // string | Case-insensitive full-text search inside AI response texts. Switches items to snippet + match_count mode. (optional)
     query: query_example,
-    // boolean | Filter sentinel non-answers (provider returned nothing after retries; excluded from platform metrics). false = only real answers, true = only sentinels, omit = both. Every item carries its own no_result flag. (optional)
+    // boolean | Filter sentinel non-answers (the provider returned nothing after all retries, or the model declined to answer, today only Gemini; excluded from platform metrics). false = only real answers, true = only sentinels, omit = both. Every item carries its own no_result flag. (optional)
     noResult: true,
   } satisfies ListAnswersRequest;
 
@@ -176,7 +176,7 @@ example().catch(console.error);
 | **page** | `number` |  | [Optional] [Defaults to `1`] |
 | **perPage** | `number` |  | [Optional] [Defaults to `20`] |
 | **query** | `string` | Case-insensitive full-text search inside AI response texts. Switches items to snippet + match_count mode. | [Optional] [Defaults to `undefined`] |
-| **noResult** | `boolean` | Filter sentinel non-answers (provider returned nothing after retries; excluded from platform metrics). false &#x3D; only real answers, true &#x3D; only sentinels, omit &#x3D; both. Every item carries its own no_result flag. | [Optional] [Defaults to `undefined`] |
+| **noResult** | `boolean` | Filter sentinel non-answers (the provider returned nothing after all retries, or the model declined to answer, today only Gemini; excluded from platform metrics). false &#x3D; only real answers, true &#x3D; only sentinels, omit &#x3D; both. Every item carries its own no_result flag. | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
