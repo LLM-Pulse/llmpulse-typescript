@@ -17,7 +17,7 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 
 Create a webhook subscription
 
-Subscribes a public HTTPS URL to a project event. LLM Pulse POSTs a JSON envelope (&#x60;event&#x60;, &#x60;occurred_at&#x60;, &#x60;project_id&#x60;, &#x60;subscription_id&#x60;, &#x60;data&#x60;) to the URL every time the event occurs, signed via the &#x60;X-LLMPulse-Signature&#x60; header (HMAC-SHA256 of the raw body computed with the subscription secret). Failed deliveries receive up to 5 attempts in total, including the first, with backoff; subscriptions auto-disable after 20 consecutive failed deliveries. Idempotent for the same project + event + URL: re-posting returns the existing subscription, unless the API key or OAuth connection that created it was revoked; then it is replaced by a new subscription with a new secret. Requires a &#x60;read_write&#x60; scope API key and the Scale plan or above.
+Subscribes a public HTTPS URL to a project event. LLM Pulse POSTs a JSON envelope (&#x60;event&#x60;, &#x60;occurred_at&#x60;, &#x60;project_id&#x60;, &#x60;subscription_id&#x60;, &#x60;data&#x60;) to the URL every time the event occurs, signed via the &#x60;X-LLMPulse-Signature&#x60; header (HMAC-SHA256 of the raw body computed with the subscription secret). Failed deliveries receive up to 5 attempts in total, including the first, with backoff; subscriptions auto-disable after 20 consecutive failed deliveries. Idempotent for the same project + event + URL: re-posting returns the existing subscription, unless the API key or OAuth connection that created it was revoked; then it is replaced by a new subscription with a new secret. The response carries &#x60;secret&#x60; when it creates the subscription, and on a re-post only for the API key or OAuth connection that created it: any other credential gets the subscription without &#x60;secret&#x60;. Requires a &#x60;read_write&#x60; scope API key and the Scale plan or above.
 
 ### Example
 
@@ -77,7 +77,7 @@ example().catch(console.error);
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Created. The signing secret is only returned by this endpoint. |  -  |
+| **201** | Created, or the existing subscription on a re-post. The signing secret is only returned by this endpoint, and on a re-post only to the credential that created the subscription. |  -  |
 | **401** | Authentication failed |  -  |
 | **403** | API key lacks write permission |  -  |
 | **404** | Resource not found |  -  |
