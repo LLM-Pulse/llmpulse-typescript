@@ -4,12 +4,167 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**acceptSuggestedPrompts**](PromptsApi.md#acceptsuggestedprompts) | **POST** /suggested_prompts/accept | Accept suggested prompts |
+| [**createPromptGeneration**](PromptsApi.md#createpromptgeneration) | **POST** /prompt_generations | Generate prompt suggestions |
 | [**createPrompts**](PromptsApi.md#createprompts) | **POST** /prompts | Bulk-create prompts |
 | [**deletePrompt**](PromptsApi.md#deleteprompt) | **DELETE** /prompts/{id} | Delete a prompt |
+| [**getPromptGeneration**](PromptsApi.md#getpromptgeneration) | **GET** /prompt_generations/{id} | Get a prompt generation run |
+| [**importPrompts**](PromptsApi.md#importprompts) | **POST** /prompts/import | Import prompts |
 | [**listPromptExecutions**](PromptsApi.md#listpromptexecutions) | **GET** /dimensions/prompt_executions | List prompt executions |
 | [**listPrompts**](PromptsApi.md#listprompts) | **GET** /dimensions/prompts | List prompts |
 | [**listQueryFanOuts**](PromptsApi.md#listqueryfanouts) | **GET** /dimensions/query_fan_outs | List query fan-out |
+| [**listSuggestedPrompts**](PromptsApi.md#listsuggestedprompts) | **GET** /suggested_prompts | List suggested prompts |
+| [**rejectSuggestedPrompts**](PromptsApi.md#rejectsuggestedprompts) | **POST** /suggested_prompts/reject | Reject suggested prompts |
+| [**updatePrompt**](PromptsApi.md#updatepromptoperation) | **PATCH** /prompts/{id} | Edit a prompt\&#39;s categorization |
 
+
+
+## acceptSuggestedPrompts
+
+> SuggestedPromptsAcceptResponse acceptSuggestedPrompts(suggestedPromptsAcceptRequest)
+
+Accept suggested prompts
+
+Starts tracking up to 100 pending suggestions: each becomes a prompt in its own country and language, optionally put in one tag (tag_ids or tag_names; create_missing creates a missing name when the team member may create tags). Suggestions that are no longer pending come back in skipped. When the new prompts would exceed the plan the call returns ERR_LIMIT_REACHED and accepts nothing. Requires a &#x60;read_write&#x60; scope API key and, for team members, create access to Prompts.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  PromptsApi,
+} from '@llmpulse/sdk';
+import type { AcceptSuggestedPromptsRequest } from '@llmpulse/sdk';
+
+async function example() {
+  console.log("🚀 Testing @llmpulse/sdk SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new PromptsApi(config);
+
+  const body = {
+    // SuggestedPromptsAcceptRequest
+    suggestedPromptsAcceptRequest: ...,
+  } satisfies AcceptSuggestedPromptsRequest;
+
+  try {
+    const data = await api.acceptSuggestedPrompts(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **suggestedPromptsAcceptRequest** | [SuggestedPromptsAcceptRequest](SuggestedPromptsAcceptRequest.md) |  | |
+
+### Return type
+
+[**SuggestedPromptsAcceptResponse**](SuggestedPromptsAcceptResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Accepted and skipped suggestions |  -  |
+| **403** | API key lacks write permission |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Invalid parameters |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## createPromptGeneration
+
+> PromptGenerationResponse createPromptGeneration(promptGenerationRequest)
+
+Generate prompt suggestions
+
+Starts a suggestion run with one of the generators behind the app\&#39;s Add prompts wizards and answers 202 with the run. website writes suggestions from the scraped website (80% non-brand, 20% brand), keyword from a keyword or the project profile (optionally around a competitor), topic from a topic, reddit from Reddit discussions of a topic or brand, paa from Google People Also Ask (up to 5 keywords, counted against the account\&#39;s 24-hour lookup allowance), reputational from brand reputation questions, translate from the project\&#39;s prompts of another locale, search_console from the connected property\&#39;s top queries of the last 28 days (Growth plan or above, ERR_PLAN_REQUIRED). The suggestions land in the Suggested prompts queue; poll GET /prompt_generations/{id}, then accept the ones you want with POST /suggested_prompts/accept. Nothing is tracked until accepted. The request is validated before the run starts, and refused with ERR_LIMIT_REACHED when the plan has no prompt slot left. Requires a &#x60;read_write&#x60; scope API key and, for team members, create access to Prompts.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  PromptsApi,
+} from '@llmpulse/sdk';
+import type { CreatePromptGenerationRequest } from '@llmpulse/sdk';
+
+async function example() {
+  console.log("🚀 Testing @llmpulse/sdk SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new PromptsApi(config);
+
+  const body = {
+    // PromptGenerationRequest
+    promptGenerationRequest: ...,
+  } satisfies CreatePromptGenerationRequest;
+
+  try {
+    const data = await api.createPromptGeneration(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **promptGenerationRequest** | [PromptGenerationRequest](PromptGenerationRequest.md) |  | |
+
+### Return type
+
+[**PromptGenerationResponse**](PromptGenerationResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **202** | The run, status processing |  -  |
+| **403** | API key lacks write permission |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Invalid parameters |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
 ## createPrompts
@@ -157,6 +312,157 @@ example().catch(console.error);
 | **200** | Deleted |  -  |
 | **403** | API key lacks write permission |  -  |
 | **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## getPromptGeneration
+
+> PromptGenerationResponse getPromptGeneration(projectId, id)
+
+Get a prompt generation run
+
+Returns a run started with POST /prompt_generations: processing while the generator works, then completed with the suggestions it saved to the Suggested prompts queue, or failed with an error code and message. Poll every few seconds; most runs finish within a minute. Runs are kept for 24 hours, their suggestions stay in the queue.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  PromptsApi,
+} from '@llmpulse/sdk';
+import type { GetPromptGenerationRequest } from '@llmpulse/sdk';
+
+async function example() {
+  console.log("🚀 Testing @llmpulse/sdk SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new PromptsApi(config);
+
+  const body = {
+    // number | Project ID
+    projectId: 56,
+    // string
+    id: 38400000-8cf0-11bd-b23e-10b96e4ef00d,
+  } satisfies GetPromptGenerationRequest;
+
+  try {
+    const data = await api.getPromptGeneration(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | `number` | Project ID | [Defaults to `undefined`] |
+| **id** | `string` |  | [Defaults to `undefined`] |
+
+### Return type
+
+[**PromptGenerationResponse**](PromptGenerationResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The run |  -  |
+| **403** | API key belongs to a team member whose permission matrix does not grant this feature |  -  |
+| **404** | Resource not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## importPrompts
+
+> PromptsImportResponse importPrompts(promptsImportRequest)
+
+Import prompts
+
+The app\&#39;s CSV import as JSON: up to 500 rows, each with its own prompt, country_code, language_code (codes or names; both default to the project\&#39;s) and tags, created when missing. Duplicates are skipped and existing prompts still get the row\&#39;s tags. The prompt limits are checked before anything is written: when the new prompts would exceed the plan the call returns ERR_LIMIT_REACHED and imports nothing. Rows with an unknown country or language come back in row_errors. Responds 201 when it created prompts, 200 otherwise. Requires a &#x60;read_write&#x60; scope API key and, for team members, create access to Prompts.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  PromptsApi,
+} from '@llmpulse/sdk';
+import type { ImportPromptsRequest } from '@llmpulse/sdk';
+
+async function example() {
+  console.log("🚀 Testing @llmpulse/sdk SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new PromptsApi(config);
+
+  const body = {
+    // PromptsImportRequest
+    promptsImportRequest: ...,
+  } satisfies ImportPromptsRequest;
+
+  try {
+    const data = await api.importPrompts(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **promptsImportRequest** | [PromptsImportRequest](PromptsImportRequest.md) |  | |
+
+### Return type
+
+[**PromptsImportResponse**](PromptsImportResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Nothing new was created (every row was a duplicate) |  -  |
+| **201** | Prompts imported |  -  |
+| **403** | API key lacks write permission |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Invalid parameters |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
@@ -492,6 +798,243 @@ example().catch(console.error);
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Paginated fan-out rows |  -  |
+| **422** | Invalid parameters |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## listSuggestedPrompts
+
+> SuggestedPromptsResponse listSuggestedPrompts(projectId, source, status, page, perPage)
+
+List suggested prompts
+
+Lists the project\&#39;s Suggested prompts queue, the same list the app\&#39;s Suggested Prompts tab shows, oldest first. It holds the suggestions of every generator (website, magic for keyword runs, topic, reddit, paa, reputational, translate, gsc for Search Console, catalog). Pending suggestions by default; status&#x3D;all also returns accepted (with the prompt they became) and rejected ones. Team members need create access to Prompts, like the app\&#39;s tab.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  PromptsApi,
+} from '@llmpulse/sdk';
+import type { ListSuggestedPromptsRequest } from '@llmpulse/sdk';
+
+async function example() {
+  console.log("🚀 Testing @llmpulse/sdk SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new PromptsApi(config);
+
+  const body = {
+    // number | Project ID
+    projectId: 56,
+    // 'website' | 'magic' | 'paa' | 'topic' | 'reddit' | 'reputational' | 'gsc' | 'translate' | 'catalog' | Only suggestions from this generator (optional)
+    source: source_example,
+    // 'pending' | 'accepted' | 'rejected' | 'all' | Only suggestions in this status (optional)
+    status: status_example,
+    // number (optional)
+    page: 56,
+    // number (optional)
+    perPage: 56,
+  } satisfies ListSuggestedPromptsRequest;
+
+  try {
+    const data = await api.listSuggestedPrompts(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | `number` | Project ID | [Defaults to `undefined`] |
+| **source** | `website`, `magic`, `paa`, `topic`, `reddit`, `reputational`, `gsc`, `translate`, `catalog` | Only suggestions from this generator | [Optional] [Defaults to `undefined`] [Enum: website, magic, paa, topic, reddit, reputational, gsc, translate, catalog] |
+| **status** | `pending`, `accepted`, `rejected`, `all` | Only suggestions in this status | [Optional] [Defaults to `&#39;pending&#39;`] [Enum: pending, accepted, rejected, all] |
+| **page** | `number` |  | [Optional] [Defaults to `1`] |
+| **perPage** | `number` |  | [Optional] [Defaults to `50`] |
+
+### Return type
+
+[**SuggestedPromptsResponse**](SuggestedPromptsResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Paginated suggestions |  -  |
+| **403** | API key belongs to a team member whose permission matrix does not grant this feature |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Invalid parameters |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## rejectSuggestedPrompts
+
+> SuggestedPromptsRejectResponse rejectSuggestedPrompts(suggestedPromptIdsRequest)
+
+Reject suggested prompts
+
+Marks up to 100 pending suggestions as rejected, so they leave the pending list; suggestions that are no longer pending stay as they are. Tracks and deletes nothing. Requires a &#x60;read_write&#x60; scope API key and, for team members, create access to Prompts.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  PromptsApi,
+} from '@llmpulse/sdk';
+import type { RejectSuggestedPromptsRequest } from '@llmpulse/sdk';
+
+async function example() {
+  console.log("🚀 Testing @llmpulse/sdk SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new PromptsApi(config);
+
+  const body = {
+    // SuggestedPromptIdsRequest
+    suggestedPromptIdsRequest: ...,
+  } satisfies RejectSuggestedPromptsRequest;
+
+  try {
+    const data = await api.rejectSuggestedPrompts(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **suggestedPromptIdsRequest** | [SuggestedPromptIdsRequest](SuggestedPromptIdsRequest.md) |  | |
+
+### Return type
+
+[**SuggestedPromptsRejectResponse**](SuggestedPromptsRejectResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The suggestions rejected |  -  |
+| **403** | API key lacks write permission |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Invalid parameters |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## updatePrompt
+
+> PromptCategorizationResponse updatePrompt(id, updatePromptRequest)
+
+Edit a prompt\&#39;s categorization
+
+Manual categorization, exactly like editing the intent and brand badges on the prompt page: send &#x60;prompt_type&#x60;, &#x60;brand_kind&#x60; or both. The prompt is marked as manually categorized (&#x60;categorization_source&#x60; becomes &#x60;manual&#x60;), so automatic categorization no longer changes it; the prompt page can revert it to automatic. Any other field returns ERR_INVALID_PARAM. Not available from a white-label portal (ERR_INTEGRATION_UNAVAILABLE), where the page hides the editor. Requires a &#x60;read_write&#x60; scope API key and, for team members, update permission on Prompts.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  PromptsApi,
+} from '@llmpulse/sdk';
+import type { UpdatePromptOperationRequest } from '@llmpulse/sdk';
+
+async function example() {
+  console.log("🚀 Testing @llmpulse/sdk SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new PromptsApi(config);
+
+  const body = {
+    // number
+    id: 56,
+    // UpdatePromptRequest
+    updatePromptRequest: ...,
+  } satisfies UpdatePromptOperationRequest;
+
+  try {
+    const data = await api.updatePrompt(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | `number` |  | [Defaults to `undefined`] |
+| **updatePromptRequest** | [UpdatePromptRequest](UpdatePromptRequest.md) |  | |
+
+### Return type
+
+[**PromptCategorizationResponse**](PromptCategorizationResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The prompt with its new categorization |  -  |
+| **403** | Writes with a read-only key answer ERR_INSUFFICIENT_SCOPE, a team member without the permission ERR_INSUFFICIENT_PERMISSION, and a request made on a white-label portal host, where the app does not offer this action, ERR_INTEGRATION_UNAVAILABLE, with the same status |  -  |
+| **404** | Resource not found |  -  |
 | **422** | Invalid parameters |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)

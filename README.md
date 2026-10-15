@@ -1,4 +1,4 @@
-# @llmpulse/sdk@1.62.0
+# @llmpulse/sdk@1.63.0
 
 A TypeScript SDK client for the api.llmpulse.ai API.
 
@@ -88,12 +88,17 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 *CollectionsTagsApi* | [**deleteCollection**](docs/CollectionsTagsApi.md#deletecollection) | **DELETE** /collections/{id} | Delete a tag
 *CollectionsTagsApi* | [**listCollections**](docs/CollectionsTagsApi.md#listcollections) | **GET** /dimensions/collections | List tags/collections
 *CollectionsTagsApi* | [**listTags**](docs/CollectionsTagsApi.md#listtags) | **GET** /dimensions/tags | List tags (alias for /collections)
+*CollectionsTagsApi* | [**removePromptTags**](docs/CollectionsTagsApi.md#removeprompttagsoperation) | **POST** /prompts/remove_tags | Bulk-detach tags from prompts
 *CollectionsTagsApi* | [**updateCollection**](docs/CollectionsTagsApi.md#updatecollectionoperation) | **PATCH** /collections/{id} | Update a tag
 *CompetitorsApi* | [**createCompetitor**](docs/CompetitorsApi.md#createcompetitoroperation) | **POST** /competitors | Add a competitor
 *CompetitorsApi* | [**deleteCompetitor**](docs/CompetitorsApi.md#deletecompetitor) | **DELETE** /competitors/{id} | Delete a competitor
 *CompetitorsApi* | [**getCompetitorDetails**](docs/CompetitorsApi.md#getcompetitordetails) | **GET** /dimensions/competitors/{id} | Competitor details
+*CompetitorsApi* | [**listCompetitorSuggestions**](docs/CompetitorsApi.md#listcompetitorsuggestions) | **GET** /competitors/suggestions | List competitor suggestions
 *CompetitorsApi* | [**listCompetitors**](docs/CompetitorsApi.md#listcompetitors) | **GET** /dimensions/competitors | List competitors
 *CompetitorsApi* | [**updateCompetitor**](docs/CompetitorsApi.md#updatecompetitoroperation) | **PATCH** /competitors/{id} | Update a competitor
+*CustomReportsApi* | [**getCustomReport**](docs/CustomReportsApi.md#getcustomreport) | **GET** /custom_reports/{id} | Get a custom report with its widget data
+*CustomReportsApi* | [**listCustomReports**](docs/CustomReportsApi.md#listcustomreports) | **GET** /custom_reports | List custom reports
+*CustomReportsApi* | [**sendCustomReport**](docs/CustomReportsApi.md#sendcustomreportoperation) | **POST** /custom_reports/{id}/send | Send a custom report now
 *GEOAuditsApi* | [**compareGeoAuditRuns**](docs/GEOAuditsApi.md#comparegeoauditruns) | **GET** /geo_audits/{id}/comparison | Compare two GEO audit runs
 *GEOAuditsApi* | [**createGeoAudits**](docs/GEOAuditsApi.md#creategeoaudits) | **POST** /geo_audits | Create GEO audits
 *GEOAuditsApi* | [**deleteGeoAudit**](docs/GEOAuditsApi.md#deletegeoaudit) | **DELETE** /geo_audits/{id} | Delete (archive) a GEO audit
@@ -124,8 +129,12 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 *MetricsApi* | [**getSummary**](docs/MetricsApi.md#getsummary) | **GET** /metrics/summary | Aggregated metrics summary
 *MetricsApi* | [**getTimeseries**](docs/MetricsApi.md#gettimeseries) | **GET** /metrics/timeseries | Time-series metrics
 *MetricsApi* | [**getTopSources**](docs/MetricsApi.md#gettopsources) | **GET** /metrics/top_sources | Top cited sources
+*OwnedMediaCommunitiesApi* | [**getOwnedMediaProfiles**](docs/OwnedMediaCommunitiesApi.md#getownedmediaprofiles) | **GET** /projects/{id}/owned_media | Get a project\&#39;s owned-media profiles
+*OwnedMediaCommunitiesApi* | [**getOwnedMediaSummary**](docs/OwnedMediaCommunitiesApi.md#getownedmediasummary) | **GET** /dimensions/owned_media/summary | Get an owned-media summary
 *OwnedMediaCommunitiesApi* | [**listOwnedMedia**](docs/OwnedMediaCommunitiesApi.md#listownedmedia) | **GET** /dimensions/owned_media | List owned-media citations
+*OwnedMediaCommunitiesApi* | [**listOwnedMediaCitingPrompts**](docs/OwnedMediaCommunitiesApi.md#listownedmediacitingprompts) | **GET** /dimensions/owned_media/citing_prompts | List the answers citing an owned-media item
 *OwnedMediaCommunitiesApi* | [**listRedditCitations**](docs/OwnedMediaCommunitiesApi.md#listredditcitations) | **GET** /dimensions/reddit | List cited Reddit content
+*OwnedMediaCommunitiesApi* | [**updateOwnedMediaProfiles**](docs/OwnedMediaCommunitiesApi.md#updateownedmediaprofilesoperation) | **PATCH** /projects/{id}/owned_media | Update a project\&#39;s owned-media profiles
 *ProjectsApi* | [**createProject**](docs/ProjectsApi.md#createproject) | **POST** /projects | Create a project (fast mode)
 *ProjectsApi* | [**createProjectDraft**](docs/ProjectsApi.md#createprojectdraftoperation) | **POST** /project_drafts | Start a project draft (wizard step 1)
 *ProjectsApi* | [**finalizeProjectDraft**](docs/ProjectsApi.md#finalizeprojectdraftoperation) | **POST** /project_drafts/{id}/finalize | Finalize a draft into a real project
@@ -136,14 +145,22 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 *ProjectsApi* | [**listProjects**](docs/ProjectsApi.md#listprojects) | **GET** /dimensions/projects | List projects
 *ProjectsApi* | [**updateProject**](docs/ProjectsApi.md#updateprojectoperation) | **PATCH** /projects/{id} | Update a project profile (Brand Book)
 *ProjectsApi* | [**updateProjectDraft**](docs/ProjectsApi.md#updateprojectdraftoperation) | **PATCH** /project_drafts/{id} | Submit a wizard step
+*PromptsApi* | [**acceptSuggestedPrompts**](docs/PromptsApi.md#acceptsuggestedprompts) | **POST** /suggested_prompts/accept | Accept suggested prompts
+*PromptsApi* | [**createPromptGeneration**](docs/PromptsApi.md#createpromptgeneration) | **POST** /prompt_generations | Generate prompt suggestions
 *PromptsApi* | [**createPrompts**](docs/PromptsApi.md#createprompts) | **POST** /prompts | Bulk-create prompts
 *PromptsApi* | [**deletePrompt**](docs/PromptsApi.md#deleteprompt) | **DELETE** /prompts/{id} | Delete a prompt
+*PromptsApi* | [**getPromptGeneration**](docs/PromptsApi.md#getpromptgeneration) | **GET** /prompt_generations/{id} | Get a prompt generation run
+*PromptsApi* | [**importPrompts**](docs/PromptsApi.md#importprompts) | **POST** /prompts/import | Import prompts
 *PromptsApi* | [**listPromptExecutions**](docs/PromptsApi.md#listpromptexecutions) | **GET** /dimensions/prompt_executions | List prompt executions
 *PromptsApi* | [**listPrompts**](docs/PromptsApi.md#listprompts) | **GET** /dimensions/prompts | List prompts
 *PromptsApi* | [**listQueryFanOuts**](docs/PromptsApi.md#listqueryfanouts) | **GET** /dimensions/query_fan_outs | List query fan-out
+*PromptsApi* | [**listSuggestedPrompts**](docs/PromptsApi.md#listsuggestedprompts) | **GET** /suggested_prompts | List suggested prompts
+*PromptsApi* | [**rejectSuggestedPrompts**](docs/PromptsApi.md#rejectsuggestedprompts) | **POST** /suggested_prompts/reject | Reject suggested prompts
+*PromptsApi* | [**updatePrompt**](docs/PromptsApi.md#updatepromptoperation) | **PATCH** /prompts/{id} | Edit a prompt\&#39;s categorization
 *RecommendationsApi* | [**getRecommendation**](docs/RecommendationsApi.md#getrecommendation) | **GET** /recommendations/{id} | Get recommendation run with items
 *RecommendationsApi* | [**launchRecommendations**](docs/RecommendationsApi.md#launchrecommendationsoperation) | **POST** /recommendations | Launch a recommendations generation
 *RecommendationsApi* | [**listRecommendations**](docs/RecommendationsApi.md#listrecommendations) | **GET** /recommendations | List recommendation runs
+*RecommendationsApi* | [**updateRecommendationItem**](docs/RecommendationsApi.md#updaterecommendationitemoperation) | **PATCH** /recommendations/{id}/items/{item_id} | Complete, archive or restore a recommendation item
 *ReputationStudiesApi* | [**getReputationReport**](docs/ReputationStudiesApi.md#getreputationreport) | **GET** /reputation/reports/{id} | Get reputation report scores
 *ReputationStudiesApi* | [**getStudy**](docs/ReputationStudiesApi.md#getstudy) | **GET** /studies/{id} | Get a custom AI study
 *ReputationStudiesApi* | [**getStudyReport**](docs/ReputationStudiesApi.md#getstudyreport) | **GET** /studies/{id}/reports/{report_id} | Get custom study report scores
@@ -154,6 +171,8 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 *SearchConsoleApi* | [**getSearchConsoleRows**](docs/SearchConsoleApi.md#getsearchconsolerows) | **GET** /search_console/rows | Search Console rows by several dimensions (Growth+)
 *SearchConsoleApi* | [**getSearchConsoleSummary**](docs/SearchConsoleApi.md#getsearchconsolesummary) | **GET** /search_console/summary | Search Console summary (Growth+)
 *SearchConsoleApi* | [**getSearchConsoleTimeseries**](docs/SearchConsoleApi.md#getsearchconsoletimeseries) | **GET** /search_console/timeseries | Search Console time series (Growth+)
+*SentimentsApi* | [**getSentimentTags**](docs/SentimentsApi.md#getsentimenttags) | **GET** /reports/sentiment/tags | Sentiment by tag (Growth plan or above)
+*SentimentsApi* | [**getSentimentTopics**](docs/SentimentsApi.md#getsentimenttopics) | **GET** /reports/sentiment/topics | Sentiment by topic (Growth plan or above)
 *SentimentsApi* | [**listSentimentCategories**](docs/SentimentsApi.md#listsentimentcategories) | **GET** /dimensions/sentiments | List sentiment categories (Growth plan or above)
 *SentimentsApi* | [**listSentimentRecords**](docs/SentimentsApi.md#listsentimentrecords) | **GET** /sentiments | List sentiment records (Growth plan or above)
 *ShoppingAdsApi* | [**listAds**](docs/ShoppingAdsApi.md#listads) | **GET** /dimensions/ads | List AI ad placements
@@ -231,8 +250,11 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [CompetitorCreateResponse](docs/CompetitorCreateResponse.md)
 - [CompetitorCreateResponseCompetitor](docs/CompetitorCreateResponseCompetitor.md)
 - [CompetitorDetails](docs/CompetitorDetails.md)
+- [CompetitorDiscoveryState](docs/CompetitorDiscoveryState.md)
 - [CompetitorMentionRecord](docs/CompetitorMentionRecord.md)
 - [CompetitorMentionsResponse](docs/CompetitorMentionsResponse.md)
+- [CompetitorSuggestion](docs/CompetitorSuggestion.md)
+- [CompetitorSuggestionsResponse](docs/CompetitorSuggestionsResponse.md)
 - [CreateAnnotationRequest](docs/CreateAnnotationRequest.md)
 - [CreateCollectionRequest](docs/CreateCollectionRequest.md)
 - [CreateCompetitorRequest](docs/CreateCompetitorRequest.md)
@@ -242,6 +264,16 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [CreateTechnicalGeoReportsRequest](docs/CreateTechnicalGeoReportsRequest.md)
 - [CreateWebhook201Response](docs/CreateWebhook201Response.md)
 - [CreateWebhookRequest](docs/CreateWebhookRequest.md)
+- [CustomReportBlock](docs/CustomReportBlock.md)
+- [CustomReportDateRange](docs/CustomReportDateRange.md)
+- [CustomReportDetailResponse](docs/CustomReportDetailResponse.md)
+- [CustomReportFilters](docs/CustomReportFilters.md)
+- [CustomReportSchedule](docs/CustomReportSchedule.md)
+- [CustomReportSendResponse](docs/CustomReportSendResponse.md)
+- [CustomReportSummary](docs/CustomReportSummary.md)
+- [CustomReportWidget](docs/CustomReportWidget.md)
+- [CustomReportWidgetRef](docs/CustomReportWidgetRef.md)
+- [CustomReportsResponse](docs/CustomReportsResponse.md)
 - [DeleteWebhook200Response](docs/DeleteWebhook200Response.md)
 - [FinalizeProjectDraftRequest](docs/FinalizeProjectDraftRequest.md)
 - [GeoAlert](docs/GeoAlert.md)
@@ -296,6 +328,29 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [MentionsResponse](docs/MentionsResponse.md)
 - [MetricsFiltersEcho](docs/MetricsFiltersEcho.md)
 - [ModelsResponse](docs/ModelsResponse.md)
+- [OwnedMediaAgeBucketShare](docs/OwnedMediaAgeBucketShare.md)
+- [OwnedMediaCitedItem](docs/OwnedMediaCitedItem.md)
+- [OwnedMediaCitedItemStats](docs/OwnedMediaCitedItemStats.md)
+- [OwnedMediaCitingAnswer](docs/OwnedMediaCitingAnswer.md)
+- [OwnedMediaCitingPromptsResponse](docs/OwnedMediaCitingPromptsResponse.md)
+- [OwnedMediaContentTypeShare](docs/OwnedMediaContentTypeShare.md)
+- [OwnedMediaCountryShare](docs/OwnedMediaCountryShare.md)
+- [OwnedMediaKpiChanges](docs/OwnedMediaKpiChanges.md)
+- [OwnedMediaKpis](docs/OwnedMediaKpis.md)
+- [OwnedMediaListResponse](docs/OwnedMediaListResponse.md)
+- [OwnedMediaModelShare](docs/OwnedMediaModelShare.md)
+- [OwnedMediaPlatformProfiles](docs/OwnedMediaPlatformProfiles.md)
+- [OwnedMediaPlatformRollup](docs/OwnedMediaPlatformRollup.md)
+- [OwnedMediaPlatformRollupWeeklyInner](docs/OwnedMediaPlatformRollupWeeklyInner.md)
+- [OwnedMediaProfile](docs/OwnedMediaProfile.md)
+- [OwnedMediaProfileSettings](docs/OwnedMediaProfileSettings.md)
+- [OwnedMediaProfilesResponse](docs/OwnedMediaProfilesResponse.md)
+- [OwnedMediaProfilesUpdateResponse](docs/OwnedMediaProfilesUpdateResponse.md)
+- [OwnedMediaRow](docs/OwnedMediaRow.md)
+- [OwnedMediaStoreTotals](docs/OwnedMediaStoreTotals.md)
+- [OwnedMediaSummaryResponse](docs/OwnedMediaSummaryResponse.md)
+- [OwnedMediaSummaryResponsePrevious](docs/OwnedMediaSummaryResponsePrevious.md)
+- [OwnedMediaWeek](docs/OwnedMediaWeek.md)
 - [PaginatedEnvelope](docs/PaginatedEnvelope.md)
 - [Ping200Response](docs/Ping200Response.md)
 - [Project](docs/Project.md)
@@ -317,20 +372,34 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [ProjectDetailsAllOfStatsPromptsByBrandKind](docs/ProjectDetailsAllOfStatsPromptsByBrandKind.md)
 - [ProjectProfile](docs/ProjectProfile.md)
 - [ProjectUpdateResponse](docs/ProjectUpdateResponse.md)
+- [PromptCategorization](docs/PromptCategorization.md)
+- [PromptCategorizationResponse](docs/PromptCategorizationResponse.md)
 - [PromptExecutionRecord](docs/PromptExecutionRecord.md)
 - [PromptExecutionsResponse](docs/PromptExecutionsResponse.md)
+- [PromptGenerationRequest](docs/PromptGenerationRequest.md)
+- [PromptGenerationResponse](docs/PromptGenerationResponse.md)
+- [PromptGenerationResponseError](docs/PromptGenerationResponseError.md)
+- [PromptGenerationResponseParams](docs/PromptGenerationResponseParams.md)
 - [PromptRecord](docs/PromptRecord.md)
 - [PromptSummaryResponse](docs/PromptSummaryResponse.md)
 - [PromptSummaryRow](docs/PromptSummaryRow.md)
 - [PromptTagsAssignResponse](docs/PromptTagsAssignResponse.md)
+- [PromptTagsRemoveResponse](docs/PromptTagsRemoveResponse.md)
 - [PromptsCreateRequest](docs/PromptsCreateRequest.md)
 - [PromptsCreateResponse](docs/PromptsCreateResponse.md)
 - [PromptsCreateResponseDataInner](docs/PromptsCreateResponseDataInner.md)
+- [PromptsImportRequest](docs/PromptsImportRequest.md)
+- [PromptsImportRequestRowsInner](docs/PromptsImportRequestRowsInner.md)
+- [PromptsImportResponse](docs/PromptsImportResponse.md)
+- [PromptsImportResponseRowErrorsInner](docs/PromptsImportResponseRowErrorsInner.md)
 - [PromptsResponse](docs/PromptsResponse.md)
 - [QueryWebAnalyticsRequest](docs/QueryWebAnalyticsRequest.md)
+- [RecommendationItem](docs/RecommendationItem.md)
+- [RecommendationItemUpdateResponse](docs/RecommendationItemUpdateResponse.md)
 - [RecommendationSummary](docs/RecommendationSummary.md)
 - [RecommendationSummarySummary](docs/RecommendationSummarySummary.md)
 - [RecommendationsResponse](docs/RecommendationsResponse.md)
+- [RemovePromptTagsRequest](docs/RemovePromptTagsRequest.md)
 - [RemoveTeamMember200Response](docs/RemoveTeamMember200Response.md)
 - [RevokeTeamInvitation200Response](docs/RevokeTeamInvitation200Response.md)
 - [SampleWebhookPayloads200Response](docs/SampleWebhookPayloads200Response.md)
@@ -346,7 +415,15 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [SearchConsoleSummaryResponseBreakdownInner](docs/SearchConsoleSummaryResponseBreakdownInner.md)
 - [SearchConsoleTimeseriesResponse](docs/SearchConsoleTimeseriesResponse.md)
 - [SearchConsoleTimeseriesResponseDataInner](docs/SearchConsoleTimeseriesResponseDataInner.md)
+- [SendCustomReportRequest](docs/SendCustomReportRequest.md)
+- [SentimentBreakdownBrand](docs/SentimentBreakdownBrand.md)
+- [SentimentBreakdownCounts](docs/SentimentBreakdownCounts.md)
+- [SentimentBreakdownEnvelope](docs/SentimentBreakdownEnvelope.md)
 - [SentimentRecord](docs/SentimentRecord.md)
+- [SentimentTagRow](docs/SentimentTagRow.md)
+- [SentimentTagsResponse](docs/SentimentTagsResponse.md)
+- [SentimentTopicRow](docs/SentimentTopicRow.md)
+- [SentimentTopicsResponse](docs/SentimentTopicsResponse.md)
 - [SentimentsResponse](docs/SentimentsResponse.md)
 - [SovResponse](docs/SovResponse.md)
 - [SovResponseBreakdownInner](docs/SovResponseBreakdownInner.md)
@@ -359,6 +436,13 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [StoreConnectionResponseAccount](docs/StoreConnectionResponseAccount.md)
 - [StoreConnectionResponseCandidatesInner](docs/StoreConnectionResponseCandidatesInner.md)
 - [StoreConnectionResponseProject](docs/StoreConnectionResponseProject.md)
+- [SuggestedPrompt](docs/SuggestedPrompt.md)
+- [SuggestedPromptIdsRequest](docs/SuggestedPromptIdsRequest.md)
+- [SuggestedPromptsAcceptRequest](docs/SuggestedPromptsAcceptRequest.md)
+- [SuggestedPromptsAcceptResponse](docs/SuggestedPromptsAcceptResponse.md)
+- [SuggestedPromptsAcceptResponseAcceptedInner](docs/SuggestedPromptsAcceptResponseAcceptedInner.md)
+- [SuggestedPromptsRejectResponse](docs/SuggestedPromptsRejectResponse.md)
+- [SuggestedPromptsResponse](docs/SuggestedPromptsResponse.md)
 - [SummaryResponse](docs/SummaryResponse.md)
 - [SummaryResponseAllOfPositionDistribution](docs/SummaryResponseAllOfPositionDistribution.md)
 - [SummaryResponseAllOfSummaryValueInner](docs/SummaryResponseAllOfSummaryValueInner.md)
@@ -378,8 +462,11 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [UpdateAnnotationRequest](docs/UpdateAnnotationRequest.md)
 - [UpdateCollectionRequest](docs/UpdateCollectionRequest.md)
 - [UpdateCompetitorRequest](docs/UpdateCompetitorRequest.md)
+- [UpdateOwnedMediaProfilesRequest](docs/UpdateOwnedMediaProfilesRequest.md)
 - [UpdateProjectDraftRequest](docs/UpdateProjectDraftRequest.md)
 - [UpdateProjectRequest](docs/UpdateProjectRequest.md)
+- [UpdatePromptRequest](docs/UpdatePromptRequest.md)
+- [UpdateRecommendationItemRequest](docs/UpdateRecommendationItemRequest.md)
 - [WebAnalyticsQueryResponse](docs/WebAnalyticsQueryResponse.md)
 - [WebAnalyticsQueryResponseColumnsInner](docs/WebAnalyticsQueryResponseColumnsInner.md)
 - [WebAnalyticsSchemaResponse](docs/WebAnalyticsSchemaResponse.md)
@@ -400,8 +487,8 @@ This TypeScript SDK client supports the [Fetch API](https://fetch.spec.whatwg.or
 and is automatically generated by the
 [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `1.62.0`
-- Package version: `1.62.0`
+- API version: `1.63.0`
+- Package version: `1.63.0`
 - Generator version: `7.24.0`
 - Build package: `org.openapitools.codegen.languages.TypeScriptFetchClientCodegen`
 

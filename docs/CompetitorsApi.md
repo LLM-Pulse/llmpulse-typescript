@@ -7,6 +7,7 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 | [**createCompetitor**](CompetitorsApi.md#createcompetitoroperation) | **POST** /competitors | Add a competitor |
 | [**deleteCompetitor**](CompetitorsApi.md#deletecompetitor) | **DELETE** /competitors/{id} | Delete a competitor |
 | [**getCompetitorDetails**](CompetitorsApi.md#getcompetitordetails) | **GET** /dimensions/competitors/{id} | Competitor details |
+| [**listCompetitorSuggestions**](CompetitorsApi.md#listcompetitorsuggestions) | **GET** /competitors/suggestions | List competitor suggestions |
 | [**listCompetitors**](CompetitorsApi.md#listcompetitors) | **GET** /dimensions/competitors | List competitors |
 | [**updateCompetitor**](CompetitorsApi.md#updatecompetitoroperation) | **PATCH** /competitors/{id} | Update a competitor |
 
@@ -229,6 +230,93 @@ example().catch(console.error);
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Competitor details |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## listCompetitorSuggestions
+
+> CompetitorSuggestionsResponse listCompetitorSuggestions(projectId, basis, query, page, perPage, output)
+
+List competitor suggestions
+
+The two lists of the Suggested tab of the Competitors page. &#x60;basis&#x3D;brands&#x60; (default) returns the competing brands the AI discovery proposed that are not tracked or rejected yet, with the names it would match and, when counted, how many answers name it (&#x60;mentions&#x60;). &#x60;basis&#x3D;citations&#x60; returns the domains AI answers cite most that are not your own or tracked yet, with how many answers cite each (&#x60;citations&#x60;). &#x60;discovery&#x60; tells whether a discovery run is still loading. Read-only: it never starts a discovery run, which the page starts from its Discover button. Add a suggestion with POST /competitors.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  CompetitorsApi,
+} from '@llmpulse/sdk';
+import type { ListCompetitorSuggestionsRequest } from '@llmpulse/sdk';
+
+async function example() {
+  console.log("🚀 Testing @llmpulse/sdk SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new CompetitorsApi(config);
+
+  const body = {
+    // number | Project ID
+    projectId: 56,
+    // 'brands' | 'citations' (optional)
+    basis: basis_example,
+    // string | Only suggestions whose brand name or domain contains this text (optional)
+    query: query_example,
+    // number (optional)
+    page: 56,
+    // number (optional)
+    perPage: 56,
+    // 'flat' | 'csv' | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \'flat\' returns the same metadata plus \'columns\' and \'rows\'; \'csv\' returns those rows as text/csv. Errors are always returned as JSON. (optional)
+    output: output_example,
+  } satisfies ListCompetitorSuggestionsRequest;
+
+  try {
+    const data = await api.listCompetitorSuggestions(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | `number` | Project ID | [Defaults to `undefined`] |
+| **basis** | `brands`, `citations` |  | [Optional] [Defaults to `&#39;brands&#39;`] [Enum: brands, citations] |
+| **query** | `string` | Only suggestions whose brand name or domain contains this text | [Optional] [Defaults to `undefined`] |
+| **page** | `number` |  | [Optional] [Defaults to `1`] |
+| **perPage** | `number` |  | [Optional] [Defaults to `20`] |
+| **output** | `flat`, `csv` | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \&#39;flat\&#39; returns the same metadata plus \&#39;columns\&#39; and \&#39;rows\&#39;; \&#39;csv\&#39; returns those rows as text/csv. Errors are always returned as JSON. | [Optional] [Defaults to `undefined`] [Enum: flat, csv] |
+
+### Return type
+
+[**CompetitorSuggestionsResponse**](CompetitorSuggestionsResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Paginated suggestions |  -  |
+| **422** | Invalid parameters |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

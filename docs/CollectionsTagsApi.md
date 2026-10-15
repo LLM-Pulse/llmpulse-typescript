@@ -9,6 +9,7 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 | [**deleteCollection**](CollectionsTagsApi.md#deletecollection) | **DELETE** /collections/{id} | Delete a tag |
 | [**listCollections**](CollectionsTagsApi.md#listcollections) | **GET** /dimensions/collections | List tags/collections |
 | [**listTags**](CollectionsTagsApi.md#listtags) | **GET** /dimensions/tags | List tags (alias for /collections) |
+| [**removePromptTags**](CollectionsTagsApi.md#removeprompttagsoperation) | **POST** /prompts/remove_tags | Bulk-detach tags from prompts |
 | [**updateCollection**](CollectionsTagsApi.md#updatecollectionoperation) | **PATCH** /collections/{id} | Update a tag |
 
 
@@ -375,6 +376,79 @@ example().catch(console.error);
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Tags |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## removePromptTags
+
+> PromptTagsRemoveResponse removePromptTags(removePromptTagsRequest)
+
+Bulk-detach tags from prompts
+
+Idempotent bulk removal of tags (Collections) from existing prompts: up to 500 prompt_ids and 50 tags, resolved by id or by name (case-insensitive). Only the prompt-tag links are removed; tags and prompts stay. Links that did not exist are counted in skipped_not_linked. Requires a &#x60;read_write&#x60; scope API key and, for team members, update access to Prompts.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  CollectionsTagsApi,
+} from '@llmpulse/sdk';
+import type { RemovePromptTagsOperationRequest } from '@llmpulse/sdk';
+
+async function example() {
+  console.log("🚀 Testing @llmpulse/sdk SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new CollectionsTagsApi(config);
+
+  const body = {
+    // RemovePromptTagsRequest
+    removePromptTagsRequest: ...,
+  } satisfies RemovePromptTagsOperationRequest;
+
+  try {
+    const data = await api.removePromptTags(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **removePromptTagsRequest** | [RemovePromptTagsRequest](RemovePromptTagsRequest.md) |  | |
+
+### Return type
+
+[**PromptTagsRemoveResponse**](PromptTagsRemoveResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Tags detached |  -  |
+| **403** | API key lacks write permission |  -  |
+| **422** | Invalid parameters |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
