@@ -28,17 +28,11 @@ import {
  */
 export interface ProjectDetailsAllOfStats {
     /**
-     * Active prompts in the project
+     * 
      * @type {number}
      * @memberof ProjectDetailsAllOfStats
      */
     promptsCount?: number;
-    /**
-     * Prompts that can still be added to this project, the lower of its free slots under prompt_limit and the prompts left in the account quota; null when neither caps it
-     * @type {number}
-     * @memberof ProjectDetailsAllOfStats
-     */
-    promptsAvailable?: number | null;
     /**
      * 
      * @type {ProjectDetailsAllOfStatsPromptsByBrandKind}
@@ -57,6 +51,12 @@ export interface ProjectDetailsAllOfStats {
      * @memberof ProjectDetailsAllOfStats
      */
     collectionsCount?: number;
+    /**
+     * How many prompts can still be added to this project now, the same number the Prompts page offers. The lower of the project's free slots under prompt_limit and the account's remaining prompts; 0 when either is full (a project over its limit keeps its prompts). Null when neither caps it
+     * @type {number}
+     * @memberof ProjectDetailsAllOfStats
+     */
+    promptsAvailable?: number | null;
 }
 
 /**
@@ -77,10 +77,10 @@ export function ProjectDetailsAllOfStatsFromJSONTyped(json: any, ignoreDiscrimin
     return {
         
         'promptsCount': json['prompts_count'] == null ? undefined : json['prompts_count'],
-        'promptsAvailable': json['prompts_available'] === undefined ? undefined : json['prompts_available'] === null ? null : json['prompts_available'],
         'promptsByBrandKind': json['prompts_by_brand_kind'] == null ? undefined : ProjectDetailsAllOfStatsPromptsByBrandKindFromJSON(json['prompts_by_brand_kind']),
         'competitorsCount': json['competitors_count'] == null ? undefined : json['competitors_count'],
         'collectionsCount': json['collections_count'] == null ? undefined : json['collections_count'],
+        'promptsAvailable': json['prompts_available'] === undefined ? undefined : json['prompts_available'] === null ? null : json['prompts_available'],
     };
 }
 
@@ -96,10 +96,10 @@ export function ProjectDetailsAllOfStatsToJSONTyped(value?: ProjectDetailsAllOfS
     return {
         
         'prompts_count': value['promptsCount'],
-        'prompts_available': value['promptsAvailable'],
         'prompts_by_brand_kind': ProjectDetailsAllOfStatsPromptsByBrandKindToJSON(value['promptsByBrandKind']),
         'competitors_count': value['competitorsCount'],
         'collections_count': value['collectionsCount'],
+        'prompts_available': value['promptsAvailable'],
     };
 }
 

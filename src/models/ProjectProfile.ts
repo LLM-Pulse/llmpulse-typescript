@@ -98,7 +98,7 @@ export interface ProjectProfile {
      */
     additionalOwnedDomains: Array<string>;
     /**
-     * Maximum number of active prompts this project may hold; null when only the account quota applies
+     * The most prompts this project can hold, set by the account owner or a co-owner (Account Settings > Prompt Limits). Null when the project has no limit of its own; the account's plan allowance applies either way
      * @type {number}
      * @memberof ProjectProfile
      */

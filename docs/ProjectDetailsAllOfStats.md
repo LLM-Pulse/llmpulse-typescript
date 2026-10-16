@@ -7,10 +7,10 @@
 Name | Type
 ------------ | -------------
 `promptsCount` | number
-`promptsAvailable` | number
 `promptsByBrandKind` | [ProjectDetailsAllOfStatsPromptsByBrandKind](ProjectDetailsAllOfStatsPromptsByBrandKind.md)
 `competitorsCount` | number
 `collectionsCount` | number
+`promptsAvailable` | number
 
 ## Example
 
@@ -20,10 +20,10 @@ import type { ProjectDetailsAllOfStats } from '@llmpulse/sdk'
 // TODO: Update the object below with actual values
 const example = {
   "promptsCount": null,
-  "promptsAvailable": null,
   "promptsByBrandKind": null,
   "competitorsCount": null,
   "collectionsCount": null,
+  "promptsAvailable": null,
 } satisfies ProjectDetailsAllOfStats
 
 console.log(example)

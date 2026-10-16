@@ -143,7 +143,7 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 *ProjectsApi* | [**listLocales**](docs/ProjectsApi.md#listlocales) | **GET** /dimensions/locales | List locales with data
 *ProjectsApi* | [**listModels**](docs/ProjectsApi.md#listmodels) | **GET** /dimensions/models | List models with data
 *ProjectsApi* | [**listProjects**](docs/ProjectsApi.md#listprojects) | **GET** /dimensions/projects | List projects
-*ProjectsApi* | [**updateProject**](docs/ProjectsApi.md#updateprojectoperation) | **PATCH** /projects/{id} | Update a project profile (Brand Book) or prompt limit
+*ProjectsApi* | [**updateProject**](docs/ProjectsApi.md#updateprojectoperation) | **PATCH** /projects/{id} | Update a project profile (Brand Book)
 *ProjectsApi* | [**updateProjectDraft**](docs/ProjectsApi.md#updateprojectdraftoperation) | **PATCH** /project_drafts/{id} | Submit a wizard step
 *PromptsApi* | [**acceptSuggestedPrompts**](docs/PromptsApi.md#acceptsuggestedprompts) | **POST** /suggested_prompts/accept | Accept suggested prompts
 *PromptsApi* | [**createPromptGeneration**](docs/PromptsApi.md#createpromptgeneration) | **POST** /prompt_generations | Generate prompt suggestions

@@ -46,7 +46,7 @@ export interface ProjectUpdateResponse {
      */
     rematching: boolean;
     /**
-     * What the change does to mention detection, citation ownership, historical numbers and the prompts the project can hold
+     * What the change does to mention detection, citation ownership and historical numbers, and, when prompt_limit was sent, how many prompts the project holds and how many more can be added
      * @type {string}
      * @memberof ProjectUpdateResponse
      */
