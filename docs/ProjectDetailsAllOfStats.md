@@ -10,6 +10,7 @@ Name | Type
 `promptsByBrandKind` | [ProjectDetailsAllOfStatsPromptsByBrandKind](ProjectDetailsAllOfStatsPromptsByBrandKind.md)
 `competitorsCount` | number
 `collectionsCount` | number
+`promptsAvailable` | number
 
 ## Example
 
@@ -22,6 +23,7 @@ const example = {
   "promptsByBrandKind": null,
   "competitorsCount": null,
   "collectionsCount": null,
+  "promptsAvailable": null,
 } satisfies ProjectDetailsAllOfStats
 
 console.log(example)

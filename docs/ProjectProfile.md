@@ -20,6 +20,7 @@ Name | Type
 `goals` | string
 `matchingNames` | Array&lt;string&gt;
 `additionalOwnedDomains` | Array&lt;string&gt;
+`promptLimit` | number
 
 ## Example
 
@@ -41,6 +42,7 @@ const example = {
   "goals": null,
   "matchingNames": null,
   "additionalOwnedDomains": null,
+  "promptLimit": null,
 } satisfies ProjectProfile
 
 console.log(example)

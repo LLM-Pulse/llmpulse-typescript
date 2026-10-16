@@ -26,6 +26,7 @@ Name | Type
 `googlePlayId` | string
 `appStoreId` | string
 `createdAt` | Date
+`promptLimit` | number
 `stats` | [ProjectDetailsAllOfStats](ProjectDetailsAllOfStats.md)
 `dataCoverage` | [ProjectDetailsAllOfDataCoverage](ProjectDetailsAllOfDataCoverage.md)
 `searchConsole` | [ProjectDetailsAllOfSearchConsole](ProjectDetailsAllOfSearchConsole.md)
@@ -58,6 +59,7 @@ const example = {
   "googlePlayId": null,
   "appStoreId": null,
   "createdAt": null,
+  "promptLimit": null,
   "stats": null,
   "dataCoverage": null,
   "searchConsole": null,
