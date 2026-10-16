@@ -18,6 +18,7 @@ Name | Type
 `primaryProducts` | Array&lt;string&gt;
 `matchingNames` | Array&lt;string&gt;
 `additionalOwnedDomains` | Array&lt;string&gt;
+`promptLimit` | number
 
 ## Example
 
@@ -38,6 +39,7 @@ const example = {
   "primaryProducts": null,
   "matchingNames": null,
   "additionalOwnedDomains": null,
+  "promptLimit": null,
 } satisfies UpdateProjectRequest
 
 console.log(example)
