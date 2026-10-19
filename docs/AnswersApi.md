@@ -15,7 +15,7 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 
 Get one AI response
 
-Full answer with mentions, citations, sentiments, sources, shopping_products, brand_entities, fan_out_queries. Pass &#x60;include_source_page_details&#x3D;true&#x60; to nest page-cache metadata under each source.
+Full answer with mentions, citations, sentiments, sources, shopping_products, brand_entities, fan_out_queries. &#x60;sentiments&#x60; need the Growth plan or above and &#x60;shopping_products&#x60; the Scale plan or above; below those plans each is left out and listed in &#x60;plan_required_fields&#x60;, which is always present and empty when nothing is left out. Pass &#x60;include_source_page_details&#x3D;true&#x60; to nest page-cache metadata under each source.
 
 ### Example
 

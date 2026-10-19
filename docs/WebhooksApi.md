@@ -17,7 +17,7 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 
 Create a webhook subscription
 
-Subscribes a public HTTPS URL to a project event. LLM Pulse POSTs a JSON envelope (&#x60;event&#x60;, &#x60;occurred_at&#x60;, &#x60;project_id&#x60;, &#x60;subscription_id&#x60;, &#x60;data&#x60;) to the URL every time the event occurs, signed via the &#x60;X-LLMPulse-Signature&#x60; header (HMAC-SHA256 of the raw body computed with the subscription secret). Failed deliveries receive up to 5 attempts in total, including the first, with backoff; subscriptions auto-disable after 20 consecutive failed deliveries. Idempotent for the same project + event + URL: re-posting returns the existing subscription, unless the API key or OAuth connection that created it was revoked; then it is replaced by a new subscription with a new secret. The response carries &#x60;secret&#x60; when it creates the subscription, and on a re-post only for the API key or OAuth connection that created it: any other credential gets the subscription without &#x60;secret&#x60;. Requires a &#x60;read_write&#x60; scope API key and the Scale plan or above.
+Subscribes a public HTTPS URL to a project event. LLM Pulse POSTs a JSON envelope (&#x60;event&#x60;, &#x60;occurred_at&#x60;, &#x60;project_id&#x60;, &#x60;subscription_id&#x60;, &#x60;data&#x60;) to the URL every time the event occurs, signed via the &#x60;X-LLMPulse-Signature&#x60; header (HMAC-SHA256 of the raw body computed with the subscription secret). Failed deliveries receive up to 5 attempts in total, including the first, with backoff; subscriptions auto-disable after 20 consecutive failed deliveries. While the account is below the Scale plan its subscriptions are kept but deliver nothing: no failed delivery is counted, none is disabled, and deliveries resume once the account is back on Scale or above, without resending the events from that period. Each delivery also checks that the API key that created the subscription still covers its project: an API key limited to some projects that loses the project stops the subscription for good. Idempotent for the same project + event + URL: re-posting returns the existing subscription, unless the API key or OAuth connection that created it was revoked, or that API key no longer covers the project; then it is replaced by a new subscription with a new secret. The response carries &#x60;secret&#x60; when it creates the subscription, and on a re-post only for the API key or OAuth connection that created it: any other credential gets the subscription without &#x60;secret&#x60;. Requires a &#x60;read_write&#x60; scope API key and the Scale plan or above.
 
 ### Example
 
@@ -166,7 +166,7 @@ example().catch(console.error);
 
 List webhook subscriptions
 
-Lists active webhook subscriptions for the account, optionally filtered by project. Requires the Scale plan or above.
+Lists active webhook subscriptions for the account, optionally filtered by project. A read-only API key receives each &#x60;target_url&#x60; masked to its scheme, host and any non-default port followed by &#x60;/…&#x60;, because the full URL can let anyone post to the receiver; a &#x60;read_write&#x60; scope key receives the full URL. Requires the Scale plan or above.
 
 ### Example
 

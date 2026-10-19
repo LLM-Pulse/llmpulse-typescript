@@ -27,6 +27,7 @@ Name | Type
 `brandEntities` | Array&lt;object&gt;
 `localBusinesses` | Array&lt;object&gt;
 `locale` | [AnswerDetailsLocale](AnswerDetailsLocale.md)
+`planRequiredFields` | Array&lt;string&gt;
 `appUrl` | string
 `requestId` | string
 
@@ -58,6 +59,7 @@ const example = {
   "brandEntities": null,
   "localBusinesses": null,
   "locale": null,
+  "planRequiredFields": null,
   "appUrl": null,
   "requestId": null,
 } satisfies AnswerDetails
