@@ -16,6 +16,9 @@ Name | Type
 `breakdown` | [Array&lt;SearchConsoleSummaryResponseBreakdownInner&gt;](SearchConsoleSummaryResponseBreakdownInner.md)
 `breakdownTruncated` | boolean
 `requestId` | string
+`properties` | [Array&lt;SearchConsoleProperty&gt;](SearchConsoleProperty.md)
+`excludedProperties` | [Array&lt;SearchConsoleExcludedProperty&gt;](SearchConsoleExcludedProperty.md)
+`propertyErrors` | [Array&lt;SearchConsolePropertyError&gt;](SearchConsolePropertyError.md)
 
 ## Example
 
@@ -34,6 +37,9 @@ const example = {
   "breakdown": null,
   "breakdownTruncated": null,
   "requestId": null,
+  "properties": null,
+  "excludedProperties": null,
+  "propertyErrors": null,
 } satisfies SearchConsoleSummaryResponse
 
 console.log(example)

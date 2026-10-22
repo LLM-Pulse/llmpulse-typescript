@@ -19,6 +19,9 @@ Name | Type
 `truncated` | boolean
 `data` | [Array&lt;SearchConsoleListResponseDataInner&gt;](SearchConsoleListResponseDataInner.md)
 `requestId` | string
+`properties` | [Array&lt;SearchConsoleProperty&gt;](SearchConsoleProperty.md)
+`excludedProperties` | [Array&lt;SearchConsoleExcludedProperty&gt;](SearchConsoleExcludedProperty.md)
+`propertyErrors` | [Array&lt;SearchConsolePropertyError&gt;](SearchConsolePropertyError.md)
 
 ## Example
 
@@ -40,6 +43,9 @@ const example = {
   "truncated": null,
   "data": null,
   "requestId": null,
+  "properties": null,
+  "excludedProperties": null,
+  "propertyErrors": null,
 } satisfies SearchConsoleListResponse
 
 console.log(example)

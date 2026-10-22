@@ -14,6 +14,9 @@ Name | Type
 `granularity` | string
 `data` | [Array&lt;SearchConsoleTimeseriesResponseDataInner&gt;](SearchConsoleTimeseriesResponseDataInner.md)
 `requestId` | string
+`properties` | [Array&lt;SearchConsoleProperty&gt;](SearchConsoleProperty.md)
+`excludedProperties` | [Array&lt;SearchConsoleExcludedProperty&gt;](SearchConsoleExcludedProperty.md)
+`propertyErrors` | [Array&lt;SearchConsolePropertyError&gt;](SearchConsolePropertyError.md)
 
 ## Example
 
@@ -30,6 +33,9 @@ const example = {
   "granularity": null,
   "data": null,
   "requestId": null,
+  "properties": null,
+  "excludedProperties": null,
+  "propertyErrors": null,
 } satisfies SearchConsoleTimeseriesResponse
 
 console.log(example)

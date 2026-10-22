@@ -16,6 +16,7 @@ Name | Type
 `clicks` | number
 `ctr` | number
 `position` | number
+`property` | string
 
 ## Example
 
@@ -34,6 +35,7 @@ const example = {
   "clicks": null,
   "ctr": null,
   "position": null,
+  "property": null,
 } satisfies SearchConsoleRowsResponseDataInner
 
 console.log(example)

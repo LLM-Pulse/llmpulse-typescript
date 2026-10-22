@@ -20,6 +20,9 @@ Name | Type
 `dimensions` | Array&lt;string&gt;
 `data` | [Array&lt;SearchConsoleRowsResponseDataInner&gt;](SearchConsoleRowsResponseDataInner.md)
 `requestId` | string
+`properties` | [Array&lt;SearchConsoleProperty&gt;](SearchConsoleProperty.md)
+`excludedProperties` | [Array&lt;SearchConsoleExcludedProperty&gt;](SearchConsoleExcludedProperty.md)
+`propertyErrors` | [Array&lt;SearchConsolePropertyError&gt;](SearchConsolePropertyError.md)
 
 ## Example
 
@@ -42,6 +45,9 @@ const example = {
   "dimensions": null,
   "data": null,
   "requestId": null,
+  "properties": null,
+  "excludedProperties": null,
+  "propertyErrors": null,
 } satisfies SearchConsoleRowsResponse
 
 console.log(example)

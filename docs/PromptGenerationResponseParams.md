@@ -18,6 +18,7 @@ Name | Type
 `sourceLanguageCode` | string
 `minWords` | number
 `allCountries` | boolean
+`property` | string
 
 ## Example
 
@@ -37,6 +38,7 @@ const example = {
   "sourceLanguageCode": null,
   "minWords": null,
   "allCountries": null,
+  "property": null,
 } satisfies PromptGenerationResponseParams
 
 console.log(example)
