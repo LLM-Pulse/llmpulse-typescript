@@ -173,6 +173,8 @@ docs/ProjectCreateResponseLimits.md
 docs/ProjectCreateResponsePrompts.md
 docs/ProjectCreateResponseSameDomainProjectsInner.md
 docs/ProjectDetails.md
+docs/ProjectDetailsAllOfAgentTraffic.md
+docs/ProjectDetailsAllOfAiTraffic.md
 docs/ProjectDetailsAllOfDataCoverage.md
 docs/ProjectDetailsAllOfSearchConsole.md
 docs/ProjectDetailsAllOfStats.md
@@ -475,6 +477,8 @@ src/models/ProjectCreateResponseLimits.ts
 src/models/ProjectCreateResponsePrompts.ts
 src/models/ProjectCreateResponseSameDomainProjectsInner.ts
 src/models/ProjectDetails.ts
+src/models/ProjectDetailsAllOfAgentTraffic.ts
+src/models/ProjectDetailsAllOfAiTraffic.ts
 src/models/ProjectDetailsAllOfDataCoverage.ts
 src/models/ProjectDetailsAllOfSearchConsole.ts
 src/models/ProjectDetailsAllOfStats.ts

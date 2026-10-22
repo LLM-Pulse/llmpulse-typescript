@@ -1,7 +1,7 @@
 
 # ProjectDetailsAllOfSearchConsole
 
-Google Search Console connection of the project. connected means the Search Console endpoints can answer; reconnect_required means Google refused the stored access and the property must be reconnected in Preferences > Project Settings > Data Connections.
+Google Search Console connection of the project. connected means the Search Console endpoints can answer; reconnect_required means Google refused the stored access, so the endpoints return ERR_SEARCH_CONSOLE_ACCESS_REVOKED until the property is reconnected at connect_url; not_connected means the endpoints return ERR_SEARCH_CONSOLE_NOT_CONNECTED.
 
 ## Properties
 
@@ -9,6 +9,7 @@ Name | Type
 ------------ | -------------
 `status` | string
 `property` | string
+`connectUrl` | string
 
 ## Example
 
@@ -19,6 +20,7 @@ import type { ProjectDetailsAllOfSearchConsole } from '@llmpulse/sdk'
 const example = {
   "status": null,
   "property": null,
+  "connectUrl": null,
 } satisfies ProjectDetailsAllOfSearchConsole
 
 console.log(example)

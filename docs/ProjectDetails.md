@@ -30,6 +30,8 @@ Name | Type
 `stats` | [ProjectDetailsAllOfStats](ProjectDetailsAllOfStats.md)
 `dataCoverage` | [ProjectDetailsAllOfDataCoverage](ProjectDetailsAllOfDataCoverage.md)
 `searchConsole` | [ProjectDetailsAllOfSearchConsole](ProjectDetailsAllOfSearchConsole.md)
+`aiTraffic` | [ProjectDetailsAllOfAiTraffic](ProjectDetailsAllOfAiTraffic.md)
+`agentTraffic` | [ProjectDetailsAllOfAgentTraffic](ProjectDetailsAllOfAgentTraffic.md)
 `requestId` | string
 
 ## Example
@@ -63,6 +65,8 @@ const example = {
   "stats": null,
   "dataCoverage": null,
   "searchConsole": null,
+  "aiTraffic": null,
+  "agentTraffic": null,
   "requestId": null,
 } satisfies ProjectDetails
 
