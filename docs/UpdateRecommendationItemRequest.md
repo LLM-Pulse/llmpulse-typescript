@@ -8,6 +8,7 @@ Name | Type
 ------------ | -------------
 `projectId` | number
 `status` | string
+`reason` | string
 
 ## Example
 
@@ -18,6 +19,7 @@ import type { UpdateRecommendationItemRequest } from '@llmpulse/sdk'
 const example = {
   "projectId": null,
   "status": null,
+  "reason": null,
 } satisfies UpdateRecommendationItemRequest
 
 console.log(example)

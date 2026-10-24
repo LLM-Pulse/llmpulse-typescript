@@ -250,7 +250,7 @@ example().catch(console.error);
 
 Complete, archive or restore a recommendation item
 
-Moves one item of a recommendation run between &#x60;active&#x60;, &#x60;completed&#x60; and &#x60;archived&#x60;, exactly like the complete, archive and restore buttons on the Recommendations page, and stamps &#x60;status_changed_at&#x60;. Returns the item in the shape &#x60;GET /recommendations/{id}&#x60; lists items. Requires a &#x60;read_write&#x60; scope API key and, for team members, create permission on Recommendations (the permission the page uses for these buttons).
+Moves one item of a recommendation run between &#x60;active&#x60;, &#x60;completed&#x60; and &#x60;archived&#x60;, exactly like the complete, archive and restore buttons on the Recommendations page, and stamps &#x60;status_changed_at&#x60;. When archiving, an optional &#x60;reason&#x60; teaches later runs: &#x60;not_relevant&#x60; and &#x60;too_complex&#x60; steer the next recommendations away from similar ones, and on a PR &amp; Citation Building item that targets a domain (&#x60;metadata.domain&#x60;), &#x60;competitor&#x60; or &#x60;not_relevant&#x60; stops that site from being suggested again. The reason is stored in &#x60;metadata.archive_reason&#x60; and dropped when the item leaves &#x60;archived&#x60;. A reason with another status, an unknown one, or &#x60;competitor&#x60; on an item without a domain returns &#x60;ERR_INVALID_PARAM&#x60;. Returns the item in the shape &#x60;GET /recommendations/{id}&#x60; lists items. Requires a &#x60;read_write&#x60; scope API key and, for team members, create permission on Recommendations (the permission the page uses for these buttons).
 
 ### Example
 
