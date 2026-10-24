@@ -134,7 +134,7 @@ example().catch(console.error);
 
 ## getShareOfVoice
 
-> SovResponse getShareOfVoice(projectId, range, from, to, granularity, competitors, model, collectionId, prompt, promptType, brandKind, output, view)
+> SovResponse getShareOfVoice(projectId, range, from, to, granularity, competitors, model, collectionId, prompt, promptType, brandKind, output, view, countryCode, languageCode, includeProject)
 
 Share of Voice
 
@@ -184,6 +184,12 @@ async function example() {
     output: output_example,
     // 'over_time' | 'current' | 'breakdown' | Which Share of Voice projection to flatten. Only valid together with \'output\'. \'over_time\' (default) is one row per date and actor, \'current\' the ranked snapshot, \'breakdown\' the Top 4 plus Others. (optional)
     view: view_example,
+    // string | One ISO country code or a comma-separated list (e.g. US,GB,DE) (optional)
+    countryCode: countryCode_example,
+    // string | One ISO language code or a comma-separated list (e.g. en,es,de) (optional)
+    languageCode: languageCode_example,
+    // boolean (optional)
+    includeProject: true,
   } satisfies GetShareOfVoiceRequest;
 
   try {
@@ -216,6 +222,9 @@ example().catch(console.error);
 | **brandKind** | `brand`, `brand_other`, `non_brand` | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [Optional] [Defaults to `undefined`] [Enum: brand, brand_other, non_brand] |
 | **output** | `flat`, `csv` | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \&#39;flat\&#39; returns the same metadata plus \&#39;columns\&#39; and \&#39;rows\&#39;; \&#39;csv\&#39; returns those rows as text/csv. Errors are always returned as JSON. | [Optional] [Defaults to `undefined`] [Enum: flat, csv] |
 | **view** | `over_time`, `current`, `breakdown` | Which Share of Voice projection to flatten. Only valid together with \&#39;output\&#39;. \&#39;over_time\&#39; (default) is one row per date and actor, \&#39;current\&#39; the ranked snapshot, \&#39;breakdown\&#39; the Top 4 plus Others. | [Optional] [Defaults to `&#39;over_time&#39;`] [Enum: over_time, current, breakdown] |
+| **countryCode** | `string` | One ISO country code or a comma-separated list (e.g. US,GB,DE) | [Optional] [Defaults to `undefined`] |
+| **languageCode** | `string` | One ISO language code or a comma-separated list (e.g. en,es,de) | [Optional] [Defaults to `undefined`] |
+| **includeProject** | `boolean` |  | [Optional] [Defaults to `true`] |
 
 ### Return type
 
@@ -241,7 +250,7 @@ example().catch(console.error);
 
 ## getSummary
 
-> SummaryResponse getSummary(projectId, metrics, granularity, range, from, to, competitors, model, collectionId, prompt, promptType, brandKind, output)
+> SummaryResponse getSummary(projectId, metrics, granularity, range, from, to, competitors, model, collectionId, prompt, promptType, brandKind, output, countryCode, languageCode, includeProject)
 
 Aggregated metrics summary
 
@@ -291,6 +300,12 @@ async function example() {
     brandKind: brandKind_example,
     // 'flat' | 'csv' | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \'flat\' returns the same metadata plus \'columns\' and \'rows\'; \'csv\' returns those rows as text/csv. Errors are always returned as JSON. (optional)
     output: output_example,
+    // string | One ISO country code or a comma-separated list (e.g. US,GB,DE) (optional)
+    countryCode: countryCode_example,
+    // string | One ISO language code or a comma-separated list (e.g. en,es,de) (optional)
+    languageCode: languageCode_example,
+    // boolean (optional)
+    includeProject: true,
   } satisfies GetSummaryRequest;
 
   try {
@@ -323,6 +338,9 @@ example().catch(console.error);
 | **promptType** | `string` | One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [Optional] [Defaults to `undefined`] |
 | **brandKind** | `brand`, `brand_other`, `non_brand` | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [Optional] [Defaults to `undefined`] [Enum: brand, brand_other, non_brand] |
 | **output** | `flat`, `csv` | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \&#39;flat\&#39; returns the same metadata plus \&#39;columns\&#39; and \&#39;rows\&#39;; \&#39;csv\&#39; returns those rows as text/csv. Errors are always returned as JSON. | [Optional] [Defaults to `undefined`] [Enum: flat, csv] |
+| **countryCode** | `string` | One ISO country code or a comma-separated list (e.g. US,GB,DE) | [Optional] [Defaults to `undefined`] |
+| **languageCode** | `string` | One ISO language code or a comma-separated list (e.g. en,es,de) | [Optional] [Defaults to `undefined`] |
+| **includeProject** | `boolean` |  | [Optional] [Defaults to `true`] |
 
 ### Return type
 
@@ -469,7 +487,7 @@ example().catch(console.error);
 
 ## getTopSources
 
-> TopSourcesResponse getTopSources(projectId, range, from, to, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, sort, query, page, perPage, output)
+> TopSourcesResponse getTopSources(projectId, range, from, to, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, sort, query, page, perPage, output, collectionIds, domains)
 
 Top cited sources
 
@@ -525,6 +543,10 @@ async function example() {
     perPage: 56,
     // 'flat' | 'csv' | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \'flat\' returns the same metadata plus \'columns\' and \'rows\'; \'csv\' returns those rows as text/csv. Errors are always returned as JSON. (optional)
     output: output_example,
+    // Array<number> | Tags (collections) to include at once, as a union: one ID or a comma-separated list, e.g. collection_ids=12,15 (collection_ids[]=12&collection_ids[]=15 is also accepted). Combines with collection_id. An ID outside the project returns 422 ERR_INVALID_PARAM. (optional)
+    collectionIds: ...,
+    // Array<string> | Restrict the result to these exact domains, case-insensitive: one domain or a comma-separated list, e.g. domains=wikipedia.org,reddit.com. The bracket form domains[]=wikipedia.org&domains[]=reddit.com is also accepted. (optional)
+    domains: ...,
   } satisfies GetTopSourcesRequest;
 
   try {
@@ -560,6 +582,8 @@ example().catch(console.error);
 | **page** | `number` |  | [Optional] [Defaults to `1`] |
 | **perPage** | `number` |  | [Optional] [Defaults to `20`] |
 | **output** | `flat`, `csv` | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \&#39;flat\&#39; returns the same metadata plus \&#39;columns\&#39; and \&#39;rows\&#39;; \&#39;csv\&#39; returns those rows as text/csv. Errors are always returned as JSON. | [Optional] [Defaults to `undefined`] [Enum: flat, csv] |
+| **collectionIds** | `Array<number>` | Tags (collections) to include at once, as a union: one ID or a comma-separated list, e.g. collection_ids&#x3D;12,15 (collection_ids[]&#x3D;12&amp;collection_ids[]&#x3D;15 is also accepted). Combines with collection_id. An ID outside the project returns 422 ERR_INVALID_PARAM. | [Optional] |
+| **domains** | `Array<string>` | Restrict the result to these exact domains, case-insensitive: one domain or a comma-separated list, e.g. domains&#x3D;wikipedia.org,reddit.com. The bracket form domains[]&#x3D;wikipedia.org&amp;domains[]&#x3D;reddit.com is also accepted. | [Optional] |
 
 ### Return type
 

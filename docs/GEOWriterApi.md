@@ -185,7 +185,7 @@ async function example() {
     projectId: 56,
     // 'brief' | 'create' | 'update' | 'pr_insights' | 'custom' | 'product_listing' (optional)
     taskType: taskType_example,
-    // string (optional)
+    // 'pending' | 'processing' | 'review' | 'completed' | 'in_progress' | 'blocked' | 'discarded' | Keep only the tasks in this status. Discarded tasks are never listed, so discarded returns an empty page. (optional)
     status: status_example,
     // number (optional)
     page: 56,
@@ -212,7 +212,7 @@ example().catch(console.error);
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
 | **taskType** | `brief`, `create`, `update`, `pr_insights`, `custom`, `product_listing` |  | [Optional] [Defaults to `undefined`] [Enum: brief, create, update, pr_insights, custom, product_listing] |
-| **status** | `string` |  | [Optional] [Defaults to `undefined`] |
+| **status** | `pending`, `processing`, `review`, `completed`, `in_progress`, `blocked`, `discarded` | Keep only the tasks in this status. Discarded tasks are never listed, so discarded returns an empty page. | [Optional] [Defaults to `undefined`] [Enum: pending, processing, review, completed, in_progress, blocked, discarded] |
 | **page** | `number` |  | [Optional] [Defaults to `1`] |
 | **perPage** | `number` |  | [Optional] [Defaults to `20`] |
 
