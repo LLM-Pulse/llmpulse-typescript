@@ -9,6 +9,8 @@ Name | Type
 `id` | number
 `name` | string
 `brandName` | string
+`tracked` | boolean
+`untrackedReason` | string
 
 ## Example
 
@@ -20,6 +22,8 @@ const example = {
   "id": null,
   "name": null,
   "brandName": null,
+  "tracked": null,
+  "untrackedReason": null,
 } satisfies Project
 
 console.log(example)

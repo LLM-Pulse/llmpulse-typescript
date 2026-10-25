@@ -16,6 +16,8 @@ Name | Type
 `promptType` | string
 `brandKind` | string
 `lastExecutedAt` | Date
+`tracked` | boolean
+`untrackedReason` | string
 `appUrl` | string
 
 ## Example
@@ -35,6 +37,8 @@ const example = {
   "promptType": null,
   "brandKind": null,
   "lastExecutedAt": null,
+  "tracked": null,
+  "untrackedReason": null,
   "appUrl": null,
 } satisfies PromptRecord
 

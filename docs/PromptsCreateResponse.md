@@ -11,6 +11,9 @@ Name | Type
 `skipped` | number
 `totalAfter` | number
 `promptsAvailable` | number
+`tracked` | boolean
+`untrackedReason` | string
+`warning` | string
 `data` | [Array&lt;PromptsCreateResponseDataInner&gt;](PromptsCreateResponseDataInner.md)
 `requestId` | string
 
@@ -26,6 +29,9 @@ const example = {
   "skipped": null,
   "totalAfter": null,
   "promptsAvailable": null,
+  "tracked": null,
+  "untrackedReason": null,
+  "warning": null,
   "data": null,
   "requestId": null,
 } satisfies PromptsCreateResponse

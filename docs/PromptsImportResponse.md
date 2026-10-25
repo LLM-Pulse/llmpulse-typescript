@@ -15,6 +15,9 @@ Name | Type
 `rowErrors` | [Array&lt;PromptsImportResponseRowErrorsInner&gt;](PromptsImportResponseRowErrorsInner.md)
 `lengthWarning` | string
 `promptsAvailable` | number
+`tracked` | boolean
+`untrackedReason` | string
+`warning` | string
 `requestId` | string
 
 ## Example
@@ -33,6 +36,9 @@ const example = {
   "rowErrors": null,
   "lengthWarning": null,
   "promptsAvailable": null,
+  "tracked": null,
+  "untrackedReason": null,
+  "warning": null,
   "requestId": null,
 } satisfies PromptsImportResponse
 

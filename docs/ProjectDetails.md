@@ -9,6 +9,8 @@ Name | Type
 `id` | number
 `name` | string
 `brandName` | string
+`tracked` | boolean
+`untrackedReason` | string
 `url` | string
 `description` | string
 `matchingNames` | Array&lt;string&gt;
@@ -44,6 +46,8 @@ const example = {
   "id": null,
   "name": null,
   "brandName": null,
+  "tracked": null,
+  "untrackedReason": null,
   "url": null,
   "description": null,
   "matchingNames": null,
