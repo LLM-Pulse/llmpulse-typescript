@@ -4,6 +4,7 @@
 README.md
 docs/AIAgentTrafficApi.md
 docs/AIModelInsightsApi.md
+docs/APIKeysApi.md
 docs/AccountApi.md
 docs/AccountCapacity.md
 docs/AccountQuota.md
@@ -26,6 +27,7 @@ docs/AnswerDetailsLocale.md
 docs/AnswersApi.md
 docs/ApiError.md
 docs/ApiErrorError.md
+docs/ApiKeyInfo.md
 docs/AssignPromptTagsRequest.md
 docs/CatalogProduct.md
 docs/CatalogPromptSuggestion.md
@@ -56,6 +58,8 @@ docs/CompetitorSuggestion.md
 docs/CompetitorSuggestionsResponse.md
 docs/CompetitorsApi.md
 docs/CreateAnnotationRequest.md
+docs/CreateApiKey201Response.md
+docs/CreateApiKeyRequest.md
 docs/CreateCollectionRequest.md
 docs/CreateCompetitorRequest.md
 docs/CreateProjectDraftRequest.md
@@ -116,6 +120,7 @@ docs/IntelligenceTaskUpdateRequest.md
 docs/IntelligenceTaskUpdateResponse.md
 docs/IntelligenceTasksResponse.md
 docs/LaunchRecommendationsRequest.md
+docs/ListApiKeys200Response.md
 docs/ListCompetitors200Response.md
 docs/ListProjects200Response.md
 docs/ListTeamInvitations200Response.md
@@ -214,6 +219,7 @@ docs/RecommendationsResponse.md
 docs/RemovePromptTagsRequest.md
 docs/RemoveTeamMember200Response.md
 docs/ReputationStudiesApi.md
+docs/RevokeApiKey200Response.md
 docs/RevokeTeamInvitation200Response.md
 docs/SampleWebhookPayloads200Response.md
 docs/SampleWebhookPayloads200ResponseDataInner.md
@@ -298,6 +304,7 @@ docs/WebhooksApi.md
 package.json
 src/apis/AIAgentTrafficApi.ts
 src/apis/AIModelInsightsApi.ts
+src/apis/APIKeysApi.ts
 src/apis/AccountApi.ts
 src/apis/AnnotationsApi.ts
 src/apis/AnswersApi.ts
@@ -343,6 +350,7 @@ src/models/AnswerDetails.ts
 src/models/AnswerDetailsLocale.ts
 src/models/ApiError.ts
 src/models/ApiErrorError.ts
+src/models/ApiKeyInfo.ts
 src/models/AssignPromptTagsRequest.ts
 src/models/CatalogProduct.ts
 src/models/CatalogPromptSuggestion.ts
@@ -371,6 +379,8 @@ src/models/CompetitorMentionsResponse.ts
 src/models/CompetitorSuggestion.ts
 src/models/CompetitorSuggestionsResponse.ts
 src/models/CreateAnnotationRequest.ts
+src/models/CreateApiKey201Response.ts
+src/models/CreateApiKeyRequest.ts
 src/models/CreateCollectionRequest.ts
 src/models/CreateCompetitorRequest.ts
 src/models/CreateProjectDraftRequest.ts
@@ -427,6 +437,7 @@ src/models/IntelligenceTaskUpdateRequest.ts
 src/models/IntelligenceTaskUpdateResponse.ts
 src/models/IntelligenceTasksResponse.ts
 src/models/LaunchRecommendationsRequest.ts
+src/models/ListApiKeys200Response.ts
 src/models/ListCompetitors200Response.ts
 src/models/ListProjects200Response.ts
 src/models/ListTeamInvitations200Response.ts
@@ -518,6 +529,7 @@ src/models/RecommendationSummarySummary.ts
 src/models/RecommendationsResponse.ts
 src/models/RemovePromptTagsRequest.ts
 src/models/RemoveTeamMember200Response.ts
+src/models/RevokeApiKey200Response.ts
 src/models/RevokeTeamInvitation200Response.ts
 src/models/SampleWebhookPayloads200Response.ts
 src/models/SampleWebhookPayloads200ResponseDataInner.ts

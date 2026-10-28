@@ -2,6 +2,7 @@
 /* eslint-disable */
 export * from './AIAgentTrafficApi';
 export * from './AIModelInsightsApi';
+export * from './APIKeysApi';
 export * from './AccountApi';
 export * from './AnnotationsApi';
 export * from './AnswersApi';
