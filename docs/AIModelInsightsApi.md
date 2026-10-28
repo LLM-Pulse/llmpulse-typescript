@@ -155,7 +155,7 @@ async function example() {
     promptType: promptType_example,
     // 'brand' | 'brand_other' | 'non_brand' | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. (optional)
     brandKind: brandKind_example,
-    // 'chatgpt' | 'ai_mode' | 'ai_overview' | 'perplexity' | 'gemini' | 'naver_ai' | 'baidu_ai' | Restrict the comparison to one AI model of AI Model Insights, whether or not that model is enabled for the API key\'s user. Any other value returns 422 ERR_INVALID_PARAM (invalid model). (optional)
+    // 'chatgpt' | 'ai_mode' | 'ai_overview' | 'perplexity' | 'gemini' | 'naver_ai' | 'baidu_ai' | 'naver_ai_tab' | 'qwen' | 'doubao' | Restrict the comparison to one AI model of AI Model Insights, whether or not that model is enabled for the API key\'s user. Any other value returns 422 ERR_INVALID_PARAM (invalid model). (optional)
     model: model_example,
     // number | Competitor ID for the first comparison brand (omit to compare project brand) (optional)
     brand1: 56,
@@ -190,7 +190,7 @@ example().catch(console.error);
 | **languageCode** | `string` | One ISO language code or a comma-separated list (e.g. en,es,de) | [Optional] [Defaults to `undefined`] |
 | **promptType** | `string` | One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [Optional] [Defaults to `undefined`] |
 | **brandKind** | `brand`, `brand_other`, `non_brand` | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [Optional] [Defaults to `undefined`] [Enum: brand, brand_other, non_brand] |
-| **model** | `chatgpt`, `ai_mode`, `ai_overview`, `perplexity`, `gemini`, `naver_ai`, `baidu_ai` | Restrict the comparison to one AI model of AI Model Insights, whether or not that model is enabled for the API key\&#39;s user. Any other value returns 422 ERR_INVALID_PARAM (invalid model). | [Optional] [Defaults to `undefined`] [Enum: chatgpt, ai_mode, ai_overview, perplexity, gemini, naver_ai, baidu_ai] |
+| **model** | `chatgpt`, `ai_mode`, `ai_overview`, `perplexity`, `gemini`, `naver_ai`, `baidu_ai`, `naver_ai_tab`, `qwen`, `doubao` | Restrict the comparison to one AI model of AI Model Insights, whether or not that model is enabled for the API key\&#39;s user. Any other value returns 422 ERR_INVALID_PARAM (invalid model). | [Optional] [Defaults to `undefined`] [Enum: chatgpt, ai_mode, ai_overview, perplexity, gemini, naver_ai, baidu_ai, naver_ai_tab, qwen, doubao] |
 | **brand1** | `number` | Competitor ID for the first comparison brand (omit to compare project brand) | [Optional] [Defaults to `undefined`] |
 | **brand2** | `number` |  | [Optional] [Defaults to `undefined`] |
 
