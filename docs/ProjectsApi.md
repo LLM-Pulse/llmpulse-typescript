@@ -6,6 +6,7 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 |------------- | ------------- | -------------|
 | [**createProject**](ProjectsApi.md#createproject) | **POST** /projects | Create a project (fast mode) |
 | [**createProjectDraft**](ProjectsApi.md#createprojectdraftoperation) | **POST** /project_drafts | Start a project draft (wizard step 1) |
+| [**deleteProject**](ProjectsApi.md#deleteproject) | **DELETE** /projects/{id} | Delete a project |
 | [**finalizeProjectDraft**](ProjectsApi.md#finalizeprojectdraftoperation) | **POST** /project_drafts/{id}/finalize | Finalize a draft into a real project |
 | [**getProjectDetails**](ProjectsApi.md#getprojectdetails) | **GET** /dimensions/projects/{id} | Project details |
 | [**getProjectDraft**](ProjectsApi.md#getprojectdraft) | **GET** /project_drafts/{id} | Read a project draft |
@@ -160,6 +161,79 @@ example().catch(console.error);
 | **201** | Draft created; envelope with draft state, suggestions and limits |  -  |
 | **422** | Invalid parameters |  -  |
 | **403** | Writes with a read-only key answer ERR_INSUFFICIENT_SCOPE, and a key limited to some projects ERR_KEY_PROJECT_SCOPED, with the same status: this operation acts on the whole account |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## deleteProject
+
+> ProjectDeleteResponse deleteProject(id)
+
+Delete a project
+
+Deletes a project, like Delete Project in Project Settings, and cannot be undone. The project disappears at once from the app, GET /dimensions/projects and every other endpoint, and frees a project slot; a background job then deletes its prompts, answers, mentions, citations, sentiment, competitors and metrics history. API keys limited to it lose it, and a key left with no project is revoked. A project that is already being deleted, or that the key cannot see, answers ERR_PROJECT_NOT_FOUND. Requires an account-wide &#x60;read_write&#x60; scope API key: a key limited to some projects answers ERR_KEY_PROJECT_SCOPED. A team member needs permission to delete projects.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ProjectsApi,
+} from '@llmpulse/sdk';
+import type { DeleteProjectRequest } from '@llmpulse/sdk';
+
+async function example() {
+  console.log("🚀 Testing @llmpulse/sdk SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new ProjectsApi(config);
+
+  const body = {
+    // number
+    id: 56,
+  } satisfies DeleteProjectRequest;
+
+  try {
+    const data = await api.deleteProject(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | `number` |  | [Defaults to `undefined`] |
+
+### Return type
+
+[**ProjectDeleteResponse**](ProjectDeleteResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Deleted |  -  |
+| **403** | A read-only key answers ERR_INSUFFICIENT_SCOPE and a key limited to some projects ERR_KEY_PROJECT_SCOPED: deleting a project acts on the whole account. A team member whose permissions do not grant deleting projects answers ERR_INSUFFICIENT_PERMISSION. All with the same status, and nothing is deleted |  -  |
+| **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

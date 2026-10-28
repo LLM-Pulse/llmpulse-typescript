@@ -177,6 +177,7 @@ docs/ProjectCreateResponseEmailSubscription.md
 docs/ProjectCreateResponseLimits.md
 docs/ProjectCreateResponsePrompts.md
 docs/ProjectCreateResponseSameDomainProjectsInner.md
+docs/ProjectDeleteResponse.md
 docs/ProjectDetails.md
 docs/ProjectDetailsAllOfAgentTraffic.md
 docs/ProjectDetailsAllOfAiTraffic.md
@@ -491,6 +492,7 @@ src/models/ProjectCreateResponseEmailSubscription.ts
 src/models/ProjectCreateResponseLimits.ts
 src/models/ProjectCreateResponsePrompts.ts
 src/models/ProjectCreateResponseSameDomainProjectsInner.ts
+src/models/ProjectDeleteResponse.ts
 src/models/ProjectDetails.ts
 src/models/ProjectDetailsAllOfAgentTraffic.ts
 src/models/ProjectDetailsAllOfAiTraffic.ts

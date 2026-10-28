@@ -160,6 +160,7 @@ export * from './ProjectCreateResponseEmailSubscription';
 export * from './ProjectCreateResponseLimits';
 export * from './ProjectCreateResponsePrompts';
 export * from './ProjectCreateResponseSameDomainProjectsInner';
+export * from './ProjectDeleteResponse';
 export * from './ProjectDetails';
 export * from './ProjectDetailsAllOfAgentTraffic';
 export * from './ProjectDetailsAllOfAiTraffic';
