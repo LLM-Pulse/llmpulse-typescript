@@ -427,7 +427,7 @@ example().catch(console.error);
 
 List cited Reddit content
 
-Which Reddit content AI answers cite for your tracked prompts. view&#x3D;subreddits (default) returns one row per subreddit with its citation count, unique authors and positive/negative sentiment split; view&#x3D;authors returns one row per author; view&#x3D;threads returns the individual cited threads with upvotes, comments, average position and dominant sentiment. Requires the Growth plan or above.
+Which Reddit content AI answers cite for your tracked prompts. view&#x3D;subreddits (default) returns one row per subreddit with its citation count, unique authors and positive/negative sentiment split; view&#x3D;authors returns one row per author; view&#x3D;threads returns the individual cited threads with upvotes, comments, average position and dominant sentiment. view&#x3D;breakdowns returns the figures behind Reddit Intelligence &gt; Sentiment and breakdowns: citations is the number of Reddit citations after the filters, and each row is one slice, with breakdown (sentiment, model or country), key, count and pct, the share within its breakdown as the page charts it. Sentiment is that of the AI answer that cited Reddit, with all five labels (very_positive to very_negative) listed, zero included; order and direction do not apply. Requires the Growth plan or above.
 
 ### Example
 
@@ -453,7 +453,7 @@ async function example() {
     page: 56,
     // number (optional)
     perPage: 56,
-    // 'subreddits' | 'authors' | 'threads' (optional)
+    // 'subreddits' | 'authors' | 'threads' | 'breakdowns' (optional)
     view: view_example,
     // string | Filter to one subreddit (name without the r/ prefix) (optional)
     subreddit: subreddit_example,
@@ -465,7 +465,7 @@ async function example() {
     owned: true,
     // string | Filter to citations whose scraped Reddit content mentions a brand: \'brand\' for the tracked brand, or a competitor id. Reads the page content, not the AI answer. (optional)
     brand: brand_example,
-    // 'citations' | 'subreddit' | 'unique_authors' | 'positive_pct' | 'negative_pct' | 'author' | 'avg_position' | 'upvotes' | 'comments' | 'sentiment' | Sort field; the allowed set depends on view (optional)
+    // 'citations' | 'subreddit' | 'unique_authors' | 'positive_pct' | 'negative_pct' | 'author' | 'avg_position' | 'upvotes' | 'comments' | 'sentiment' | Sort field; the allowed set depends on view, and view=breakdowns accepts none (optional)
     order: order_example,
     // 'asc' | 'desc' (optional)
     direction: direction_example,
@@ -509,13 +509,13 @@ example().catch(console.error);
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
 | **page** | `number` |  | [Optional] [Defaults to `1`] |
 | **perPage** | `number` |  | [Optional] [Defaults to `20`] |
-| **view** | `subreddits`, `authors`, `threads` |  | [Optional] [Defaults to `&#39;subreddits&#39;`] [Enum: subreddits, authors, threads] |
+| **view** | `subreddits`, `authors`, `threads`, `breakdowns` |  | [Optional] [Defaults to `&#39;subreddits&#39;`] [Enum: subreddits, authors, threads, breakdowns] |
 | **subreddit** | `string` | Filter to one subreddit (name without the r/ prefix) | [Optional] [Defaults to `undefined`] |
 | **author** | `string` | Filter to one Reddit author | [Optional] [Defaults to `undefined`] |
 | **status** | `open`, `archived` | view&#x3D;threads only | [Optional] [Defaults to `undefined`] [Enum: open, archived] |
 | **owned** | `boolean` | Return only subreddits/authors the account has claimed as its own | [Optional] [Defaults to `undefined`] |
 | **brand** | `string` | Filter to citations whose scraped Reddit content mentions a brand: \&#39;brand\&#39; for the tracked brand, or a competitor id. Reads the page content, not the AI answer. | [Optional] [Defaults to `undefined`] |
-| **order** | `citations`, `subreddit`, `unique_authors`, `positive_pct`, `negative_pct`, `author`, `avg_position`, `upvotes`, `comments`, `sentiment` | Sort field; the allowed set depends on view | [Optional] [Defaults to `undefined`] [Enum: citations, subreddit, unique_authors, positive_pct, negative_pct, author, avg_position, upvotes, comments, sentiment] |
+| **order** | `citations`, `subreddit`, `unique_authors`, `positive_pct`, `negative_pct`, `author`, `avg_position`, `upvotes`, `comments`, `sentiment` | Sort field; the allowed set depends on view, and view&#x3D;breakdowns accepts none | [Optional] [Defaults to `undefined`] [Enum: citations, subreddit, unique_authors, positive_pct, negative_pct, author, avg_position, upvotes, comments, sentiment] |
 | **direction** | `asc`, `desc` |  | [Optional] [Defaults to `&#39;desc&#39;`] [Enum: asc, desc] |
 | **model** | `chatgpt`, `perplexity`, `ai_mode`, `ai_overview`, `gemini`, `copilot`, `amazon_rufus`, `claude`, `grok`, `deepseek`, `naver_ai`, `baidu_ai`, `meta_ai`, `naver_ai_tab`, `qwen`, `doubao` | Filter by one AI model. It must be a model enabled for the API key\&#39;s user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, ai_mode, ai_overview, gemini, copilot, amazon_rufus, claude, grok, deepseek, naver_ai, baidu_ai, meta_ai, naver_ai_tab, qwen, doubao] |
 | **collectionId** | `string` | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [Optional] [Defaults to `undefined`] |
