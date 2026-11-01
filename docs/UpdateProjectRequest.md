@@ -19,6 +19,7 @@ Name | Type
 `matchingNames` | Array&lt;string&gt;
 `additionalOwnedDomains` | Array&lt;string&gt;
 `promptLimit` | number
+`pitch` | boolean
 
 ## Example
 
@@ -40,6 +41,7 @@ const example = {
   "matchingNames": null,
   "additionalOwnedDomains": null,
   "promptLimit": null,
+  "pitch": null,
 } satisfies UpdateProjectRequest
 
 console.log(example)

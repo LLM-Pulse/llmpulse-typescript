@@ -11,6 +11,8 @@ Name | Type
 `brandName` | string
 `tracked` | boolean
 `untrackedReason` | string
+`pitch` | boolean
+`pitchExpiresAt` | Date
 
 ## Example
 
@@ -24,6 +26,8 @@ const example = {
   "brandName": null,
   "tracked": null,
   "untrackedReason": null,
+  "pitch": null,
+  "pitchExpiresAt": null,
 } satisfies Project
 
 console.log(example)

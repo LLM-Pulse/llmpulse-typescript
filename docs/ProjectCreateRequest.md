@@ -28,6 +28,7 @@ Name | Type
 `weeklyEmailSubscribed` | boolean
 `externalIdentifier` | string
 `executePromptsImmediately` | boolean
+`pitch` | boolean
 
 ## Example
 
@@ -58,6 +59,7 @@ const example = {
   "weeklyEmailSubscribed": null,
   "externalIdentifier": null,
   "executePromptsImmediately": null,
+  "pitch": null,
 } satisfies ProjectCreateRequest
 
 console.log(example)

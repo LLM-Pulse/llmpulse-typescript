@@ -7,6 +7,7 @@ docs/AIModelInsightsApi.md
 docs/APIKeysApi.md
 docs/AccountApi.md
 docs/AccountCapacity.md
+docs/AccountPitchQuota.md
 docs/AccountQuota.md
 docs/Actor.md
 docs/AgentBot.md
@@ -182,6 +183,7 @@ docs/ProjectDetails.md
 docs/ProjectDetailsAllOfAgentTraffic.md
 docs/ProjectDetailsAllOfAiTraffic.md
 docs/ProjectDetailsAllOfDataCoverage.md
+docs/ProjectDetailsAllOfPitchRun.md
 docs/ProjectDetailsAllOfSearchConsole.md
 docs/ProjectDetailsAllOfStats.md
 docs/ProjectDetailsAllOfStatsPromptsByBrandKind.md
@@ -333,6 +335,7 @@ src/apis/WebhooksApi.ts
 src/apis/index.ts
 src/index.ts
 src/models/AccountCapacity.ts
+src/models/AccountPitchQuota.ts
 src/models/AccountQuota.ts
 src/models/Actor.ts
 src/models/AgentBot.ts
@@ -497,6 +500,7 @@ src/models/ProjectDetails.ts
 src/models/ProjectDetailsAllOfAgentTraffic.ts
 src/models/ProjectDetailsAllOfAiTraffic.ts
 src/models/ProjectDetailsAllOfDataCoverage.ts
+src/models/ProjectDetailsAllOfPitchRun.ts
 src/models/ProjectDetailsAllOfSearchConsole.ts
 src/models/ProjectDetailsAllOfStats.ts
 src/models/ProjectDetailsAllOfStatsPromptsByBrandKind.ts

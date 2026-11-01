@@ -1,6 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export * from './AccountCapacity';
+export * from './AccountPitchQuota';
 export * from './AccountQuota';
 export * from './Actor';
 export * from './AgentBot';
@@ -165,6 +166,7 @@ export * from './ProjectDetails';
 export * from './ProjectDetailsAllOfAgentTraffic';
 export * from './ProjectDetailsAllOfAiTraffic';
 export * from './ProjectDetailsAllOfDataCoverage';
+export * from './ProjectDetailsAllOfPitchRun';
 export * from './ProjectDetailsAllOfSearchConsole';
 export * from './ProjectDetailsAllOfStats';
 export * from './ProjectDetailsAllOfStatsPromptsByBrandKind';

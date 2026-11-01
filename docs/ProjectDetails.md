@@ -11,6 +11,8 @@ Name | Type
 `brandName` | string
 `tracked` | boolean
 `untrackedReason` | string
+`pitch` | boolean
+`pitchExpiresAt` | Date
 `url` | string
 `description` | string
 `matchingNames` | Array&lt;string&gt;
@@ -30,6 +32,7 @@ Name | Type
 `createdAt` | Date
 `promptLimit` | number
 `stats` | [ProjectDetailsAllOfStats](ProjectDetailsAllOfStats.md)
+`pitchRun` | [ProjectDetailsAllOfPitchRun](ProjectDetailsAllOfPitchRun.md)
 `dataCoverage` | [ProjectDetailsAllOfDataCoverage](ProjectDetailsAllOfDataCoverage.md)
 `searchConsole` | [ProjectDetailsAllOfSearchConsole](ProjectDetailsAllOfSearchConsole.md)
 `aiTraffic` | [ProjectDetailsAllOfAiTraffic](ProjectDetailsAllOfAiTraffic.md)
@@ -48,6 +51,8 @@ const example = {
   "brandName": null,
   "tracked": null,
   "untrackedReason": null,
+  "pitch": null,
+  "pitchExpiresAt": null,
   "url": null,
   "description": null,
   "matchingNames": null,
@@ -67,6 +72,7 @@ const example = {
   "createdAt": null,
   "promptLimit": null,
   "stats": null,
+  "pitchRun": null,
   "dataCoverage": null,
   "searchConsole": null,
   "aiTraffic": null,
