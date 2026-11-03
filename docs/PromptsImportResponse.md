@@ -18,6 +18,7 @@ Name | Type
 `tracked` | boolean
 `untrackedReason` | string
 `warning` | string
+`firstRunsWaitUntil` | Date
 `requestId` | string
 
 ## Example
@@ -39,6 +40,7 @@ const example = {
   "tracked": null,
   "untrackedReason": null,
   "warning": null,
+  "firstRunsWaitUntil": null,
   "requestId": null,
 } satisfies PromptsImportResponse
 

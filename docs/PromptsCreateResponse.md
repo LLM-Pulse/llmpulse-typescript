@@ -14,6 +14,7 @@ Name | Type
 `tracked` | boolean
 `untrackedReason` | string
 `warning` | string
+`firstRunsWaitUntil` | Date
 `data` | [Array&lt;PromptsCreateResponseDataInner&gt;](PromptsCreateResponseDataInner.md)
 `requestId` | string
 
@@ -32,6 +33,7 @@ const example = {
   "tracked": null,
   "untrackedReason": null,
   "warning": null,
+  "firstRunsWaitUntil": null,
   "data": null,
   "requestId": null,
 } satisfies PromptsCreateResponse
