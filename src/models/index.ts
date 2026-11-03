@@ -1,6 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export * from './AccountCapacity';
+export * from './AccountExecutionQuota';
 export * from './AccountPitchQuota';
 export * from './AccountQuota';
 export * from './Actor';

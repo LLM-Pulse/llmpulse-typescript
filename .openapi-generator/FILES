@@ -7,6 +7,7 @@ docs/AIModelInsightsApi.md
 docs/APIKeysApi.md
 docs/AccountApi.md
 docs/AccountCapacity.md
+docs/AccountExecutionQuota.md
 docs/AccountPitchQuota.md
 docs/AccountQuota.md
 docs/Actor.md
@@ -356,6 +357,7 @@ src/apis/WebhooksApi.ts
 src/apis/index.ts
 src/index.ts
 src/models/AccountCapacity.ts
+src/models/AccountExecutionQuota.ts
 src/models/AccountPitchQuota.ts
 src/models/AccountQuota.ts
 src/models/Actor.ts

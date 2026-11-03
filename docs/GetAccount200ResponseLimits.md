@@ -13,6 +13,7 @@ Name | Type
 `teamMembers` | [AccountCapacity](AccountCapacity.md)
 `recurringGeoAudits` | [AccountQuota](AccountQuota.md)
 `geoAuditManualRuns` | [AccountQuota](AccountQuota.md)
+`promptExecutions` | [AccountExecutionQuota](AccountExecutionQuota.md)
 `pitchProjects` | [AccountPitchQuota](AccountPitchQuota.md)
 
 ## Example
@@ -29,6 +30,7 @@ const example = {
   "teamMembers": null,
   "recurringGeoAudits": null,
   "geoAuditManualRuns": null,
+  "promptExecutions": null,
   "pitchProjects": null,
 } satisfies GetAccount200ResponseLimits
 
