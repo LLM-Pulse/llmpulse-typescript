@@ -4,6 +4,11 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**getSearchConsoleAiVisibilityGaps**](SearchConsoleApi.md#getsearchconsoleaivisibilitygaps) | **GET** /search_console/ai_visibility_gaps | Search Console queries vs AI tracking (Growth+) |
+| [**getSearchConsoleBrandSplit**](SearchConsoleApi.md#getsearchconsolebrandsplit) | **GET** /search_console/brand_split | Search Console branded vs non-branded split (Growth+) |
+| [**getSearchConsoleCannibalization**](SearchConsoleApi.md#getsearchconsolecannibalization) | **GET** /search_console/cannibalization | Search Console keyword cannibalization (Growth+) |
+| [**getSearchConsoleDecay**](SearchConsoleApi.md#getsearchconsoledecay) | **GET** /search_console/decay | Search Console content decay (Growth+) |
+| [**getSearchConsoleOpportunities**](SearchConsoleApi.md#getsearchconsoleopportunities) | **GET** /search_console/opportunities | Search Console ranking opportunities (Growth+) |
 | [**getSearchConsolePages**](SearchConsoleApi.md#getsearchconsolepages) | **GET** /search_console/pages | Top Search Console pages (Growth+) |
 | [**getSearchConsoleQueries**](SearchConsoleApi.md#getsearchconsolequeries) | **GET** /search_console/queries | Top Search Console queries (Growth+) |
 | [**getSearchConsoleRows**](SearchConsoleApi.md#getsearchconsolerows) | **GET** /search_console/rows | Search Console rows by several dimensions (Growth+) |
@@ -11,6 +16,569 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 | [**getSearchConsoleTimeseries**](SearchConsoleApi.md#getsearchconsoletimeseries) | **GET** /search_console/timeseries | Search Console time series (Growth+) |
 | [**listSearchConsoleProperties**](SearchConsoleApi.md#listsearchconsoleproperties) | **GET** /search_console/properties | List Search Console properties (Growth+) |
 
+
+
+## getSearchConsoleAiVisibilityGaps
+
+> SearchConsoleAiVisibilityGapsResponse getSearchConsoleAiVisibilityGaps(projectId, property, range, from, to, minImpressions, unmatchedOnly, page, perPage, output, searchType, filters, dataState, aggregationType)
+
+Search Console queries vs AI tracking (Growth+)
+
+The property\&#39;s queries with at least min_impressions impressions, most impressions first, each matched against the project\&#39;s prompts. The match is exact and deliberately conservative: a query matches a prompt with the same text once both are lowercased, accents and similar letters folded the way AI answers are matched for brand mentions, spacing squeezed and leading or trailing punctuation dropped (best crm for agencies matches Best CRM for agencies?, but not What is the best CRM for agencies). When two prompts share a text (other countries or languages), the oldest is the match. A matched query carries its prompt_id, responses (the prompt\&#39;s AI answers in the same window, over the account\&#39;s enabled models) and brand_visibility, the percent of those answers that mention the brand (null before any answer), as /metrics/prompt_summary computes it. unmatched_only&#x3D;true lists only the queries no prompt matches: search demand the AI tracking does not cover yet, the strongest candidates to add as prompts. Rows with a prompt and a low brand_visibility are queries people search for where AI answers rarely mention the brand; how low is low is the caller\&#39;s choice. matched_count counts the qualifying queries a prompt matches. A team member also needs read access to the Overview, which holds prompt-level Brand Visibility, or gets ERR_INSUFFICIENT_PERMISSION. Reads Google\&#39;s top 25,000 queries per property (truncated: true when reached) and excludes anonymized queries. Requires a connected Search Console property (Growth+). Live reads only: under stored reads it returns ERR_INVALID_PARAM. Live reads return ERR_SEARCH_CONSOLE_ACCESS_REVOKED (403) for revoked Google access; reconnect the property in Preferences &gt; Project Settings &gt; Data Connections. They return ERR_SEARCH_CONSOLE_UPSTREAM (503) when Google Search Console is unavailable or over quota; wait for the number of seconds in Retry-After before retrying.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SearchConsoleApi,
+} from '@llmpulse/sdk';
+import type { GetSearchConsoleAiVisibilityGapsRequest } from '@llmpulse/sdk';
+
+async function example() {
+  console.log("🚀 Testing @llmpulse/sdk SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new SearchConsoleApi(config);
+
+  const body = {
+    // number | Project ID
+    projectId: 56,
+    // string | Which Search Console properties to read; /search_console/properties lists them. Omit it for the primary property, or pass one property id (e.g. sc-domain:example.com) to read that one; both answer with property. A comma-separated list of ids, or all, combines several and answers with properties, excluded_properties and property_errors instead: excluded_properties are left out because another selected property already counts them (a URL-prefix property under a domain property), so no click is counted twice; property_errors are properties Google refused, left out of the figures and also named in the X-Search-Console-Property-Errors header. When Google refuses every property, the request fails as a single-property read would. (optional)
+    property: all,
+    // number | Number of days to look back, today included (alternative to from/to). At most 487, Google\'s retention. (optional)
+    range: 56,
+    // Date | Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)
+    from: 2013-10-20,
+    // Date | End date (YYYY-MM-DD), inclusive. Defaults to today. Google publishes data with a 2-3 day lag, so data_through in the response says how far it reaches. (optional)
+    to: 2013-10-20,
+    // number | Smallest impressions a query needs. (optional)
+    minImpressions: 56,
+    // boolean | List only the queries no prompt of the project matches (true or false). (optional)
+    unmatchedOnly: true,
+    // number (optional)
+    page: 56,
+    // number (optional)
+    perPage: 56,
+    // 'flat' | 'csv' | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \'flat\' returns the same metadata plus \'columns\' and \'rows\'; \'csv\' returns those rows as text/csv. Errors are always returned as JSON. (optional)
+    output: output_example,
+    // 'web' | 'image' | 'video' | 'news' | 'discover' | 'googleNews' | Which search surface to measure. Defaults to web. discover and googleNews carry no query dimension, so Google rejects /search_console/queries for them. (optional)
+    searchType: searchType_example,
+    // string | Narrow the query; every entry must match (AND). Send the whole list as one JSON value: filters=[{\"dimension\":\"page\",\"operator\":\"contains\",\"expression\":\"/blog/\"}] (URL-encoded). An array of objects has no query-parameter form a generated client can produce, so the string is what the official SDKs send; see the SearchConsoleFilters schema for the shape it encodes. includingRegex and excludingRegex take RE2 syntax. At most 10 entries, expression at most 500 characters. The bracket form filters[][dimension]=page&filters[][operator]=contains&filters[][expression]=/blog/ is also accepted. (optional)
+    filters: [{"dimension":"page","operator":"contains","expression":"/blog/"}],
+    // 'final' | 'all' | final (default) counts only rows Google has finalized. all also counts the most recent days, which are still being filled in and will change. (optional)
+    dataState: dataState_example,
+    // 'auto' | 'byPage' | 'byProperty' | How Google counts impressions. auto (default) is what Search Console shows (by page when page is grouped or filtered, else by property). Google rejects byProperty with a page dimension or filter. (optional)
+    aggregationType: aggregationType_example,
+  } satisfies GetSearchConsoleAiVisibilityGapsRequest;
+
+  try {
+    const data = await api.getSearchConsoleAiVisibilityGaps(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | `number` | Project ID | [Defaults to `undefined`] |
+| **property** | `string` | Which Search Console properties to read; /search_console/properties lists them. Omit it for the primary property, or pass one property id (e.g. sc-domain:example.com) to read that one; both answer with property. A comma-separated list of ids, or all, combines several and answers with properties, excluded_properties and property_errors instead: excluded_properties are left out because another selected property already counts them (a URL-prefix property under a domain property), so no click is counted twice; property_errors are properties Google refused, left out of the figures and also named in the X-Search-Console-Property-Errors header. When Google refuses every property, the request fails as a single-property read would. | [Optional] [Defaults to `undefined`] |
+| **range** | `number` | Number of days to look back, today included (alternative to from/to). At most 487, Google\&#39;s retention. | [Optional] [Defaults to `undefined`] |
+| **from** | `Date` | Start date (YYYY-MM-DD). Defaults to 30 days ago. | [Optional] [Defaults to `undefined`] |
+| **to** | `Date` | End date (YYYY-MM-DD), inclusive. Defaults to today. Google publishes data with a 2-3 day lag, so data_through in the response says how far it reaches. | [Optional] [Defaults to `undefined`] |
+| **minImpressions** | `number` | Smallest impressions a query needs. | [Optional] [Defaults to `100`] |
+| **unmatchedOnly** | `boolean` | List only the queries no prompt of the project matches (true or false). | [Optional] [Defaults to `false`] |
+| **page** | `number` |  | [Optional] [Defaults to `1`] |
+| **perPage** | `number` |  | [Optional] [Defaults to `20`] |
+| **output** | `flat`, `csv` | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \&#39;flat\&#39; returns the same metadata plus \&#39;columns\&#39; and \&#39;rows\&#39;; \&#39;csv\&#39; returns those rows as text/csv. Errors are always returned as JSON. | [Optional] [Defaults to `undefined`] [Enum: flat, csv] |
+| **searchType** | `web`, `image`, `video`, `news`, `discover`, `googleNews` | Which search surface to measure. Defaults to web. discover and googleNews carry no query dimension, so Google rejects /search_console/queries for them. | [Optional] [Defaults to `&#39;web&#39;`] [Enum: web, image, video, news, discover, googleNews] |
+| **filters** | `string` | Narrow the query; every entry must match (AND). Send the whole list as one JSON value: filters&#x3D;[{\&quot;dimension\&quot;:\&quot;page\&quot;,\&quot;operator\&quot;:\&quot;contains\&quot;,\&quot;expression\&quot;:\&quot;/blog/\&quot;}] (URL-encoded). An array of objects has no query-parameter form a generated client can produce, so the string is what the official SDKs send; see the SearchConsoleFilters schema for the shape it encodes. includingRegex and excludingRegex take RE2 syntax. At most 10 entries, expression at most 500 characters. The bracket form filters[][dimension]&#x3D;page&amp;filters[][operator]&#x3D;contains&amp;filters[][expression]&#x3D;/blog/ is also accepted. | [Optional] [Defaults to `undefined`] |
+| **dataState** | `final`, `all` | final (default) counts only rows Google has finalized. all also counts the most recent days, which are still being filled in and will change. | [Optional] [Defaults to `&#39;final&#39;`] [Enum: final, all] |
+| **aggregationType** | `auto`, `byPage`, `byProperty` | How Google counts impressions. auto (default) is what Search Console shows (by page when page is grouped or filtered, else by property). Google rejects byProperty with a page dimension or filter. | [Optional] [Defaults to `&#39;auto&#39;`] [Enum: auto, byPage, byProperty] |
+
+### Return type
+
+[**SearchConsoleAiVisibilityGapsResponse**](SearchConsoleAiVisibilityGapsResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Queries matched against the project\&#39;s prompts |  -  |
+| **401** | Authentication failed |  -  |
+| **403** | Plan below Growth (ERR_PLAN_REQUIRED), or Google revoked the project\&#39;s Search Console access (ERR_SEARCH_CONSOLE_ACCESS_REVOKED): reconnect the property |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Invalid parameters |  -  |
+| **503** | Upstream provider unavailable, retry after the number of seconds in the Retry-After header: Google\&#39;s own value when it sent one, otherwise 900 after a quota error and 60 after an outage |  * Retry-After - Seconds to wait before retrying <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## getSearchConsoleBrandSplit
+
+> SearchConsoleBrandSplitResponse getSearchConsoleBrandSplit(projectId, property, range, from, to, searchType, filters, dataState, aggregationType)
+
+Search Console branded vs non-branded split (Growth+)
+
+Splits the property\&#39;s impressions and clicks into branded queries, which contain one of the project\&#39;s brand terms as a whole word, case-insensitively (brand_terms: its brand name, matching names, app names and domain, each also matched with its accents folded and with either apostrophe, so Nestlé also matches nestle and L’Oréal matches l\&#39;oreal), and non-branded ones, next to the unfiltered totals. Google applies the split itself as a regular-expression query filter, so it covers every query Google counts, not only the 25,000 rows one read lists. Use it to see how much search traffic comes from people who already know the brand and how much from discovery searches, and how each side evolves across date ranges. Google leaves anonymized queries out of any query filter, so unclassified holds the impressions and clicks neither side counts. Returns ERR_INVALID_PARAM when the brand terms are too long for one Google filter (4,096 characters, Google\&#39;s documented limit), and ERR_SEARCH_CONSOLE_UPSTREAM (503) if Google refuses the filter built from them; our team is alerted in that case. Requires a connected Search Console property (Growth+). Live reads only: under stored reads it returns ERR_INVALID_PARAM. Live reads return ERR_SEARCH_CONSOLE_ACCESS_REVOKED (403) for revoked Google access; reconnect the property in Preferences &gt; Project Settings &gt; Data Connections. They return ERR_SEARCH_CONSOLE_UPSTREAM (503) when Google Search Console is unavailable or over quota; wait for the number of seconds in Retry-After before retrying.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SearchConsoleApi,
+} from '@llmpulse/sdk';
+import type { GetSearchConsoleBrandSplitRequest } from '@llmpulse/sdk';
+
+async function example() {
+  console.log("🚀 Testing @llmpulse/sdk SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new SearchConsoleApi(config);
+
+  const body = {
+    // number | Project ID
+    projectId: 56,
+    // string | Which Search Console properties to read; /search_console/properties lists them. Omit it for the primary property, or pass one property id (e.g. sc-domain:example.com) to read that one; both answer with property. A comma-separated list of ids, or all, combines several and answers with properties, excluded_properties and property_errors instead: excluded_properties are left out because another selected property already counts them (a URL-prefix property under a domain property), so no click is counted twice; property_errors are properties Google refused, left out of the figures and also named in the X-Search-Console-Property-Errors header. When Google refuses every property, the request fails as a single-property read would. (optional)
+    property: all,
+    // number | Number of days to look back, today included (alternative to from/to). At most 487, Google\'s retention. (optional)
+    range: 56,
+    // Date | Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)
+    from: 2013-10-20,
+    // Date | End date (YYYY-MM-DD), inclusive. Defaults to today. Google publishes data with a 2-3 day lag, so data_through in the response says how far it reaches. (optional)
+    to: 2013-10-20,
+    // 'web' | 'image' | 'video' | 'news' | 'discover' | 'googleNews' | Which search surface to measure. Defaults to web. discover and googleNews carry no query dimension, so Google rejects /search_console/queries for them. (optional)
+    searchType: searchType_example,
+    // string | Narrow the query; every entry must match (AND). Send the whole list as one JSON value: filters=[{\"dimension\":\"page\",\"operator\":\"contains\",\"expression\":\"/blog/\"}] (URL-encoded). An array of objects has no query-parameter form a generated client can produce, so the string is what the official SDKs send; see the SearchConsoleFilters schema for the shape it encodes. includingRegex and excludingRegex take RE2 syntax. At most 10 entries, expression at most 500 characters. The bracket form filters[][dimension]=page&filters[][operator]=contains&filters[][expression]=/blog/ is also accepted. (optional)
+    filters: [{"dimension":"page","operator":"contains","expression":"/blog/"}],
+    // 'final' | 'all' | final (default) counts only rows Google has finalized. all also counts the most recent days, which are still being filled in and will change. (optional)
+    dataState: dataState_example,
+    // 'auto' | 'byPage' | 'byProperty' | How Google counts impressions. auto (default) is what Search Console shows (by page when page is grouped or filtered, else by property). Google rejects byProperty with a page dimension or filter. (optional)
+    aggregationType: aggregationType_example,
+  } satisfies GetSearchConsoleBrandSplitRequest;
+
+  try {
+    const data = await api.getSearchConsoleBrandSplit(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | `number` | Project ID | [Defaults to `undefined`] |
+| **property** | `string` | Which Search Console properties to read; /search_console/properties lists them. Omit it for the primary property, or pass one property id (e.g. sc-domain:example.com) to read that one; both answer with property. A comma-separated list of ids, or all, combines several and answers with properties, excluded_properties and property_errors instead: excluded_properties are left out because another selected property already counts them (a URL-prefix property under a domain property), so no click is counted twice; property_errors are properties Google refused, left out of the figures and also named in the X-Search-Console-Property-Errors header. When Google refuses every property, the request fails as a single-property read would. | [Optional] [Defaults to `undefined`] |
+| **range** | `number` | Number of days to look back, today included (alternative to from/to). At most 487, Google\&#39;s retention. | [Optional] [Defaults to `undefined`] |
+| **from** | `Date` | Start date (YYYY-MM-DD). Defaults to 30 days ago. | [Optional] [Defaults to `undefined`] |
+| **to** | `Date` | End date (YYYY-MM-DD), inclusive. Defaults to today. Google publishes data with a 2-3 day lag, so data_through in the response says how far it reaches. | [Optional] [Defaults to `undefined`] |
+| **searchType** | `web`, `image`, `video`, `news`, `discover`, `googleNews` | Which search surface to measure. Defaults to web. discover and googleNews carry no query dimension, so Google rejects /search_console/queries for them. | [Optional] [Defaults to `&#39;web&#39;`] [Enum: web, image, video, news, discover, googleNews] |
+| **filters** | `string` | Narrow the query; every entry must match (AND). Send the whole list as one JSON value: filters&#x3D;[{\&quot;dimension\&quot;:\&quot;page\&quot;,\&quot;operator\&quot;:\&quot;contains\&quot;,\&quot;expression\&quot;:\&quot;/blog/\&quot;}] (URL-encoded). An array of objects has no query-parameter form a generated client can produce, so the string is what the official SDKs send; see the SearchConsoleFilters schema for the shape it encodes. includingRegex and excludingRegex take RE2 syntax. At most 10 entries, expression at most 500 characters. The bracket form filters[][dimension]&#x3D;page&amp;filters[][operator]&#x3D;contains&amp;filters[][expression]&#x3D;/blog/ is also accepted. | [Optional] [Defaults to `undefined`] |
+| **dataState** | `final`, `all` | final (default) counts only rows Google has finalized. all also counts the most recent days, which are still being filled in and will change. | [Optional] [Defaults to `&#39;final&#39;`] [Enum: final, all] |
+| **aggregationType** | `auto`, `byPage`, `byProperty` | How Google counts impressions. auto (default) is what Search Console shows (by page when page is grouped or filtered, else by property). Google rejects byProperty with a page dimension or filter. | [Optional] [Defaults to `&#39;auto&#39;`] [Enum: auto, byPage, byProperty] |
+
+### Return type
+
+[**SearchConsoleBrandSplitResponse**](SearchConsoleBrandSplitResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Branded and non-branded totals |  -  |
+| **401** | Authentication failed |  -  |
+| **403** | Plan below Growth (ERR_PLAN_REQUIRED), or Google revoked the project\&#39;s Search Console access (ERR_SEARCH_CONSOLE_ACCESS_REVOKED): reconnect the property |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Invalid parameters |  -  |
+| **503** | Upstream provider unavailable, retry after the number of seconds in the Retry-After header: Google\&#39;s own value when it sent one, otherwise 900 after a quota error and 60 after an outage |  * Retry-After - Seconds to wait before retrying <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## getSearchConsoleCannibalization
+
+> SearchConsoleCannibalizationResponse getSearchConsoleCannibalization(projectId, property, range, from, to, minImpressions, minShare, page, perPage, output, searchType, filters, dataState, aggregationType)
+
+Search Console keyword cannibalization (Growth+)
+
+Queries with at least min_impressions impressions for which two or more pages each take at least min_share (default 0.1) of the query\&#39;s impressions, most impressions first, each with its competing pages (share, impressions, clicks, ctr, position). Use it to find the keywords several of the site\&#39;s pages fight over, and decide which pages to merge, redirect or differentiate. Google counts page-by-query impressions per page, so a query\&#39;s impressions here can exceed its property-wide figure. Reads Google\&#39;s top 25,000 page-query rows per property (truncated: true when reached). With output&#x3D;flat or csv, each competing page is its own row, with its URL in page_url. Requires a connected Search Console property (Growth+). Live reads only: under stored reads it returns ERR_INVALID_PARAM. Live reads return ERR_SEARCH_CONSOLE_ACCESS_REVOKED (403) for revoked Google access; reconnect the property in Preferences &gt; Project Settings &gt; Data Connections. They return ERR_SEARCH_CONSOLE_UPSTREAM (503) when Google Search Console is unavailable or over quota; wait for the number of seconds in Retry-After before retrying.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SearchConsoleApi,
+} from '@llmpulse/sdk';
+import type { GetSearchConsoleCannibalizationRequest } from '@llmpulse/sdk';
+
+async function example() {
+  console.log("🚀 Testing @llmpulse/sdk SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new SearchConsoleApi(config);
+
+  const body = {
+    // number | Project ID
+    projectId: 56,
+    // string | Which Search Console properties to read; /search_console/properties lists them. Omit it for the primary property, or pass one property id (e.g. sc-domain:example.com) to read that one; both answer with property. A comma-separated list of ids, or all, combines several and answers with properties, excluded_properties and property_errors instead: excluded_properties are left out because another selected property already counts them (a URL-prefix property under a domain property), so no click is counted twice; property_errors are properties Google refused, left out of the figures and also named in the X-Search-Console-Property-Errors header. When Google refuses every property, the request fails as a single-property read would. (optional)
+    property: all,
+    // number | Number of days to look back, today included (alternative to from/to). At most 487, Google\'s retention. (optional)
+    range: 56,
+    // Date | Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)
+    from: 2013-10-20,
+    // Date | End date (YYYY-MM-DD), inclusive. Defaults to today. Google publishes data with a 2-3 day lag, so data_through in the response says how far it reaches. (optional)
+    to: 2013-10-20,
+    // number | Smallest impressions a query needs. (optional)
+    minImpressions: 56,
+    // number | Smallest fraction (0.01 to 0.5) of the query\'s impressions a page needs to count as competing. (optional)
+    minShare: 8.14,
+    // number (optional)
+    page: 56,
+    // number (optional)
+    perPage: 56,
+    // 'flat' | 'csv' | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \'flat\' returns the same metadata plus \'columns\' and \'rows\'; \'csv\' returns those rows as text/csv. Errors are always returned as JSON. (optional)
+    output: output_example,
+    // 'web' | 'image' | 'video' | 'news' | 'discover' | 'googleNews' | Which search surface to measure. Defaults to web. discover and googleNews carry no query dimension, so Google rejects /search_console/queries for them. (optional)
+    searchType: searchType_example,
+    // string | Narrow the query; every entry must match (AND). Send the whole list as one JSON value: filters=[{\"dimension\":\"page\",\"operator\":\"contains\",\"expression\":\"/blog/\"}] (URL-encoded). An array of objects has no query-parameter form a generated client can produce, so the string is what the official SDKs send; see the SearchConsoleFilters schema for the shape it encodes. includingRegex and excludingRegex take RE2 syntax. At most 10 entries, expression at most 500 characters. The bracket form filters[][dimension]=page&filters[][operator]=contains&filters[][expression]=/blog/ is also accepted. (optional)
+    filters: [{"dimension":"page","operator":"contains","expression":"/blog/"}],
+    // 'final' | 'all' | final (default) counts only rows Google has finalized. all also counts the most recent days, which are still being filled in and will change. (optional)
+    dataState: dataState_example,
+    // 'auto' | 'byPage' | 'byProperty' | How Google counts impressions. auto (default) is what Search Console shows (by page when page is grouped or filtered, else by property). Google rejects byProperty with a page dimension or filter. (optional)
+    aggregationType: aggregationType_example,
+  } satisfies GetSearchConsoleCannibalizationRequest;
+
+  try {
+    const data = await api.getSearchConsoleCannibalization(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | `number` | Project ID | [Defaults to `undefined`] |
+| **property** | `string` | Which Search Console properties to read; /search_console/properties lists them. Omit it for the primary property, or pass one property id (e.g. sc-domain:example.com) to read that one; both answer with property. A comma-separated list of ids, or all, combines several and answers with properties, excluded_properties and property_errors instead: excluded_properties are left out because another selected property already counts them (a URL-prefix property under a domain property), so no click is counted twice; property_errors are properties Google refused, left out of the figures and also named in the X-Search-Console-Property-Errors header. When Google refuses every property, the request fails as a single-property read would. | [Optional] [Defaults to `undefined`] |
+| **range** | `number` | Number of days to look back, today included (alternative to from/to). At most 487, Google\&#39;s retention. | [Optional] [Defaults to `undefined`] |
+| **from** | `Date` | Start date (YYYY-MM-DD). Defaults to 30 days ago. | [Optional] [Defaults to `undefined`] |
+| **to** | `Date` | End date (YYYY-MM-DD), inclusive. Defaults to today. Google publishes data with a 2-3 day lag, so data_through in the response says how far it reaches. | [Optional] [Defaults to `undefined`] |
+| **minImpressions** | `number` | Smallest impressions a query needs. | [Optional] [Defaults to `100`] |
+| **minShare** | `number` | Smallest fraction (0.01 to 0.5) of the query\&#39;s impressions a page needs to count as competing. | [Optional] [Defaults to `0.1`] |
+| **page** | `number` |  | [Optional] [Defaults to `1`] |
+| **perPage** | `number` |  | [Optional] [Defaults to `20`] |
+| **output** | `flat`, `csv` | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \&#39;flat\&#39; returns the same metadata plus \&#39;columns\&#39; and \&#39;rows\&#39;; \&#39;csv\&#39; returns those rows as text/csv. Errors are always returned as JSON. | [Optional] [Defaults to `undefined`] [Enum: flat, csv] |
+| **searchType** | `web`, `image`, `video`, `news`, `discover`, `googleNews` | Which search surface to measure. Defaults to web. discover and googleNews carry no query dimension, so Google rejects /search_console/queries for them. | [Optional] [Defaults to `&#39;web&#39;`] [Enum: web, image, video, news, discover, googleNews] |
+| **filters** | `string` | Narrow the query; every entry must match (AND). Send the whole list as one JSON value: filters&#x3D;[{\&quot;dimension\&quot;:\&quot;page\&quot;,\&quot;operator\&quot;:\&quot;contains\&quot;,\&quot;expression\&quot;:\&quot;/blog/\&quot;}] (URL-encoded). An array of objects has no query-parameter form a generated client can produce, so the string is what the official SDKs send; see the SearchConsoleFilters schema for the shape it encodes. includingRegex and excludingRegex take RE2 syntax. At most 10 entries, expression at most 500 characters. The bracket form filters[][dimension]&#x3D;page&amp;filters[][operator]&#x3D;contains&amp;filters[][expression]&#x3D;/blog/ is also accepted. | [Optional] [Defaults to `undefined`] |
+| **dataState** | `final`, `all` | final (default) counts only rows Google has finalized. all also counts the most recent days, which are still being filled in and will change. | [Optional] [Defaults to `&#39;final&#39;`] [Enum: final, all] |
+| **aggregationType** | `auto`, `byPage`, `byProperty` | How Google counts impressions. auto (default) is what Search Console shows (by page when page is grouped or filtered, else by property). Google rejects byProperty with a page dimension or filter. | [Optional] [Defaults to `&#39;auto&#39;`] [Enum: auto, byPage, byProperty] |
+
+### Return type
+
+[**SearchConsoleCannibalizationResponse**](SearchConsoleCannibalizationResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Competing pages per query |  -  |
+| **401** | Authentication failed |  -  |
+| **403** | Plan below Growth (ERR_PLAN_REQUIRED), or Google revoked the project\&#39;s Search Console access (ERR_SEARCH_CONSOLE_ACCESS_REVOKED): reconnect the property |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Invalid parameters |  -  |
+| **503** | Upstream provider unavailable, retry after the number of seconds in the Retry-After header: Google\&#39;s own value when it sent one, otherwise 900 after a quota error and 60 after an outage |  * Retry-After - Seconds to wait before retrying <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## getSearchConsoleDecay
+
+> SearchConsoleDecayResponse getSearchConsoleDecay(projectId, property, range, from, to, dimension, minClicks, page, perPage, output, searchType, filters, dataState, aggregationType)
+
+Search Console content decay (Growth+)
+
+Pages (or queries, with dimension&#x3D;query) that had at least min_clicks clicks in the window just before the requested one (previous_from to previous_to, the same length) and lost clicks since, biggest loss first, with clicks, impressions and average position in both windows. Use it to find the pages losing traffic and to tell lost rankings (a worse position) from lost demand (fewer impressions at a stable position). The requested window ends at compared_through, the last day Google has published when that is before to, so days Google has not filled in yet never read as a loss. Both windows must fit in Google\&#39;s 487-day retention, or the request returns ERR_INVALID_PARAM. Reads Google\&#39;s top 25,000 rows per window and property (truncated: true when reached); when the requested window reaches that cap, a page or query missing from it is left out rather than read as a loss. Requires a connected Search Console property (Growth+). Live reads only: under stored reads it returns ERR_INVALID_PARAM. Live reads return ERR_SEARCH_CONSOLE_ACCESS_REVOKED (403) for revoked Google access; reconnect the property in Preferences &gt; Project Settings &gt; Data Connections. They return ERR_SEARCH_CONSOLE_UPSTREAM (503) when Google Search Console is unavailable or over quota; wait for the number of seconds in Retry-After before retrying.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SearchConsoleApi,
+} from '@llmpulse/sdk';
+import type { GetSearchConsoleDecayRequest } from '@llmpulse/sdk';
+
+async function example() {
+  console.log("🚀 Testing @llmpulse/sdk SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new SearchConsoleApi(config);
+
+  const body = {
+    // number | Project ID
+    projectId: 56,
+    // string | Which Search Console properties to read; /search_console/properties lists them. Omit it for the primary property, or pass one property id (e.g. sc-domain:example.com) to read that one; both answer with property. A comma-separated list of ids, or all, combines several and answers with properties, excluded_properties and property_errors instead: excluded_properties are left out because another selected property already counts them (a URL-prefix property under a domain property), so no click is counted twice; property_errors are properties Google refused, left out of the figures and also named in the X-Search-Console-Property-Errors header. When Google refuses every property, the request fails as a single-property read would. (optional)
+    property: all,
+    // number | Number of days to look back, today included (alternative to from/to). At most 487, Google\'s retention. (optional)
+    range: 56,
+    // Date | Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)
+    from: 2013-10-20,
+    // Date | End date (YYYY-MM-DD), inclusive. Defaults to today. Google publishes data with a 2-3 day lag, so data_through in the response says how far it reaches. (optional)
+    to: 2013-10-20,
+    // 'page' | 'query' | Compare pages or queries. (optional)
+    dimension: dimension_example,
+    // number | Smallest clicks in the previous window. (optional)
+    minClicks: 56,
+    // number (optional)
+    page: 56,
+    // number (optional)
+    perPage: 56,
+    // 'flat' | 'csv' | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \'flat\' returns the same metadata plus \'columns\' and \'rows\'; \'csv\' returns those rows as text/csv. Errors are always returned as JSON. (optional)
+    output: output_example,
+    // 'web' | 'image' | 'video' | 'news' | 'discover' | 'googleNews' | Which search surface to measure. Defaults to web. discover and googleNews carry no query dimension, so Google rejects /search_console/queries for them. (optional)
+    searchType: searchType_example,
+    // string | Narrow the query; every entry must match (AND). Send the whole list as one JSON value: filters=[{\"dimension\":\"page\",\"operator\":\"contains\",\"expression\":\"/blog/\"}] (URL-encoded). An array of objects has no query-parameter form a generated client can produce, so the string is what the official SDKs send; see the SearchConsoleFilters schema for the shape it encodes. includingRegex and excludingRegex take RE2 syntax. At most 10 entries, expression at most 500 characters. The bracket form filters[][dimension]=page&filters[][operator]=contains&filters[][expression]=/blog/ is also accepted. (optional)
+    filters: [{"dimension":"page","operator":"contains","expression":"/blog/"}],
+    // 'final' | 'all' | final (default) counts only rows Google has finalized. all also counts the most recent days, which are still being filled in and will change. (optional)
+    dataState: dataState_example,
+    // 'auto' | 'byPage' | 'byProperty' | How Google counts impressions. auto (default) is what Search Console shows (by page when page is grouped or filtered, else by property). Google rejects byProperty with a page dimension or filter. (optional)
+    aggregationType: aggregationType_example,
+  } satisfies GetSearchConsoleDecayRequest;
+
+  try {
+    const data = await api.getSearchConsoleDecay(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | `number` | Project ID | [Defaults to `undefined`] |
+| **property** | `string` | Which Search Console properties to read; /search_console/properties lists them. Omit it for the primary property, or pass one property id (e.g. sc-domain:example.com) to read that one; both answer with property. A comma-separated list of ids, or all, combines several and answers with properties, excluded_properties and property_errors instead: excluded_properties are left out because another selected property already counts them (a URL-prefix property under a domain property), so no click is counted twice; property_errors are properties Google refused, left out of the figures and also named in the X-Search-Console-Property-Errors header. When Google refuses every property, the request fails as a single-property read would. | [Optional] [Defaults to `undefined`] |
+| **range** | `number` | Number of days to look back, today included (alternative to from/to). At most 487, Google\&#39;s retention. | [Optional] [Defaults to `undefined`] |
+| **from** | `Date` | Start date (YYYY-MM-DD). Defaults to 30 days ago. | [Optional] [Defaults to `undefined`] |
+| **to** | `Date` | End date (YYYY-MM-DD), inclusive. Defaults to today. Google publishes data with a 2-3 day lag, so data_through in the response says how far it reaches. | [Optional] [Defaults to `undefined`] |
+| **dimension** | `page`, `query` | Compare pages or queries. | [Optional] [Defaults to `&#39;page&#39;`] [Enum: page, query] |
+| **minClicks** | `number` | Smallest clicks in the previous window. | [Optional] [Defaults to `10`] |
+| **page** | `number` |  | [Optional] [Defaults to `1`] |
+| **perPage** | `number` |  | [Optional] [Defaults to `20`] |
+| **output** | `flat`, `csv` | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \&#39;flat\&#39; returns the same metadata plus \&#39;columns\&#39; and \&#39;rows\&#39;; \&#39;csv\&#39; returns those rows as text/csv. Errors are always returned as JSON. | [Optional] [Defaults to `undefined`] [Enum: flat, csv] |
+| **searchType** | `web`, `image`, `video`, `news`, `discover`, `googleNews` | Which search surface to measure. Defaults to web. discover and googleNews carry no query dimension, so Google rejects /search_console/queries for them. | [Optional] [Defaults to `&#39;web&#39;`] [Enum: web, image, video, news, discover, googleNews] |
+| **filters** | `string` | Narrow the query; every entry must match (AND). Send the whole list as one JSON value: filters&#x3D;[{\&quot;dimension\&quot;:\&quot;page\&quot;,\&quot;operator\&quot;:\&quot;contains\&quot;,\&quot;expression\&quot;:\&quot;/blog/\&quot;}] (URL-encoded). An array of objects has no query-parameter form a generated client can produce, so the string is what the official SDKs send; see the SearchConsoleFilters schema for the shape it encodes. includingRegex and excludingRegex take RE2 syntax. At most 10 entries, expression at most 500 characters. The bracket form filters[][dimension]&#x3D;page&amp;filters[][operator]&#x3D;contains&amp;filters[][expression]&#x3D;/blog/ is also accepted. | [Optional] [Defaults to `undefined`] |
+| **dataState** | `final`, `all` | final (default) counts only rows Google has finalized. all also counts the most recent days, which are still being filled in and will change. | [Optional] [Defaults to `&#39;final&#39;`] [Enum: final, all] |
+| **aggregationType** | `auto`, `byPage`, `byProperty` | How Google counts impressions. auto (default) is what Search Console shows (by page when page is grouped or filtered, else by property). Google rejects byProperty with a page dimension or filter. | [Optional] [Defaults to `&#39;auto&#39;`] [Enum: auto, byPage, byProperty] |
+
+### Return type
+
+[**SearchConsoleDecayResponse**](SearchConsoleDecayResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Pages or queries losing clicks |  -  |
+| **401** | Authentication failed |  -  |
+| **403** | Plan below Growth (ERR_PLAN_REQUIRED), or Google revoked the project\&#39;s Search Console access (ERR_SEARCH_CONSOLE_ACCESS_REVOKED): reconnect the property |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Invalid parameters |  -  |
+| **503** | Upstream provider unavailable, retry after the number of seconds in the Retry-After header: Google\&#39;s own value when it sent one, otherwise 900 after a quota error and 60 after an outage |  * Retry-After - Seconds to wait before retrying <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## getSearchConsoleOpportunities
+
+> SearchConsoleOpportunitiesResponse getSearchConsoleOpportunities(projectId, property, range, from, to, minImpressions, minPosition, maxPosition, page, perPage, output, searchType, filters, dataState, aggregationType)
+
+Search Console ranking opportunities (Growth+)
+
+Queries whose average position is between min_position and max_position (default 4 to 20) with at least min_impressions impressions, ranked by potential_clicks: the clicks a move into the top 3 would add at top_ctr, the CTR the property\&#39;s own queries averaging position 3 or better get in the same window. Use it to find the queries where a small ranking gain would add the most traffic. No outside CTR curve is used: with no top-3 query in the window, top_ctr and potential_clicks are null. Reads Google\&#39;s top 25,000 queries per property (truncated: true when reached) and excludes anonymized queries. Requires a connected Search Console property (Growth+). Live reads only: under stored reads it returns ERR_INVALID_PARAM. Live reads return ERR_SEARCH_CONSOLE_ACCESS_REVOKED (403) for revoked Google access; reconnect the property in Preferences &gt; Project Settings &gt; Data Connections. They return ERR_SEARCH_CONSOLE_UPSTREAM (503) when Google Search Console is unavailable or over quota; wait for the number of seconds in Retry-After before retrying.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  SearchConsoleApi,
+} from '@llmpulse/sdk';
+import type { GetSearchConsoleOpportunitiesRequest } from '@llmpulse/sdk';
+
+async function example() {
+  console.log("🚀 Testing @llmpulse/sdk SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new SearchConsoleApi(config);
+
+  const body = {
+    // number | Project ID
+    projectId: 56,
+    // string | Which Search Console properties to read; /search_console/properties lists them. Omit it for the primary property, or pass one property id (e.g. sc-domain:example.com) to read that one; both answer with property. A comma-separated list of ids, or all, combines several and answers with properties, excluded_properties and property_errors instead: excluded_properties are left out because another selected property already counts them (a URL-prefix property under a domain property), so no click is counted twice; property_errors are properties Google refused, left out of the figures and also named in the X-Search-Console-Property-Errors header. When Google refuses every property, the request fails as a single-property read would. (optional)
+    property: all,
+    // number | Number of days to look back, today included (alternative to from/to). At most 487, Google\'s retention. (optional)
+    range: 56,
+    // Date | Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)
+    from: 2013-10-20,
+    // Date | End date (YYYY-MM-DD), inclusive. Defaults to today. Google publishes data with a 2-3 day lag, so data_through in the response says how far it reaches. (optional)
+    to: 2013-10-20,
+    // number | Smallest impressions a query needs. (optional)
+    minImpressions: 56,
+    // number | Best average position to include. (optional)
+    minPosition: 8.14,
+    // number | Worst average position to include; at least min_position. (optional)
+    maxPosition: 8.14,
+    // number (optional)
+    page: 56,
+    // number (optional)
+    perPage: 56,
+    // 'flat' | 'csv' | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \'flat\' returns the same metadata plus \'columns\' and \'rows\'; \'csv\' returns those rows as text/csv. Errors are always returned as JSON. (optional)
+    output: output_example,
+    // 'web' | 'image' | 'video' | 'news' | 'discover' | 'googleNews' | Which search surface to measure. Defaults to web. discover and googleNews carry no query dimension, so Google rejects /search_console/queries for them. (optional)
+    searchType: searchType_example,
+    // string | Narrow the query; every entry must match (AND). Send the whole list as one JSON value: filters=[{\"dimension\":\"page\",\"operator\":\"contains\",\"expression\":\"/blog/\"}] (URL-encoded). An array of objects has no query-parameter form a generated client can produce, so the string is what the official SDKs send; see the SearchConsoleFilters schema for the shape it encodes. includingRegex and excludingRegex take RE2 syntax. At most 10 entries, expression at most 500 characters. The bracket form filters[][dimension]=page&filters[][operator]=contains&filters[][expression]=/blog/ is also accepted. (optional)
+    filters: [{"dimension":"page","operator":"contains","expression":"/blog/"}],
+    // 'final' | 'all' | final (default) counts only rows Google has finalized. all also counts the most recent days, which are still being filled in and will change. (optional)
+    dataState: dataState_example,
+    // 'auto' | 'byPage' | 'byProperty' | How Google counts impressions. auto (default) is what Search Console shows (by page when page is grouped or filtered, else by property). Google rejects byProperty with a page dimension or filter. (optional)
+    aggregationType: aggregationType_example,
+  } satisfies GetSearchConsoleOpportunitiesRequest;
+
+  try {
+    const data = await api.getSearchConsoleOpportunities(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | `number` | Project ID | [Defaults to `undefined`] |
+| **property** | `string` | Which Search Console properties to read; /search_console/properties lists them. Omit it for the primary property, or pass one property id (e.g. sc-domain:example.com) to read that one; both answer with property. A comma-separated list of ids, or all, combines several and answers with properties, excluded_properties and property_errors instead: excluded_properties are left out because another selected property already counts them (a URL-prefix property under a domain property), so no click is counted twice; property_errors are properties Google refused, left out of the figures and also named in the X-Search-Console-Property-Errors header. When Google refuses every property, the request fails as a single-property read would. | [Optional] [Defaults to `undefined`] |
+| **range** | `number` | Number of days to look back, today included (alternative to from/to). At most 487, Google\&#39;s retention. | [Optional] [Defaults to `undefined`] |
+| **from** | `Date` | Start date (YYYY-MM-DD). Defaults to 30 days ago. | [Optional] [Defaults to `undefined`] |
+| **to** | `Date` | End date (YYYY-MM-DD), inclusive. Defaults to today. Google publishes data with a 2-3 day lag, so data_through in the response says how far it reaches. | [Optional] [Defaults to `undefined`] |
+| **minImpressions** | `number` | Smallest impressions a query needs. | [Optional] [Defaults to `100`] |
+| **minPosition** | `number` | Best average position to include. | [Optional] [Defaults to `4`] |
+| **maxPosition** | `number` | Worst average position to include; at least min_position. | [Optional] [Defaults to `20`] |
+| **page** | `number` |  | [Optional] [Defaults to `1`] |
+| **perPage** | `number` |  | [Optional] [Defaults to `20`] |
+| **output** | `flat`, `csv` | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \&#39;flat\&#39; returns the same metadata plus \&#39;columns\&#39; and \&#39;rows\&#39;; \&#39;csv\&#39; returns those rows as text/csv. Errors are always returned as JSON. | [Optional] [Defaults to `undefined`] [Enum: flat, csv] |
+| **searchType** | `web`, `image`, `video`, `news`, `discover`, `googleNews` | Which search surface to measure. Defaults to web. discover and googleNews carry no query dimension, so Google rejects /search_console/queries for them. | [Optional] [Defaults to `&#39;web&#39;`] [Enum: web, image, video, news, discover, googleNews] |
+| **filters** | `string` | Narrow the query; every entry must match (AND). Send the whole list as one JSON value: filters&#x3D;[{\&quot;dimension\&quot;:\&quot;page\&quot;,\&quot;operator\&quot;:\&quot;contains\&quot;,\&quot;expression\&quot;:\&quot;/blog/\&quot;}] (URL-encoded). An array of objects has no query-parameter form a generated client can produce, so the string is what the official SDKs send; see the SearchConsoleFilters schema for the shape it encodes. includingRegex and excludingRegex take RE2 syntax. At most 10 entries, expression at most 500 characters. The bracket form filters[][dimension]&#x3D;page&amp;filters[][operator]&#x3D;contains&amp;filters[][expression]&#x3D;/blog/ is also accepted. | [Optional] [Defaults to `undefined`] |
+| **dataState** | `final`, `all` | final (default) counts only rows Google has finalized. all also counts the most recent days, which are still being filled in and will change. | [Optional] [Defaults to `&#39;final&#39;`] [Enum: final, all] |
+| **aggregationType** | `auto`, `byPage`, `byProperty` | How Google counts impressions. auto (default) is what Search Console shows (by page when page is grouped or filtered, else by property). Google rejects byProperty with a page dimension or filter. | [Optional] [Defaults to `&#39;auto&#39;`] [Enum: auto, byPage, byProperty] |
+
+### Return type
+
+[**SearchConsoleOpportunitiesResponse**](SearchConsoleOpportunitiesResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ranking opportunities |  -  |
+| **401** | Authentication failed |  -  |
+| **403** | Plan below Growth (ERR_PLAN_REQUIRED), or Google revoked the project\&#39;s Search Console access (ERR_SEARCH_CONSOLE_ACCESS_REVOKED): reconnect the property |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Invalid parameters |  -  |
+| **503** | Upstream provider unavailable, retry after the number of seconds in the Retry-After header: Google\&#39;s own value when it sent one, otherwise 900 after a quota error and 60 after an outage |  * Retry-After - Seconds to wait before retrying <br>  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
 ## getSearchConsolePages
