@@ -27,6 +27,7 @@ Name | Type
 `manuallyEditedAt` | Date
 `editedByUserId` | number
 `resultVersion` | string
+`cmsDrafts` | [Array&lt;CmsPublication&gt;](CmsPublication.md)
 `requestId` | string
 `changedPaths` | Array&lt;string&gt;
 
@@ -58,6 +59,7 @@ const example = {
   "manuallyEditedAt": null,
   "editedByUserId": null,
   "resultVersion": 1775642580,
+  "cmsDrafts": null,
   "requestId": null,
   "changedPaths": null,
 } satisfies IntelligenceTaskUpdateResponse
