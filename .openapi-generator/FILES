@@ -181,6 +181,7 @@ docs/OwnedMediaKpiChanges.md
 docs/OwnedMediaKpis.md
 docs/OwnedMediaListResponse.md
 docs/OwnedMediaModelShare.md
+docs/OwnedMediaPlatformActivityPeriod.md
 docs/OwnedMediaPlatformProfiles.md
 docs/OwnedMediaPlatformRollup.md
 docs/OwnedMediaPlatformRollupWeeklyInner.md
@@ -190,6 +191,7 @@ docs/OwnedMediaProfilesResponse.md
 docs/OwnedMediaProfilesUpdateResponse.md
 docs/OwnedMediaRow.md
 docs/OwnedMediaStoreTotals.md
+docs/OwnedMediaSummaryActivityPeriod.md
 docs/OwnedMediaSummaryResponse.md
 docs/OwnedMediaSummaryResponsePrevious.md
 docs/OwnedMediaWeek.md
@@ -248,6 +250,9 @@ docs/RecommendationSummary.md
 docs/RecommendationSummarySummary.md
 docs/RecommendationsApi.md
 docs/RecommendationsResponse.md
+docs/RedditBrandShare.md
+docs/RedditPositionShare.md
+docs/RedditSubredditActivityPeriod.md
 docs/RemovePromptTagsRequest.md
 docs/RemoveTeamMember200Response.md
 docs/ReputationStudiesApi.md
@@ -538,6 +543,7 @@ src/models/OwnedMediaKpiChanges.ts
 src/models/OwnedMediaKpis.ts
 src/models/OwnedMediaListResponse.ts
 src/models/OwnedMediaModelShare.ts
+src/models/OwnedMediaPlatformActivityPeriod.ts
 src/models/OwnedMediaPlatformProfiles.ts
 src/models/OwnedMediaPlatformRollup.ts
 src/models/OwnedMediaPlatformRollupWeeklyInner.ts
@@ -547,6 +553,7 @@ src/models/OwnedMediaProfilesResponse.ts
 src/models/OwnedMediaProfilesUpdateResponse.ts
 src/models/OwnedMediaRow.ts
 src/models/OwnedMediaStoreTotals.ts
+src/models/OwnedMediaSummaryActivityPeriod.ts
 src/models/OwnedMediaSummaryResponse.ts
 src/models/OwnedMediaSummaryResponsePrevious.ts
 src/models/OwnedMediaWeek.ts
@@ -602,6 +609,9 @@ src/models/RecommendationItemUpdateResponse.ts
 src/models/RecommendationSummary.ts
 src/models/RecommendationSummarySummary.ts
 src/models/RecommendationsResponse.ts
+src/models/RedditBrandShare.ts
+src/models/RedditPositionShare.ts
+src/models/RedditSubredditActivityPeriod.ts
 src/models/RemovePromptTagsRequest.ts
 src/models/RemoveTeamMember200Response.ts
 src/models/RevokeApiKey200Response.ts

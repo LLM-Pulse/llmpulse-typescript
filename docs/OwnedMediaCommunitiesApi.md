@@ -92,7 +92,7 @@ example().catch(console.error);
 
 Get an owned-media summary
 
-The numbers behind one Owned Media tab. kpis gives the platform citations (total), yours (your profiles and their content), your_profile and your_content apart, and share_pct; previous gives the same KPIs for the period of the same length that ends just before from, and changes the difference (percent for counts, percentage points for share_pct, null when there is nothing to compare). weekly is the citations per week, yours against everyone else. by_model and by_country split every citation of the platform; content_types (reel, post, tv, pulse, or regular, shorts and live on YouTube) and age_buckets cover posts and videos. provider&#x3D;mobile_apps adds stores, the per-store totals, and has no content type or age; provider&#x3D;overview returns platforms, one rollup per platform the caller can read, and no breakdowns. A team member also needs the YouTube Intelligence permission for provider&#x3D;youtube. Defaults to the last 30 days. Requires the Growth plan or above.
+The numbers behind one Owned Media tab. kpis gives platform citations (total), yours (the account\&#39;s own profiles and content), your_profile and your_content separately where available, and share_pct; previous gives the same KPIs for the period of the same length that ends just before from, and changes gives the difference (percent for counts, percentage points for share_pct and positive_pct, null when there is nothing to compare). weekly remains the Monday-anchored series. Every provider returns activity by actual project reporting period, with date at the period start, citations, yours and other; yours and other are null for provider&#x3D;overview. The overview also includes each readable platform\&#39;s activity under platforms, with date and citations. Periods without runs are omitted, and a period with runs but no citation has zero. Activity counts use the selected date window. by_model and by_country split citations; content_types (reel, post, tv, pulse, or regular, shorts and live on YouTube) and age_buckets cover posts and videos. provider&#x3D;mobile_apps adds stores and per-store totals; provider&#x3D;overview returns one rollup per readable platform. provider&#x3D;reddit adds unique_subreddits, unique_authors, positive_pct, and positive, neutral and negative sentiment counts in activity for the citing AI answers, plus subreddit_activity for the top five subreddits and Others, positions and brand_share. A team member also needs the YouTube Intelligence permission for provider&#x3D;youtube or Reddit Intelligence for provider&#x3D;reddit. Defaults to the last 30 days. Requires the Growth plan or above.
 
 ### Example
 
@@ -114,7 +114,7 @@ async function example() {
   const body = {
     // number | Project ID
     projectId: 56,
-    // 'youtube' | 'instagram' | 'facebook' | 'tiktok' | 'linkedin' | 'mobile_apps' | 'overview' | The platform to summarize, or overview for every platform at once
+    // 'youtube' | 'instagram' | 'facebook' | 'tiktok' | 'linkedin' | 'mobile_apps' | 'reddit' | 'overview' | The platform to summarize, or overview for every platform at once
     provider: provider_example,
     // 'chatgpt' | 'perplexity' | 'ai_mode' | 'ai_overview' | 'gemini' | 'copilot' | 'amazon_rufus' | 'claude' | 'grok' | 'deepseek' | 'naver_ai' | 'baidu_ai' | 'meta_ai' | 'naver_ai_tab' | 'qwen' | 'doubao' | Filter by one AI model. It must be a model enabled for the API key\'s user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. (optional)
     model: model_example,
@@ -152,7 +152,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
-| **provider** | `youtube`, `instagram`, `facebook`, `tiktok`, `linkedin`, `mobile_apps`, `overview` | The platform to summarize, or overview for every platform at once | [Defaults to `undefined`] [Enum: youtube, instagram, facebook, tiktok, linkedin, mobile_apps, overview] |
+| **provider** | `youtube`, `instagram`, `facebook`, `tiktok`, `linkedin`, `mobile_apps`, `reddit`, `overview` | The platform to summarize, or overview for every platform at once | [Defaults to `undefined`] [Enum: youtube, instagram, facebook, tiktok, linkedin, mobile_apps, reddit, overview] |
 | **model** | `chatgpt`, `perplexity`, `ai_mode`, `ai_overview`, `gemini`, `copilot`, `amazon_rufus`, `claude`, `grok`, `deepseek`, `naver_ai`, `baidu_ai`, `meta_ai`, `naver_ai_tab`, `qwen`, `doubao` | Filter by one AI model. It must be a model enabled for the API key\&#39;s user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, ai_mode, ai_overview, gemini, copilot, amazon_rufus, claude, grok, deepseek, naver_ai, baidu_ai, meta_ai, naver_ai_tab, qwen, doubao] |
 | **collectionId** | `string` | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [Optional] [Defaults to `undefined`] |
 | **countryCode** | `string` | One ISO country code or a comma-separated list (e.g. US,GB,DE) | [Optional] [Defaults to `undefined`] |
@@ -179,8 +179,8 @@ example().catch(console.error);
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | The KPI cards, comparison, weekly series and breakdowns |  -  |
-| **403** | A plan below Growth answers ERR_PLAN_REQUIRED. A team member whose permissions do not grant Owned Media (or YouTube Intelligence for provider&#x3D;youtube) answers ERR_INSUFFICIENT_PERMISSION, with the same status |  -  |
+| **200** | The KPI cards, comparison, weekly series, all-provider activity series, breakdowns and Reddit charts |  -  |
+| **403** | A plan below Growth answers ERR_PLAN_REQUIRED. A team member whose permissions do not grant Owned Media (or YouTube Intelligence for provider&#x3D;youtube or Reddit Intelligence for provider&#x3D;reddit) answers ERR_INSUFFICIENT_PERMISSION, with the same status |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Invalid parameters |  -  |
 
@@ -193,7 +193,7 @@ example().catch(console.error);
 
 List owned-media citations
 
-Which owned-media content AI answers cite, by platform. &#x60;provider&#x60; is required. Each row carries a &#x60;yours&#x60; flag so you can compare your own presence against everyone else cited on the same platform. Video, post, channel and profile rows also carry their image (thumbnail_url or avatar_url, our cached copy where one exists), their average position in the answers and, on YouTube, the video id, the channel handle and URL, and the channel key that /dimensions/owned_media/citing_prompts accepts. view&#x3D;own_citations returns the raw citations of the connected profile only and stays empty until a profile is connected. For Reddit use /dimensions/reddit. A team member also needs the YouTube Intelligence permission for provider&#x3D;youtube. Requires the Growth plan or above.
+Which owned-media content AI answers cite, by platform. &#x60;provider&#x60; is required. Each row carries a &#x60;yours&#x60; flag so you can compare your own presence against everyone else cited on the same platform. Video, post, channel and profile rows also carry their image (thumbnail_url or avatar_url, our cached copy where one exists), their average position in the answers and, on YouTube, the video id, the channel handle and URL, and the channel key that /dimensions/owned_media/citing_prompts accepts. &#x60;view&#x3D;activity&#x60; returns one row per entity and actual reporting period; periods without runs are omitted, while a run without a citation has a real zero. Its citation counts cover the selected date window; profile, channel and app metadata are current values, not historical growth. For provider&#x3D;mobile_apps, select the store with &#x60;store&#x60;. &#x60;view&#x3D;own_citations&#x60; returns the raw citations of the connected profile only and stays empty until a profile is connected. For Reddit use /dimensions/owned_media/summary?provider&#x3D;reddit for the summary and /dimensions/reddit for cited-content tables. A team member also needs the YouTube Intelligence permission for provider&#x3D;youtube. Requires the Growth plan or above.
 
 ### Example
 
@@ -221,7 +221,7 @@ async function example() {
     page: 56,
     // number (optional)
     perPage: 56,
-    // 'videos' | 'channels' | 'posts' | 'profiles' | 'own_citations' | 'apps' | Row shape; the allowed set depends on provider (optional)
+    // 'videos' | 'channels' | 'posts' | 'profiles' | 'own_citations' | 'apps' | 'activity' | Row shape; the allowed set depends on provider, and activity is available for each provider (optional)
     view: view_example,
     // 'google_play' | 'app_store' | provider=mobile_apps only (optional)
     store: store_example,
@@ -268,7 +268,7 @@ example().catch(console.error);
 | **provider** | `youtube`, `instagram`, `facebook`, `tiktok`, `linkedin`, `mobile_apps` | The platform to report on | [Defaults to `undefined`] [Enum: youtube, instagram, facebook, tiktok, linkedin, mobile_apps] |
 | **page** | `number` |  | [Optional] [Defaults to `1`] |
 | **perPage** | `number` |  | [Optional] [Defaults to `20`] |
-| **view** | `videos`, `channels`, `posts`, `profiles`, `own_citations`, `apps` | Row shape; the allowed set depends on provider | [Optional] [Defaults to `undefined`] [Enum: videos, channels, posts, profiles, own_citations, apps] |
+| **view** | `videos`, `channels`, `posts`, `profiles`, `own_citations`, `apps`, `activity` | Row shape; the allowed set depends on provider, and activity is available for each provider | [Optional] [Defaults to `undefined`] [Enum: videos, channels, posts, profiles, own_citations, apps, activity] |
 | **store** | `google_play`, `app_store` | provider&#x3D;mobile_apps only | [Optional] [Defaults to `&#39;google_play&#39;`] [Enum: google_play, app_store] |
 | **owned** | `boolean` | Return only rows belonging to the account\&#39;s own connected profile | [Optional] [Defaults to `undefined`] |
 | **model** | `chatgpt`, `perplexity`, `ai_mode`, `ai_overview`, `gemini`, `copilot`, `amazon_rufus`, `claude`, `grok`, `deepseek`, `naver_ai`, `baidu_ai`, `meta_ai`, `naver_ai_tab`, `qwen`, `doubao` | Filter by one AI model. It must be a model enabled for the API key\&#39;s user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, ai_mode, ai_overview, gemini, copilot, amazon_rufus, claude, grok, deepseek, naver_ai, baidu_ai, meta_ai, naver_ai_tab, qwen, doubao] |

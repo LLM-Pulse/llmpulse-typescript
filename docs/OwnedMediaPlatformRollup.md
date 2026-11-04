@@ -12,6 +12,7 @@ Name | Type
 `yours` | number
 `sharePct` | number
 `weekly` | [Array&lt;OwnedMediaPlatformRollupWeeklyInner&gt;](OwnedMediaPlatformRollupWeeklyInner.md)
+`activity` | [Array&lt;OwnedMediaPlatformActivityPeriod&gt;](OwnedMediaPlatformActivityPeriod.md)
 
 ## Example
 
@@ -26,6 +27,7 @@ const example = {
   "yours": null,
   "sharePct": null,
   "weekly": null,
+  "activity": null,
 } satisfies OwnedMediaPlatformRollup
 
 console.log(example)

@@ -11,6 +11,9 @@ Name | Type
 `yourProfile` | number
 `yourContent` | number
 `sharePct` | number
+`uniqueSubreddits` | number
+`uniqueAuthors` | number
+`positivePct` | number
 
 ## Example
 
@@ -24,6 +27,9 @@ const example = {
   "yourProfile": null,
   "yourContent": null,
   "sharePct": null,
+  "uniqueSubreddits": null,
+  "uniqueAuthors": null,
+  "positivePct": null,
 } satisfies OwnedMediaKpis
 
 console.log(example)

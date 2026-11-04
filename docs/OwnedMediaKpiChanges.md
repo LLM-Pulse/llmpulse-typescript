@@ -1,7 +1,7 @@
 
 # OwnedMediaKpiChanges
 
-Change against the previous period. Counts in percent, share_pct in percentage points; null when the previous period has nothing to compare with
+Change against the previous period. Counts in percent, share_pct and positive_pct in percentage points; null when the previous period has nothing to compare with
 
 ## Properties
 
@@ -12,6 +12,9 @@ Name | Type
 `yourProfile` | number
 `yourContent` | number
 `sharePct` | number
+`uniqueSubreddits` | number
+`uniqueAuthors` | number
+`positivePct` | number
 
 ## Example
 
@@ -25,6 +28,9 @@ const example = {
   "yourProfile": null,
   "yourContent": null,
   "sharePct": null,
+  "uniqueSubreddits": null,
+  "uniqueAuthors": null,
+  "positivePct": null,
 } satisfies OwnedMediaKpiChanges
 
 console.log(example)

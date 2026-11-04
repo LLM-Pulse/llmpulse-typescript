@@ -21,6 +21,10 @@ Name | Type
 `ageBuckets` | [Array&lt;OwnedMediaAgeBucketShare&gt;](OwnedMediaAgeBucketShare.md)
 `stores` | [Array&lt;OwnedMediaStoreTotals&gt;](OwnedMediaStoreTotals.md)
 `platforms` | [Array&lt;OwnedMediaPlatformRollup&gt;](OwnedMediaPlatformRollup.md)
+`activity` | [Array&lt;OwnedMediaSummaryActivityPeriod&gt;](OwnedMediaSummaryActivityPeriod.md)
+`subredditActivity` | [Array&lt;RedditSubredditActivityPeriod&gt;](RedditSubredditActivityPeriod.md)
+`positions` | [Array&lt;RedditPositionShare&gt;](RedditPositionShare.md)
+`brandShare` | [Array&lt;RedditBrandShare&gt;](RedditBrandShare.md)
 `requestId` | string
 
 ## Example
@@ -45,6 +49,10 @@ const example = {
   "ageBuckets": null,
   "stores": null,
   "platforms": null,
+  "activity": null,
+  "subredditActivity": null,
+  "positions": null,
+  "brandShare": null,
   "requestId": null,
 } satisfies OwnedMediaSummaryResponse
 
