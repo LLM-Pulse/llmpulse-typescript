@@ -4,12 +4,89 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**createReputationReport**](ReputationStudiesApi.md#createreputationreportoperation) | **POST** /reputation/reports | Start a reputation report |
 | [**getReputationReport**](ReputationStudiesApi.md#getreputationreport) | **GET** /reputation/reports/{id} | Get reputation report scores |
 | [**getStudy**](ReputationStudiesApi.md#getstudy) | **GET** /studies/{id} | Get a custom AI study |
 | [**getStudyReport**](ReputationStudiesApi.md#getstudyreport) | **GET** /studies/{id}/reports/{report_id} | Get custom study report scores |
 | [**listReputationReports**](ReputationStudiesApi.md#listreputationreports) | **GET** /reputation/reports | List reputation reports |
 | [**listStudies**](ReputationStudiesApi.md#liststudies) | **GET** /studies | List custom AI studies |
 
+
+
+## createReputationReport
+
+> ReputationReportCreateResponse createReputationReport(createReputationReportRequest)
+
+Start a reputation report
+
+Starts this month\&#39;s Brand Reputation report, like the Generate button on the Reputation page: 201 with the new report (status pending). When the month already holds a report that did not fail, whether it is still running or finished, nothing new starts and the answer is 200 with created false and that report. With recalculate true it uses the month\&#39;s one manual recalculation instead (the Recalculate This Month button): a fresh run across every analyst model, 201 when it starts, 200 with created false while a report is still running, and ERR_LIMIT_REACHED once the month holds two reports. Generation runs in the background: poll GET /reputation/reports until status is completed, then read the scores with GET /reputation/reports/{id}. ERR_RATE_LIMITED (429, with Retry-After) means another request is starting a report for the same project; retry after a few seconds. recalculate must be true or false and unknown fields are refused (ERR_INVALID_PARAM). Requires reputation monitoring on the account, a &#x60;read_write&#x60; scope API key and, for team members, create permission on Reputation.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  ReputationStudiesApi,
+} from '@llmpulse/sdk';
+import type { CreateReputationReportOperationRequest } from '@llmpulse/sdk';
+
+async function example() {
+  console.log("🚀 Testing @llmpulse/sdk SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new ReputationStudiesApi(config);
+
+  const body = {
+    // CreateReputationReportRequest
+    createReputationReportRequest: ...,
+  } satisfies CreateReputationReportOperationRequest;
+
+  try {
+    const data = await api.createReputationReport(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createReputationReportRequest** | [CreateReputationReportRequest](CreateReputationReportRequest.md) |  | |
+
+### Return type
+
+[**ReputationReportCreateResponse**](ReputationReportCreateResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Nothing new started; the report that already holds this month |  -  |
+| **201** | The new report, status pending |  -  |
+| **403** | API key lacks write permission |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Invalid parameters |  -  |
+| **429** | Another request is starting a report for this project; retry after a few seconds |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 
 ## getReputationReport

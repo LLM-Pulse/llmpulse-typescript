@@ -93,6 +93,7 @@ docs/CreateApiKeyRequest.md
 docs/CreateCollectionRequest.md
 docs/CreateCompetitorRequest.md
 docs/CreateProjectDraftRequest.md
+docs/CreateReputationReportRequest.md
 docs/CreateTeamInvitation201Response.md
 docs/CreateTeamInvitationRequest.md
 docs/CreateTechnicalGeoReportsRequest.md
@@ -255,6 +256,8 @@ docs/RedditPositionShare.md
 docs/RedditSubredditActivityPeriod.md
 docs/RemovePromptTagsRequest.md
 docs/RemoveTeamMember200Response.md
+docs/ReputationReportCreateResponse.md
+docs/ReputationReportSummary.md
 docs/ReputationStudiesApi.md
 docs/RevokeApiKey200Response.md
 docs/RevokeTeamInvitation200Response.md
@@ -462,6 +465,7 @@ src/models/CreateApiKeyRequest.ts
 src/models/CreateCollectionRequest.ts
 src/models/CreateCompetitorRequest.ts
 src/models/CreateProjectDraftRequest.ts
+src/models/CreateReputationReportRequest.ts
 src/models/CreateTeamInvitation201Response.ts
 src/models/CreateTeamInvitationRequest.ts
 src/models/CreateTechnicalGeoReportsRequest.ts
@@ -614,6 +618,8 @@ src/models/RedditPositionShare.ts
 src/models/RedditSubredditActivityPeriod.ts
 src/models/RemovePromptTagsRequest.ts
 src/models/RemoveTeamMember200Response.ts
+src/models/ReputationReportCreateResponse.ts
+src/models/ReputationReportSummary.ts
 src/models/RevokeApiKey200Response.ts
 src/models/RevokeTeamInvitation200Response.ts
 src/models/SampleWebhookPayloads200Response.ts
