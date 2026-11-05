@@ -16,6 +16,7 @@ Name | Type
 `durationMs` | number
 `success` | boolean
 `noResult` | boolean
+`noResultReason` | string
 `fanOutQueries` | Array&lt;string&gt;
 `mentions` | Array&lt;object&gt;
 `citations` | Array&lt;object&gt;
@@ -48,6 +49,7 @@ const example = {
   "durationMs": null,
   "success": null,
   "noResult": null,
+  "noResultReason": null,
   "fanOutQueries": null,
   "mentions": null,
   "citations": null,
