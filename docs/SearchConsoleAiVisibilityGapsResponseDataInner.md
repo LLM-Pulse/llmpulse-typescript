@@ -14,6 +14,7 @@ Name | Type
 `promptId` | number
 `responses` | number
 `brandVisibility` | number
+`matchType` | string
 
 ## Example
 
@@ -30,6 +31,7 @@ const example = {
   "promptId": null,
   "responses": null,
   "brandVisibility": null,
+  "matchType": null,
 } satisfies SearchConsoleAiVisibilityGapsResponseDataInner
 
 console.log(example)
