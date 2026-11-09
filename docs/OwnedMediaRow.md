@@ -1,7 +1,7 @@
 
 # OwnedMediaRow
 
-One row of /dimensions/owned_media. Fields depend on provider and view: videos (title, url, channel_name, channel_handle, channel_url, video_id, thumbnail_url, views, published_at), channels (key, name, handle, url, avatar_url, unique_videos), posts (url, caption, owner_handle, thumbnail_url, content_type, likes, comments, views, posted_at), profiles (handle, name, url, avatar_url, followers, unique_posts), own_citations (url, citation_date, position, model), apps (domain, total_responses, rank, global_rank) and activity (date, entity_id, entity_name, entity_url, yours, citations, plus store and competitor_id where applicable). Activity rows identify a reporting-period start; entity metadata is optional, and entity_id, entity_name and entity_url can be null when unknown. Store and competitor_id appear only where applicable. Every view but own_citations carries citations and yours; videos, channels, posts and profiles carry avg_position.
+One row of /dimensions/owned_media. Fields depend on provider and view: videos (title, url, channel_name, channel_handle, channel_url, video_id, thumbnail_url, views, published_at), channels (key, name, handle, url, avatar_url, unique_videos), posts (url, caption, owner_handle, thumbnail_url, content_type, likes, comments, views, posted_at), profiles (handle, name, url, avatar_url, followers, unique_posts), own_citations (url, citation_date, position, model), apps (domain, total_responses, rank, global_rank), the Trustpilot views profiles (key, name, rating, reviews_count, url, competitor_id), brands (name, domain, key, rating, rating_change, reviews_count, status, url, competitor_id) and reviews (id, brand, rating, title, text, author, published_at, replied, url, competitor_id), and activity (date, entity_id, entity_name, entity_url, yours, citations, plus store and competitor_id where applicable). Activity rows identify a reporting-period start; entity metadata is optional, and entity_id, entity_name and entity_url can be null when unknown. Store and competitor_id appear only where applicable. Every view but own_citations carries citations and yours; videos, channels, posts and profiles carry avg_position.
 
 ## Properties
 
@@ -13,6 +13,15 @@ Name | Type
 `entityUrl` | string
 `store` | string
 `competitorId` | number
+`id` | number
+`brand` | string
+`rating` | number
+`ratingChange` | number
+`reviewsCount` | number
+`status` | string
+`text` | string
+`author` | string
+`replied` | boolean
 `title` | string
 `url` | string
 `channelName` | string
@@ -59,6 +68,15 @@ const example = {
   "entityUrl": null,
   "store": null,
   "competitorId": null,
+  "id": null,
+  "brand": null,
+  "rating": null,
+  "ratingChange": null,
+  "reviewsCount": null,
+  "status": null,
+  "text": null,
+  "author": null,
+  "replied": null,
   "title": null,
   "url": null,
   "channelName": null,
