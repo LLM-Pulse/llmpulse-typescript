@@ -340,6 +340,7 @@ docs/TimeseriesResponse.md
 docs/TimeseriesSeries.md
 docs/TopSourcesResponse.md
 docs/TopSourcesResponseDataInner.md
+docs/TrustpilotReplies.md
 docs/UpdateAnnotationRequest.md
 docs/UpdateCollectionRequest.md
 docs/UpdateCompetitorRequest.md
@@ -694,6 +695,7 @@ src/models/TimeseriesResponse.ts
 src/models/TimeseriesSeries.ts
 src/models/TopSourcesResponse.ts
 src/models/TopSourcesResponseDataInner.ts
+src/models/TrustpilotReplies.ts
 src/models/UpdateAnnotationRequest.ts
 src/models/UpdateCollectionRequest.ts
 src/models/UpdateCompetitorRequest.ts

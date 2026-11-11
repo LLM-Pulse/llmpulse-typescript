@@ -312,6 +312,7 @@ export * from './TimeseriesResponse';
 export * from './TimeseriesSeries';
 export * from './TopSourcesResponse';
 export * from './TopSourcesResponseDataInner';
+export * from './TrustpilotReplies';
 export * from './UpdateAnnotationRequest';
 export * from './UpdateCollectionRequest';
 export * from './UpdateCompetitorRequest';

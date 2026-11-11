@@ -25,6 +25,7 @@ Name | Type
 `subredditActivity` | [Array&lt;RedditSubredditActivityPeriod&gt;](RedditSubredditActivityPeriod.md)
 `positions` | [Array&lt;RedditPositionShare&gt;](RedditPositionShare.md)
 `brandShare` | [Array&lt;RedditBrandShare&gt;](RedditBrandShare.md)
+`replies` | [TrustpilotReplies](TrustpilotReplies.md)
 `requestId` | string
 
 ## Example
@@ -53,6 +54,7 @@ const example = {
   "subredditActivity": null,
   "positions": null,
   "brandShare": null,
+  "replies": null,
   "requestId": null,
 } satisfies OwnedMediaSummaryResponse
 
