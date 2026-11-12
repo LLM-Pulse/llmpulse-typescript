@@ -31,6 +31,7 @@ Name | Type
 `appStoreId` | string
 `createdAt` | Date
 `promptLimit` | number
+`projectType` | string
 `stats` | [ProjectDetailsAllOfStats](ProjectDetailsAllOfStats.md)
 `pitchRun` | [ProjectDetailsAllOfPitchRun](ProjectDetailsAllOfPitchRun.md)
 `dataCoverage` | [ProjectDetailsAllOfDataCoverage](ProjectDetailsAllOfDataCoverage.md)
@@ -71,6 +72,7 @@ const example = {
   "appStoreId": null,
   "createdAt": null,
   "promptLimit": null,
+  "projectType": null,
   "stats": null,
   "pitchRun": null,
   "dataCoverage": null,

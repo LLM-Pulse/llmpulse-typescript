@@ -21,6 +21,7 @@ Name | Type
 `matchingNames` | Array&lt;string&gt;
 `additionalOwnedDomains` | Array&lt;string&gt;
 `promptLimit` | number
+`projectType` | string
 
 ## Example
 
@@ -43,6 +44,7 @@ const example = {
   "matchingNames": null,
   "additionalOwnedDomains": null,
   "promptLimit": null,
+  "projectType": null,
 } satisfies ProjectProfile
 
 console.log(example)

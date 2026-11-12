@@ -29,6 +29,7 @@ Name | Type
 `externalIdentifier` | string
 `executePromptsImmediately` | boolean
 `pitch` | boolean
+`projectType` | string
 
 ## Example
 
@@ -60,6 +61,7 @@ const example = {
   "externalIdentifier": null,
   "executePromptsImmediately": null,
   "pitch": null,
+  "projectType": null,
 } satisfies ProjectCreateRequest
 
 console.log(example)

@@ -19,6 +19,7 @@ Name | Type
 `matchingNames` | Array&lt;string&gt;
 `additionalOwnedDomains` | Array&lt;string&gt;
 `promptLimit` | number
+`projectType` | string
 `pitch` | boolean
 
 ## Example
@@ -41,6 +42,7 @@ const example = {
   "matchingNames": null,
   "additionalOwnedDomains": null,
   "promptLimit": null,
+  "projectType": null,
   "pitch": null,
 } satisfies UpdateProjectRequest
 
