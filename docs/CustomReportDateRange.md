@@ -8,6 +8,8 @@ Name | Type
 ------------ | -------------
 `type` | string
 `rangeDays` | number
+`customFrom` | Date
+`customTo` | Date
 `from` | Date
 `to` | Date
 `label` | string
@@ -21,6 +23,8 @@ import type { CustomReportDateRange } from '@llmpulse/sdk'
 const example = {
   "type": null,
   "rangeDays": null,
+  "customFrom": null,
+  "customTo": null,
   "from": null,
   "to": null,
   "label": null,
