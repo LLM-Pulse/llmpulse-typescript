@@ -192,7 +192,7 @@ async function example() {
     from: 2013-10-20,
     // Date (optional)
     to: 2013-10-20,
-    // number (optional)
+    // number | Keep the annotations filed under this category, one of the project\'s or a system category. Any other id returns 422 ERR_INVALID_PARAM. (optional)
     annotationCategoryId: 56,
     // number (optional)
     page: 56,
@@ -220,7 +220,7 @@ example().catch(console.error);
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
 | **to** | `Date` |  | [Optional] [Defaults to `undefined`] |
-| **annotationCategoryId** | `number` |  | [Optional] [Defaults to `undefined`] |
+| **annotationCategoryId** | `number` | Keep the annotations filed under this category, one of the project\&#39;s or a system category. Any other id returns 422 ERR_INVALID_PARAM. | [Optional] [Defaults to `undefined`] |
 | **page** | `number` |  | [Optional] [Defaults to `1`] |
 | **perPage** | `number` |  | [Optional] [Defaults to `20`] |
 

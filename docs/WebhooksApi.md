@@ -186,7 +186,7 @@ async function example() {
   const api = new WebhooksApi(config);
 
   const body = {
-    // number | Optional project filter (optional)
+    // number | Optional project filter. An id that is not a plain number, or that names no project of the account, returns ERR_PROJECT_NOT_FOUND. (optional)
     projectId: 56,
     // number (optional)
     page: 56,
@@ -211,7 +211,7 @@ example().catch(console.error);
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **projectId** | `number` | Optional project filter | [Optional] [Defaults to `undefined`] |
+| **projectId** | `number` | Optional project filter. An id that is not a plain number, or that names no project of the account, returns ERR_PROJECT_NOT_FOUND. | [Optional] [Defaults to `undefined`] |
 | **page** | `number` |  | [Optional] [Defaults to `undefined`] |
 | **perPage** | `number` | Max 100 | [Optional] [Defaults to `undefined`] |
 
@@ -235,6 +235,7 @@ example().catch(console.error);
 | **200** | OK |  -  |
 | **401** | Authentication failed |  -  |
 | **403** | Endpoint requires a higher plan tier |  -  |
+| **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 

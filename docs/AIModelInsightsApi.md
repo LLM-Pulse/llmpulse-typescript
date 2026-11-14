@@ -38,7 +38,7 @@ async function example() {
   const body = {
     // number | Project ID
     projectId: 56,
-    // number | Number of days to look back (alternative to from/to) (optional)
+    // number | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to. (optional)
     range: 56,
     // Date (optional)
     from: 2013-10-20T19:20:30+01:00,
@@ -56,7 +56,7 @@ async function example() {
     promptType: promptType_example,
     // 'brand' | 'brand_other' | 'non_brand' | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. (optional)
     brandKind: brandKind_example,
-    // string | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) (optional)
+    // string | Comma-separated competitor IDs (a malformed or unknown ID returns ERR_INVALID_PARAM) (optional)
     competitors: competitors_example,
   } satisfies GetAiModelInsightsSummaryRequest;
 
@@ -78,7 +78,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
-| **range** | `number` | Number of days to look back (alternative to from/to) | [Optional] [Defaults to `undefined`] |
+| **range** | `number` | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to. | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
 | **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
 | **granularity** | `day`, `week`, `month` |  | [Optional] [Defaults to `undefined`] [Enum: day, week, month] |
@@ -87,7 +87,7 @@ example().catch(console.error);
 | **languageCode** | `string` | One ISO language code or a comma-separated list (e.g. en,es,de) | [Optional] [Defaults to `undefined`] |
 | **promptType** | `string` | One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [Optional] [Defaults to `undefined`] |
 | **brandKind** | `brand`, `brand_other`, `non_brand` | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [Optional] [Defaults to `undefined`] [Enum: brand, brand_other, non_brand] |
-| **competitors** | `string` | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) | [Optional] [Defaults to `undefined`] |
+| **competitors** | `string` | Comma-separated competitor IDs (a malformed or unknown ID returns ERR_INVALID_PARAM) | [Optional] [Defaults to `undefined`] |
 
 ### Return type
 
@@ -137,7 +137,7 @@ async function example() {
   const body = {
     // number | Project ID
     projectId: 56,
-    // number | Number of days to look back (alternative to from/to) (optional)
+    // number | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to. (optional)
     range: 56,
     // Date (optional)
     from: 2013-10-20T19:20:30+01:00,
@@ -181,7 +181,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
-| **range** | `number` | Number of days to look back (alternative to from/to) | [Optional] [Defaults to `undefined`] |
+| **range** | `number` | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to. | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
 | **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
 | **granularity** | `day`, `week`, `month` |  | [Optional] [Defaults to `undefined`] [Enum: day, week, month] |
@@ -242,7 +242,7 @@ async function example() {
   const body = {
     // number | Project ID
     projectId: 56,
-    // number | Number of days to look back (alternative to from/to) (optional)
+    // number | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to. (optional)
     range: 56,
     // Date (optional)
     from: 2013-10-20T19:20:30+01:00,
@@ -284,7 +284,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
-| **range** | `number` | Number of days to look back (alternative to from/to) | [Optional] [Defaults to `undefined`] |
+| **range** | `number` | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to. | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
 | **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
 | **granularity** | `day`, `week`, `month` |  | [Optional] [Defaults to `undefined`] [Enum: day, week, month] |

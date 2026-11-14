@@ -40,7 +40,7 @@ async function example() {
   const body = {
     // number | Project ID
     projectId: 56,
-    // number | Number of days to look back, today included. Required unless from is given: a request with neither range nor from returns 422 ERR_INVALID_PARAM. (optional)
+    // number | Number of days to look back, today included. Required unless from is given, and from/to win when both are given: a request with neither range nor from, or a range that is not a plain positive number (even beside from/to), returns 422 ERR_INVALID_PARAM. (optional)
     range: 56,
     // Date | Start of the window, instead of range (to then defaults to the end of today). Required unless range is given. (optional)
     from: 2013-10-20T19:20:30+01:00,
@@ -56,7 +56,7 @@ async function example() {
     countryCode: countryCode_example,
     // string | One ISO language code or a comma-separated list (e.g. en,es,de) (optional)
     languageCode: languageCode_example,
-    // number | Filter by prompt ID (optional)
+    // number | Filter by prompt ID. An id that is not a plain positive number, or that names no prompt of the project, returns 422 ERR_INVALID_PARAM. (optional)
     prompt: 56,
     // string | One prompt type or a comma-separated list: informational, navigational, commercial, transactional (optional)
     promptType: promptType_example,
@@ -92,7 +92,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
-| **range** | `number` | Number of days to look back, today included. Required unless from is given: a request with neither range nor from returns 422 ERR_INVALID_PARAM. | [Optional] [Defaults to `undefined`] |
+| **range** | `number` | Number of days to look back, today included. Required unless from is given, and from/to win when both are given: a request with neither range nor from, or a range that is not a plain positive number (even beside from/to), returns 422 ERR_INVALID_PARAM. | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` | Start of the window, instead of range (to then defaults to the end of today). Required unless range is given. | [Optional] [Defaults to `undefined`] |
 | **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
 | **breakdown** | `model` | Add per-(prompt, model) rows to the output | [Optional] [Defaults to `undefined`] [Enum: model] |
@@ -100,7 +100,7 @@ example().catch(console.error);
 | **collectionId** | `string` | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [Optional] [Defaults to `undefined`] |
 | **countryCode** | `string` | One ISO country code or a comma-separated list (e.g. US,GB,DE) | [Optional] [Defaults to `undefined`] |
 | **languageCode** | `string` | One ISO language code or a comma-separated list (e.g. en,es,de) | [Optional] [Defaults to `undefined`] |
-| **prompt** | `number` | Filter by prompt ID | [Optional] [Defaults to `undefined`] |
+| **prompt** | `number` | Filter by prompt ID. An id that is not a plain positive number, or that names no prompt of the project, returns 422 ERR_INVALID_PARAM. | [Optional] [Defaults to `undefined`] |
 | **promptType** | `string` | One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [Optional] [Defaults to `undefined`] |
 | **brandKind** | `brand`, `brand_other`, `non_brand` | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [Optional] [Defaults to `undefined`] [Enum: brand, brand_other, non_brand] |
 | **sort** | `responses`, `mentions`, `citations`, `mention_rate`, `visibility`, `citation_rate`, `avg_mention_position`, `avg_position` |  | [Optional] [Defaults to `&#39;responses&#39;`] [Enum: responses, mentions, citations, mention_rate, visibility, citation_rate, avg_mention_position, avg_position] |
@@ -160,7 +160,7 @@ async function example() {
   const body = {
     // number | Project ID
     projectId: 56,
-    // number | Number of days to look back, today included. Required unless from is given: a request with neither range nor from returns 422 ERR_INVALID_PARAM. (optional)
+    // number | Number of days to look back, today included. Required unless from is given, and from/to win when both are given: a request with neither range nor from, or a range that is not a plain positive number (even beside from/to), returns 422 ERR_INVALID_PARAM. (optional)
     range: 56,
     // Date | Start of the window, instead of range (to then defaults to the end of today). Required unless range is given. (optional)
     from: 2013-10-20T19:20:30+01:00,
@@ -168,13 +168,13 @@ async function example() {
     to: 2013-10-20T19:20:30+01:00,
     // 'day' | 'week' | 'month' (optional)
     granularity: granularity_example,
-    // string | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) (optional)
+    // string | Comma-separated competitor IDs (a malformed or unknown ID returns ERR_INVALID_PARAM) (optional)
     competitors: competitors_example,
     // 'chatgpt' | 'perplexity' | 'ai_mode' | 'ai_overview' | 'gemini' | 'copilot' | 'amazon_rufus' | 'claude' | 'grok' | 'deepseek' | 'naver_ai' | 'baidu_ai' | 'meta_ai' | 'naver_ai_tab' | 'qwen' | 'doubao' | 'bing_ai_mode' | Filter by one AI model. It must be a model enabled for the API key\'s user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. The legacy values google-ai-mode and google-ai-overview are also accepted, as ai_mode and ai_overview. (optional)
     model: model_example,
     // string | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. (optional)
     collectionId: 12,34,
-    // number | Filter by prompt ID (optional)
+    // number | Filter by prompt ID. An id that is not a plain positive number, or that names no prompt of the project, returns 422 ERR_INVALID_PARAM. (optional)
     prompt: 56,
     // string | One prompt type or a comma-separated list: informational, navigational, commercial, transactional (optional)
     promptType: promptType_example,
@@ -182,7 +182,7 @@ async function example() {
     brandKind: brandKind_example,
     // 'flat' | 'csv' | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \'flat\' returns the same metadata plus \'columns\' and \'rows\'; \'csv\' returns those rows as text/csv. Errors are always returned as JSON. (optional)
     output: output_example,
-    // 'over_time' | 'current' | 'breakdown' | Which Share of Voice projection to flatten. Only valid together with \'output\'. \'over_time\' (default) is one row per date and actor, \'current\' the ranked snapshot, \'breakdown\' the Top 4 plus Others. (optional)
+    // 'over_time' | 'current' | 'breakdown' | Which Share of Voice projection to flatten. It applies only together with \'output\'; an unknown value returns 422 ERR_INVALID_PARAM with or without it. \'over_time\' (default) is one row per date and actor, \'current\' the ranked snapshot, \'breakdown\' the Top 4 plus Others. (optional)
     view: view_example,
     // string | One ISO country code or a comma-separated list (e.g. US,GB,DE) (optional)
     countryCode: countryCode_example,
@@ -210,18 +210,18 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
-| **range** | `number` | Number of days to look back, today included. Required unless from is given: a request with neither range nor from returns 422 ERR_INVALID_PARAM. | [Optional] [Defaults to `undefined`] |
+| **range** | `number` | Number of days to look back, today included. Required unless from is given, and from/to win when both are given: a request with neither range nor from, or a range that is not a plain positive number (even beside from/to), returns 422 ERR_INVALID_PARAM. | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` | Start of the window, instead of range (to then defaults to the end of today). Required unless range is given. | [Optional] [Defaults to `undefined`] |
 | **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
 | **granularity** | `day`, `week`, `month` |  | [Optional] [Defaults to `undefined`] [Enum: day, week, month] |
-| **competitors** | `string` | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) | [Optional] [Defaults to `undefined`] |
+| **competitors** | `string` | Comma-separated competitor IDs (a malformed or unknown ID returns ERR_INVALID_PARAM) | [Optional] [Defaults to `undefined`] |
 | **model** | `chatgpt`, `perplexity`, `ai_mode`, `ai_overview`, `gemini`, `copilot`, `amazon_rufus`, `claude`, `grok`, `deepseek`, `naver_ai`, `baidu_ai`, `meta_ai`, `naver_ai_tab`, `qwen`, `doubao`, `bing_ai_mode` | Filter by one AI model. It must be a model enabled for the API key\&#39;s user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. The legacy values google-ai-mode and google-ai-overview are also accepted, as ai_mode and ai_overview. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, ai_mode, ai_overview, gemini, copilot, amazon_rufus, claude, grok, deepseek, naver_ai, baidu_ai, meta_ai, naver_ai_tab, qwen, doubao, bing_ai_mode] |
 | **collectionId** | `string` | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [Optional] [Defaults to `undefined`] |
-| **prompt** | `number` | Filter by prompt ID | [Optional] [Defaults to `undefined`] |
+| **prompt** | `number` | Filter by prompt ID. An id that is not a plain positive number, or that names no prompt of the project, returns 422 ERR_INVALID_PARAM. | [Optional] [Defaults to `undefined`] |
 | **promptType** | `string` | One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [Optional] [Defaults to `undefined`] |
 | **brandKind** | `brand`, `brand_other`, `non_brand` | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [Optional] [Defaults to `undefined`] [Enum: brand, brand_other, non_brand] |
 | **output** | `flat`, `csv` | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \&#39;flat\&#39; returns the same metadata plus \&#39;columns\&#39; and \&#39;rows\&#39;; \&#39;csv\&#39; returns those rows as text/csv. Errors are always returned as JSON. | [Optional] [Defaults to `undefined`] [Enum: flat, csv] |
-| **view** | `over_time`, `current`, `breakdown` | Which Share of Voice projection to flatten. Only valid together with \&#39;output\&#39;. \&#39;over_time\&#39; (default) is one row per date and actor, \&#39;current\&#39; the ranked snapshot, \&#39;breakdown\&#39; the Top 4 plus Others. | [Optional] [Defaults to `&#39;over_time&#39;`] [Enum: over_time, current, breakdown] |
+| **view** | `over_time`, `current`, `breakdown` | Which Share of Voice projection to flatten. It applies only together with \&#39;output\&#39;; an unknown value returns 422 ERR_INVALID_PARAM with or without it. \&#39;over_time\&#39; (default) is one row per date and actor, \&#39;current\&#39; the ranked snapshot, \&#39;breakdown\&#39; the Top 4 plus Others. | [Optional] [Defaults to `&#39;over_time&#39;`] [Enum: over_time, current, breakdown] |
 | **countryCode** | `string` | One ISO country code or a comma-separated list (e.g. US,GB,DE) | [Optional] [Defaults to `undefined`] |
 | **languageCode** | `string` | One ISO language code or a comma-separated list (e.g. en,es,de) | [Optional] [Defaults to `undefined`] |
 | **includeProject** | `boolean` |  | [Optional] [Defaults to `true`] |
@@ -276,23 +276,23 @@ async function example() {
   const body = {
     // number | Project ID
     projectId: 56,
-    // string | Comma-separated list of metrics: mentions, citations, responses, mention_rate, visibility (alias for mention_rate), weighted_visibility, ai_visibility_score (alias for weighted_visibility), citation_rate, avg_position, avg_mention_position, net_sentiment, sentiment_very_positive, sentiment_positive, sentiment_neutral, sentiment_negative, sentiment_very_negative. Citations and citation_rate include visible citations and background source references; avg_position uses visible citations only. (optional)
+    // string | Comma-separated list of metrics: mentions, citations, responses, mention_rate, visibility (alias for mention_rate), weighted_visibility, ai_visibility_score (alias for weighted_visibility), citation_rate, avg_position, avg_mention_position, net_sentiment, sentiment_very_positive, sentiment_positive, sentiment_neutral, sentiment_negative, sentiment_very_negative. Citations and citation_rate include visible citations and background source references; avg_position uses visible citations only. weighted_visibility (ai_visibility_score) is position-weighted points divided by the days with responses, per period and for the summary total. (optional)
     metrics: metrics_example,
     // 'day' | 'week' | 'month' (optional)
     granularity: granularity_example,
-    // number | Number of days to look back, today included. Required unless from is given: a request with neither range nor from returns 422 ERR_INVALID_PARAM. (optional)
+    // number | Number of days to look back, today included. Required unless from is given, and from/to win when both are given: a request with neither range nor from, or a range that is not a plain positive number (even beside from/to), returns 422 ERR_INVALID_PARAM. (optional)
     range: 56,
     // Date | Start of the window, instead of range (to then defaults to the end of today). Required unless range is given. (optional)
     from: 2013-10-20T19:20:30+01:00,
     // Date | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. (optional)
     to: 2013-10-20T19:20:30+01:00,
-    // string | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) (optional)
+    // string | Comma-separated competitor IDs (a malformed or unknown ID returns ERR_INVALID_PARAM) (optional)
     competitors: competitors_example,
     // 'chatgpt' | 'perplexity' | 'ai_mode' | 'ai_overview' | 'gemini' | 'copilot' | 'amazon_rufus' | 'claude' | 'grok' | 'deepseek' | 'naver_ai' | 'baidu_ai' | 'meta_ai' | 'naver_ai_tab' | 'qwen' | 'doubao' | 'bing_ai_mode' | Filter by one AI model. It must be a model enabled for the API key\'s user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. The legacy values google-ai-mode and google-ai-overview are also accepted, as ai_mode and ai_overview. (optional)
     model: model_example,
     // string | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. (optional)
     collectionId: 12,34,
-    // number | Filter by prompt ID (optional)
+    // number | Filter by prompt ID. An id that is not a plain positive number, or that names no prompt of the project, returns 422 ERR_INVALID_PARAM. (optional)
     prompt: 56,
     // string | One prompt type or a comma-separated list: informational, navigational, commercial, transactional (optional)
     promptType: promptType_example,
@@ -326,15 +326,15 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
-| **metrics** | `string` | Comma-separated list of metrics: mentions, citations, responses, mention_rate, visibility (alias for mention_rate), weighted_visibility, ai_visibility_score (alias for weighted_visibility), citation_rate, avg_position, avg_mention_position, net_sentiment, sentiment_very_positive, sentiment_positive, sentiment_neutral, sentiment_negative, sentiment_very_negative. Citations and citation_rate include visible citations and background source references; avg_position uses visible citations only. | [Optional] [Defaults to `undefined`] |
+| **metrics** | `string` | Comma-separated list of metrics: mentions, citations, responses, mention_rate, visibility (alias for mention_rate), weighted_visibility, ai_visibility_score (alias for weighted_visibility), citation_rate, avg_position, avg_mention_position, net_sentiment, sentiment_very_positive, sentiment_positive, sentiment_neutral, sentiment_negative, sentiment_very_negative. Citations and citation_rate include visible citations and background source references; avg_position uses visible citations only. weighted_visibility (ai_visibility_score) is position-weighted points divided by the days with responses, per period and for the summary total. | [Optional] [Defaults to `undefined`] |
 | **granularity** | `day`, `week`, `month` |  | [Optional] [Defaults to `undefined`] [Enum: day, week, month] |
-| **range** | `number` | Number of days to look back, today included. Required unless from is given: a request with neither range nor from returns 422 ERR_INVALID_PARAM. | [Optional] [Defaults to `undefined`] |
+| **range** | `number` | Number of days to look back, today included. Required unless from is given, and from/to win when both are given: a request with neither range nor from, or a range that is not a plain positive number (even beside from/to), returns 422 ERR_INVALID_PARAM. | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` | Start of the window, instead of range (to then defaults to the end of today). Required unless range is given. | [Optional] [Defaults to `undefined`] |
 | **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
-| **competitors** | `string` | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) | [Optional] [Defaults to `undefined`] |
+| **competitors** | `string` | Comma-separated competitor IDs (a malformed or unknown ID returns ERR_INVALID_PARAM) | [Optional] [Defaults to `undefined`] |
 | **model** | `chatgpt`, `perplexity`, `ai_mode`, `ai_overview`, `gemini`, `copilot`, `amazon_rufus`, `claude`, `grok`, `deepseek`, `naver_ai`, `baidu_ai`, `meta_ai`, `naver_ai_tab`, `qwen`, `doubao`, `bing_ai_mode` | Filter by one AI model. It must be a model enabled for the API key\&#39;s user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. The legacy values google-ai-mode and google-ai-overview are also accepted, as ai_mode and ai_overview. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, ai_mode, ai_overview, gemini, copilot, amazon_rufus, claude, grok, deepseek, naver_ai, baidu_ai, meta_ai, naver_ai_tab, qwen, doubao, bing_ai_mode] |
 | **collectionId** | `string` | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [Optional] [Defaults to `undefined`] |
-| **prompt** | `number` | Filter by prompt ID | [Optional] [Defaults to `undefined`] |
+| **prompt** | `number` | Filter by prompt ID. An id that is not a plain positive number, or that names no prompt of the project, returns 422 ERR_INVALID_PARAM. | [Optional] [Defaults to `undefined`] |
 | **promptType** | `string` | One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [Optional] [Defaults to `undefined`] |
 | **brandKind** | `brand`, `brand_other`, `non_brand` | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [Optional] [Defaults to `undefined`] [Enum: brand, brand_other, non_brand] |
 | **output** | `flat`, `csv` | Rectangular output for BI tools (Tableau, Excel, Sheets, ELT). Omit for the default nested JSON. \&#39;flat\&#39; returns the same metadata plus \&#39;columns\&#39; and \&#39;rows\&#39;; \&#39;csv\&#39; returns those rows as text/csv. Errors are always returned as JSON. | [Optional] [Defaults to `undefined`] [Enum: flat, csv] |
@@ -394,17 +394,17 @@ async function example() {
   const body = {
     // number | Project ID
     projectId: 56,
-    // string | Comma-separated list of metrics: mentions, citations, responses, mention_rate, visibility (alias for mention_rate), weighted_visibility, ai_visibility_score (alias for weighted_visibility), citation_rate, avg_position, avg_mention_position, net_sentiment, sentiment_very_positive, sentiment_positive, sentiment_neutral, sentiment_negative, sentiment_very_negative. Citations and citation_rate include visible citations and background source references; avg_position uses visible citations only. (optional)
+    // string | Comma-separated list of metrics: mentions, citations, responses, mention_rate, visibility (alias for mention_rate), weighted_visibility, ai_visibility_score (alias for weighted_visibility), citation_rate, avg_position, avg_mention_position, net_sentiment, sentiment_very_positive, sentiment_positive, sentiment_neutral, sentiment_negative, sentiment_very_negative. Citations and citation_rate include visible citations and background source references; avg_position uses visible citations only. weighted_visibility (ai_visibility_score) is position-weighted points divided by the days with responses, per period and for the summary total. (optional)
     metrics: metrics_example,
     // 'day' | 'week' | 'month' (optional)
     granularity: granularity_example,
-    // number | Number of days to look back, today included. Required unless from is given: a request with neither range nor from returns 422 ERR_INVALID_PARAM. (optional)
+    // number | Number of days to look back, today included. Required unless from is given, and from/to win when both are given: a request with neither range nor from, or a range that is not a plain positive number (even beside from/to), returns 422 ERR_INVALID_PARAM. (optional)
     range: 56,
     // Date | Start of the window, instead of range (to then defaults to the end of today). Required unless range is given. (optional)
     from: 2013-10-20T19:20:30+01:00,
     // Date | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. (optional)
     to: 2013-10-20T19:20:30+01:00,
-    // string | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) (optional)
+    // string | Comma-separated competitor IDs (a malformed or unknown ID returns ERR_INVALID_PARAM) (optional)
     competitors: competitors_example,
     // 'chatgpt' | 'perplexity' | 'ai_mode' | 'ai_overview' | 'gemini' | 'copilot' | 'amazon_rufus' | 'claude' | 'grok' | 'deepseek' | 'naver_ai' | 'baidu_ai' | 'meta_ai' | 'naver_ai_tab' | 'qwen' | 'doubao' | 'bing_ai_mode' | Filter by one AI model. It must be a model enabled for the API key\'s user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. The legacy values google-ai-mode and google-ai-overview are also accepted, as ai_mode and ai_overview. (optional)
     model: model_example,
@@ -414,7 +414,7 @@ async function example() {
     countryCode: countryCode_example,
     // string | One ISO language code or a comma-separated list (e.g. en,es,de) (optional)
     languageCode: languageCode_example,
-    // number | Filter by prompt ID (optional)
+    // number | Filter by prompt ID. An id that is not a plain positive number, or that names no prompt of the project, returns 422 ERR_INVALID_PARAM. (optional)
     prompt: 56,
     // string | One prompt type or a comma-separated list: informational, navigational, commercial, transactional (optional)
     promptType: promptType_example,
@@ -444,17 +444,17 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
-| **metrics** | `string` | Comma-separated list of metrics: mentions, citations, responses, mention_rate, visibility (alias for mention_rate), weighted_visibility, ai_visibility_score (alias for weighted_visibility), citation_rate, avg_position, avg_mention_position, net_sentiment, sentiment_very_positive, sentiment_positive, sentiment_neutral, sentiment_negative, sentiment_very_negative. Citations and citation_rate include visible citations and background source references; avg_position uses visible citations only. | [Optional] [Defaults to `undefined`] |
+| **metrics** | `string` | Comma-separated list of metrics: mentions, citations, responses, mention_rate, visibility (alias for mention_rate), weighted_visibility, ai_visibility_score (alias for weighted_visibility), citation_rate, avg_position, avg_mention_position, net_sentiment, sentiment_very_positive, sentiment_positive, sentiment_neutral, sentiment_negative, sentiment_very_negative. Citations and citation_rate include visible citations and background source references; avg_position uses visible citations only. weighted_visibility (ai_visibility_score) is position-weighted points divided by the days with responses, per period and for the summary total. | [Optional] [Defaults to `undefined`] |
 | **granularity** | `day`, `week`, `month` |  | [Optional] [Defaults to `undefined`] [Enum: day, week, month] |
-| **range** | `number` | Number of days to look back, today included. Required unless from is given: a request with neither range nor from returns 422 ERR_INVALID_PARAM. | [Optional] [Defaults to `undefined`] |
+| **range** | `number` | Number of days to look back, today included. Required unless from is given, and from/to win when both are given: a request with neither range nor from, or a range that is not a plain positive number (even beside from/to), returns 422 ERR_INVALID_PARAM. | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` | Start of the window, instead of range (to then defaults to the end of today). Required unless range is given. | [Optional] [Defaults to `undefined`] |
 | **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
-| **competitors** | `string` | Comma-separated competitor IDs (unknown IDs return ERR_INVALID_PARAM) | [Optional] [Defaults to `undefined`] |
+| **competitors** | `string` | Comma-separated competitor IDs (a malformed or unknown ID returns ERR_INVALID_PARAM) | [Optional] [Defaults to `undefined`] |
 | **model** | `chatgpt`, `perplexity`, `ai_mode`, `ai_overview`, `gemini`, `copilot`, `amazon_rufus`, `claude`, `grok`, `deepseek`, `naver_ai`, `baidu_ai`, `meta_ai`, `naver_ai_tab`, `qwen`, `doubao`, `bing_ai_mode` | Filter by one AI model. It must be a model enabled for the API key\&#39;s user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. The legacy values google-ai-mode and google-ai-overview are also accepted, as ai_mode and ai_overview. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, ai_mode, ai_overview, gemini, copilot, amazon_rufus, claude, grok, deepseek, naver_ai, baidu_ai, meta_ai, naver_ai_tab, qwen, doubao, bing_ai_mode] |
 | **collectionId** | `string` | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [Optional] [Defaults to `undefined`] |
 | **countryCode** | `string` | One ISO country code or a comma-separated list (e.g. US,GB,DE) | [Optional] [Defaults to `undefined`] |
 | **languageCode** | `string` | One ISO language code or a comma-separated list (e.g. en,es,de) | [Optional] [Defaults to `undefined`] |
-| **prompt** | `number` | Filter by prompt ID | [Optional] [Defaults to `undefined`] |
+| **prompt** | `number` | Filter by prompt ID. An id that is not a plain positive number, or that names no prompt of the project, returns 422 ERR_INVALID_PARAM. | [Optional] [Defaults to `undefined`] |
 | **promptType** | `string` | One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [Optional] [Defaults to `undefined`] |
 | **brandKind** | `brand`, `brand_other`, `non_brand` | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [Optional] [Defaults to `undefined`] [Enum: brand, brand_other, non_brand] |
 | **includeProject** | `boolean` |  | [Optional] [Defaults to `true`] |
@@ -513,7 +513,7 @@ async function example() {
   const body = {
     // number | Project ID
     projectId: 56,
-    // number | Number of days to look back, today included. Required unless from is given: a request with neither range nor from returns 422 ERR_INVALID_PARAM. (optional)
+    // number | Number of days to look back, today included. Required unless from is given, and from/to win when both are given: a request with neither range nor from, or a range that is not a plain positive number (even beside from/to), returns 422 ERR_INVALID_PARAM. (optional)
     range: 56,
     // Date | Start of the window, instead of range (to then defaults to the end of today). Required unless range is given. (optional)
     from: 2013-10-20T19:20:30+01:00,
@@ -527,7 +527,7 @@ async function example() {
     countryCode: countryCode_example,
     // string | One ISO language code or a comma-separated list (e.g. en,es,de) (optional)
     languageCode: languageCode_example,
-    // number | Filter by prompt ID (optional)
+    // number | Filter by prompt ID. An id that is not a plain positive number, or that names no prompt of the project, returns 422 ERR_INVALID_PARAM. (optional)
     prompt: 56,
     // string | One prompt type or a comma-separated list: informational, navigational, commercial, transactional (optional)
     promptType: promptType_example,
@@ -567,14 +567,14 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
-| **range** | `number` | Number of days to look back, today included. Required unless from is given: a request with neither range nor from returns 422 ERR_INVALID_PARAM. | [Optional] [Defaults to `undefined`] |
+| **range** | `number` | Number of days to look back, today included. Required unless from is given, and from/to win when both are given: a request with neither range nor from, or a range that is not a plain positive number (even beside from/to), returns 422 ERR_INVALID_PARAM. | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` | Start of the window, instead of range (to then defaults to the end of today). Required unless range is given. | [Optional] [Defaults to `undefined`] |
 | **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
 | **model** | `chatgpt`, `perplexity`, `ai_mode`, `ai_overview`, `gemini`, `copilot`, `amazon_rufus`, `claude`, `grok`, `deepseek`, `naver_ai`, `baidu_ai`, `meta_ai`, `naver_ai_tab`, `qwen`, `doubao`, `bing_ai_mode` | Filter by one AI model. It must be a model enabled for the API key\&#39;s user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. The legacy values google-ai-mode and google-ai-overview are also accepted, as ai_mode and ai_overview. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, ai_mode, ai_overview, gemini, copilot, amazon_rufus, claude, grok, deepseek, naver_ai, baidu_ai, meta_ai, naver_ai_tab, qwen, doubao, bing_ai_mode] |
 | **collectionId** | `string` | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [Optional] [Defaults to `undefined`] |
 | **countryCode** | `string` | One ISO country code or a comma-separated list (e.g. US,GB,DE) | [Optional] [Defaults to `undefined`] |
 | **languageCode** | `string` | One ISO language code or a comma-separated list (e.g. en,es,de) | [Optional] [Defaults to `undefined`] |
-| **prompt** | `number` | Filter by prompt ID | [Optional] [Defaults to `undefined`] |
+| **prompt** | `number` | Filter by prompt ID. An id that is not a plain positive number, or that names no prompt of the project, returns 422 ERR_INVALID_PARAM. | [Optional] [Defaults to `undefined`] |
 | **promptType** | `string` | One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [Optional] [Defaults to `undefined`] |
 | **brandKind** | `brand`, `brand_other`, `non_brand` | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [Optional] [Defaults to `undefined`] [Enum: brand, brand_other, non_brand] |
 | **sort** | `total_responses`, `avg_mention_rate`, `avg_visibility` |  | [Optional] [Defaults to `&#39;total_responses&#39;`] [Enum: total_responses, avg_mention_rate, avg_visibility] |

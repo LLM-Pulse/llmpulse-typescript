@@ -40,7 +40,7 @@ async function example() {
   const body = {
     // number | Project ID
     projectId: 56,
-    // number | Number of days to look back (alternative to from/to) (optional)
+    // number | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to. (optional)
     range: 56,
     // Date (optional)
     from: 2013-10-20T19:20:30+01:00,
@@ -74,7 +74,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
-| **range** | `number` | Number of days to look back (alternative to from/to) | [Optional] [Defaults to `undefined`] |
+| **range** | `number` | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to. | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
 | **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
 | **bot** | `string` | Filter by bot slug (e.g. gptbot, claudebot, perplexitybot) | [Optional] [Defaults to `undefined`] |
@@ -134,7 +134,7 @@ async function example() {
   const body = {
     // number | Project ID
     projectId: 56,
-    // number | Number of days to look back (alternative to from/to) (optional)
+    // number | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to. (optional)
     range: 56,
     // Date (optional)
     from: 2013-10-20T19:20:30+01:00,
@@ -164,7 +164,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
-| **range** | `number` | Number of days to look back (alternative to from/to) | [Optional] [Defaults to `undefined`] |
+| **range** | `number` | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to. | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
 | **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
 | **source** | `string` | Filter by a single AI source slug (e.g. chatgpt, perplexity, gemini, claude) | [Optional] [Defaults to `undefined`] |

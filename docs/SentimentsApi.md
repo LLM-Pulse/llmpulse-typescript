@@ -39,7 +39,7 @@ async function example() {
   const body = {
     // number | Project ID
     projectId: 56,
-    // number | Number of days to look back, today included (default 28, like the Sentiment page). Ignored when from or to is given. (optional)
+    // number | Number of days to look back, today included (default 28, like the Sentiment page). from or to win over it, but a value that is not a plain positive number returns 422 ERR_INVALID_PARAM even beside them. (optional)
     range: 56,
     // Date (optional)
     from: 2013-10-20T19:20:30+01:00,
@@ -93,7 +93,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
-| **range** | `number` | Number of days to look back, today included (default 28, like the Sentiment page). Ignored when from or to is given. | [Optional] [Defaults to `undefined`] |
+| **range** | `number` | Number of days to look back, today included (default 28, like the Sentiment page). from or to win over it, but a value that is not a plain positive number returns 422 ERR_INVALID_PARAM even beside them. | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
 | **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
 | **model** | `chatgpt`, `perplexity`, `ai_mode`, `ai_overview`, `gemini`, `copilot`, `amazon_rufus`, `claude`, `grok`, `deepseek`, `naver_ai`, `baidu_ai`, `meta_ai`, `naver_ai_tab`, `qwen`, `doubao`, `bing_ai_mode` | Filter by one AI model. It must be a model enabled for the API key\&#39;s user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, ai_mode, ai_overview, gemini, copilot, amazon_rufus, claude, grok, deepseek, naver_ai, baidu_ai, meta_ai, naver_ai_tab, qwen, doubao, bing_ai_mode] |
@@ -163,7 +163,7 @@ async function example() {
   const body = {
     // number | Project ID
     projectId: 56,
-    // number | Number of days to look back, today included (default 28, like the Sentiment page). Ignored when from or to is given. (optional)
+    // number | Number of days to look back, today included (default 28, like the Sentiment page). from or to win over it, but a value that is not a plain positive number returns 422 ERR_INVALID_PARAM even beside them. (optional)
     range: 56,
     // Date (optional)
     from: 2013-10-20T19:20:30+01:00,
@@ -217,7 +217,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
-| **range** | `number` | Number of days to look back, today included (default 28, like the Sentiment page). Ignored when from or to is given. | [Optional] [Defaults to `undefined`] |
+| **range** | `number` | Number of days to look back, today included (default 28, like the Sentiment page). from or to win over it, but a value that is not a plain positive number returns 422 ERR_INVALID_PARAM even beside them. | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
 | **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
 | **model** | `chatgpt`, `perplexity`, `ai_mode`, `ai_overview`, `gemini`, `copilot`, `amazon_rufus`, `claude`, `grok`, `deepseek`, `naver_ai`, `baidu_ai`, `meta_ai`, `naver_ai_tab`, `qwen`, `doubao`, `bing_ai_mode` | Filter by one AI model. It must be a model enabled for the API key\&#39;s user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, ai_mode, ai_overview, gemini, copilot, amazon_rufus, claude, grok, deepseek, naver_ai, baidu_ai, meta_ai, naver_ai_tab, qwen, doubao, bing_ai_mode] |
@@ -362,13 +362,13 @@ async function example() {
   const body = {
     // number | Project ID
     projectId: 56,
-    // number (optional)
+    // number | Keep the sentiments about this competitor. An id that is not a plain positive number, or that names no competitor of the project, returns 422 ERR_INVALID_PARAM. (optional)
     competitorId: 56,
-    // boolean (optional)
+    // boolean | true keeps only the sentiments about your own brand. (optional)
     brandOnly: true,
     // string | One sentiment level or a comma-separated list: very_positive, positive, neutral, negative, very_negative (optional)
     analysis: analysis_example,
-    // 'chatgpt' | 'perplexity' | 'ai_mode' | 'ai_overview' | 'gemini' | 'copilot' | 'amazon_rufus' | 'claude' | 'grok' | 'deepseek' | 'naver_ai' | 'baidu_ai' | 'meta_ai' | 'naver_ai_tab' | 'qwen' | 'doubao' | 'bing_ai_mode' | Filter by one AI model. Here an unknown value, or a model the API key\'s user has not enabled, is ignored rather than rejected: the request succeeds and returns the records of every enabled model, as if model were omitted. (optional)
+    // 'chatgpt' | 'perplexity' | 'ai_mode' | 'ai_overview' | 'gemini' | 'copilot' | 'amazon_rufus' | 'claude' | 'grok' | 'deepseek' | 'naver_ai' | 'baidu_ai' | 'meta_ai' | 'naver_ai_tab' | 'qwen' | 'doubao' | 'bing_ai_mode' | Filter by one AI model. It must be a model enabled for the API key\'s user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. (optional)
     model: model_example,
     // string | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. (optional)
     collectionId: 12,34,
@@ -376,9 +376,9 @@ async function example() {
     countryCode: countryCode_example,
     // string | One ISO language code or a comma-separated list (e.g. en,es,de) (optional)
     languageCode: languageCode_example,
-    // Date (optional)
+    // Date | Start of the window. Sent alone, the window runs from it to the end of today. A from later than to, or a window longer than 1,500 days, returns 422 ERR_INVALID_PARAM. (optional)
     from: 2013-10-20T19:20:30+01:00,
-    // Date | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. (optional)
+    // Date | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. Sent without from, the window covers the 30 days that end on it. (optional)
     to: 2013-10-20T19:20:30+01:00,
     // number (optional)
     page: 56,
@@ -404,15 +404,15 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
-| **competitorId** | `number` |  | [Optional] [Defaults to `undefined`] |
-| **brandOnly** | `boolean` |  | [Optional] [Defaults to `undefined`] |
+| **competitorId** | `number` | Keep the sentiments about this competitor. An id that is not a plain positive number, or that names no competitor of the project, returns 422 ERR_INVALID_PARAM. | [Optional] [Defaults to `undefined`] |
+| **brandOnly** | `boolean` | true keeps only the sentiments about your own brand. | [Optional] [Defaults to `undefined`] |
 | **analysis** | `string` | One sentiment level or a comma-separated list: very_positive, positive, neutral, negative, very_negative | [Optional] [Defaults to `undefined`] |
-| **model** | `chatgpt`, `perplexity`, `ai_mode`, `ai_overview`, `gemini`, `copilot`, `amazon_rufus`, `claude`, `grok`, `deepseek`, `naver_ai`, `baidu_ai`, `meta_ai`, `naver_ai_tab`, `qwen`, `doubao`, `bing_ai_mode` | Filter by one AI model. Here an unknown value, or a model the API key\&#39;s user has not enabled, is ignored rather than rejected: the request succeeds and returns the records of every enabled model, as if model were omitted. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, ai_mode, ai_overview, gemini, copilot, amazon_rufus, claude, grok, deepseek, naver_ai, baidu_ai, meta_ai, naver_ai_tab, qwen, doubao, bing_ai_mode] |
+| **model** | `chatgpt`, `perplexity`, `ai_mode`, `ai_overview`, `gemini`, `copilot`, `amazon_rufus`, `claude`, `grok`, `deepseek`, `naver_ai`, `baidu_ai`, `meta_ai`, `naver_ai_tab`, `qwen`, `doubao`, `bing_ai_mode` | Filter by one AI model. It must be a model enabled for the API key\&#39;s user: an unknown value, or a model the user has not enabled, returns 422 ERR_INVALID_PARAM with the valid values in the message. | [Optional] [Defaults to `undefined`] [Enum: chatgpt, perplexity, ai_mode, ai_overview, gemini, copilot, amazon_rufus, claude, grok, deepseek, naver_ai, baidu_ai, meta_ai, naver_ai_tab, qwen, doubao, bing_ai_mode] |
 | **collectionId** | `string` | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [Optional] [Defaults to `undefined`] |
 | **countryCode** | `string` | One ISO country code or a comma-separated list (e.g. US,GB,DE) | [Optional] [Defaults to `undefined`] |
 | **languageCode** | `string` | One ISO language code or a comma-separated list (e.g. en,es,de) | [Optional] [Defaults to `undefined`] |
-| **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
-| **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
+| **from** | `Date` | Start of the window. Sent alone, the window runs from it to the end of today. A from later than to, or a window longer than 1,500 days, returns 422 ERR_INVALID_PARAM. | [Optional] [Defaults to `undefined`] |
+| **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. Sent without from, the window covers the 30 days that end on it. | [Optional] [Defaults to `undefined`] |
 | **page** | `number` |  | [Optional] [Defaults to `1`] |
 | **perPage** | `number` |  | [Optional] [Defaults to `20`] |
 
