@@ -15,6 +15,13 @@ docs/AgentBot.md
 docs/AgentBotsResponse.md
 docs/AgentTrafficResponse.md
 docs/AiModelCitationsRow.md
+docs/AiModelDeclineCounts.md
+docs/AiModelDeclinedAnswersResponse.md
+docs/AiModelDeclinedAnswersResponseByPrompt.md
+docs/AiModelDeclinedAnswersResponseByPromptDataInner.md
+docs/AiModelDeclinedAnswersResponseChartInner.md
+docs/AiModelDeclinedAnswersResponseFilters.md
+docs/AiModelDeclinedAnswersResponseSummary.md
 docs/AiModelInsightsFiltersEcho.md
 docs/AiModelInsightsModel.md
 docs/AiModelInsightsSummaryResponse.md
@@ -412,6 +419,13 @@ src/models/AgentBot.ts
 src/models/AgentBotsResponse.ts
 src/models/AgentTrafficResponse.ts
 src/models/AiModelCitationsRow.ts
+src/models/AiModelDeclineCounts.ts
+src/models/AiModelDeclinedAnswersResponse.ts
+src/models/AiModelDeclinedAnswersResponseByPrompt.ts
+src/models/AiModelDeclinedAnswersResponseByPromptDataInner.ts
+src/models/AiModelDeclinedAnswersResponseChartInner.ts
+src/models/AiModelDeclinedAnswersResponseFilters.ts
+src/models/AiModelDeclinedAnswersResponseSummary.ts
 src/models/AiModelInsightsFiltersEcho.ts
 src/models/AiModelInsightsModel.ts
 src/models/AiModelInsightsSummaryResponse.ts

@@ -7,6 +7,7 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 | [**getAiModelInsightsSummary**](AIModelInsightsApi.md#getaimodelinsightssummary) | **GET** /reports/ai_model_insights/summary | AI Model Insights summary |
 | [**getAiModelPositionDistribution**](AIModelInsightsApi.md#getaimodelpositiondistribution) | **GET** /reports/ai_model_insights/position_distribution | Position distribution comparison |
 | [**getAiOverviewResults**](AIModelInsightsApi.md#getaioverviewresults) | **GET** /reports/ai_model_insights/ai_overview_results | Google AI Overview result availability |
+| [**getDeclinedAnswers**](AIModelInsightsApi.md#getdeclinedanswers) | **GET** /reports/ai_model_insights/declined_answers | Declined answers (decline rate) |
 
 
 
@@ -314,6 +315,113 @@ example().catch(console.error);
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | AI Overview result-availability data + per-prompt table |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+
+## getDeclinedAnswers
+
+> AiModelDeclinedAnswersResponse getDeclinedAnswers(projectId, range, from, to, model, collectionId, countryCode, languageCode, promptType, brandKind, page, perPage)
+
+Declined answers (decline rate)
+
+The Declined answers tab of AI Model Insights. A model declines a prompt for its own safety filters (safety_filter) or because it refuses the topic itself, such as tobacco, gambling or alcohol (topic_refusal); today only Gemini declines. A declined answer counts as no answer and never lowers visibility. The chart has one point per tracking period at the account\&#39;s cadence that holds an answer of the model, and the window starts at the tracking period holding its first day.
+
+### Example
+
+```ts
+import {
+  Configuration,
+  AIModelInsightsApi,
+} from '@llmpulse/sdk';
+import type { GetDeclinedAnswersRequest } from '@llmpulse/sdk';
+
+async function example() {
+  console.log("🚀 Testing @llmpulse/sdk SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new AIModelInsightsApi(config);
+
+  const body = {
+    // number | Project ID
+    projectId: 56,
+    // number | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to. (optional)
+    range: 56,
+    // Date (optional)
+    from: 2013-10-20T19:20:30+01:00,
+    // Date | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. (optional)
+    to: 2013-10-20T19:20:30+01:00,
+    // 'gemini' | The model whose declines to read, whether or not it is enabled for the API key\'s user. Default: gemini. Any other model returns 422 ERR_INVALID_PARAM (invalid model). (optional)
+    model: model_example,
+    // string | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. (optional)
+    collectionId: 12,34,
+    // string | One ISO country code or a comma-separated list (e.g. US,GB,DE) (optional)
+    countryCode: countryCode_example,
+    // string | One ISO language code or a comma-separated list (e.g. en,es,de) (optional)
+    languageCode: languageCode_example,
+    // string | One prompt type or a comma-separated list: informational, navigational, commercial, transactional (optional)
+    promptType: promptType_example,
+    // 'brand' | 'brand_other' | 'non_brand' | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. (optional)
+    brandKind: brandKind_example,
+    // number (optional)
+    page: 56,
+    // number (optional)
+    perPage: 56,
+  } satisfies GetDeclinedAnswersRequest;
+
+  try {
+    const data = await api.getDeclinedAnswers(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **projectId** | `number` | Project ID | [Defaults to `undefined`] |
+| **range** | `number` | Number of days to look back (alternative to from/to, which win when both are given). A value that is not a plain positive number returns 422 ERR_INVALID_PARAM, even beside from/to. | [Optional] [Defaults to `undefined`] |
+| **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
+| **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
+| **model** | `gemini` | The model whose declines to read, whether or not it is enabled for the API key\&#39;s user. Default: gemini. Any other model returns 422 ERR_INVALID_PARAM (invalid model). | [Optional] [Defaults to `undefined`] [Enum: gemini] |
+| **collectionId** | `string` | One collection/tag ID or a comma-separated list of IDs. A query value is always a string on the wire, so it is typed as one: the previous integer-or-string union made generators emit a wrapper type they could not serialize. | [Optional] [Defaults to `undefined`] |
+| **countryCode** | `string` | One ISO country code or a comma-separated list (e.g. US,GB,DE) | [Optional] [Defaults to `undefined`] |
+| **languageCode** | `string` | One ISO language code or a comma-separated list (e.g. en,es,de) | [Optional] [Defaults to `undefined`] |
+| **promptType** | `string` | One prompt type or a comma-separated list: informational, navigational, commercial, transactional | [Optional] [Defaults to `undefined`] |
+| **brandKind** | `brand`, `brand_other`, `non_brand` | Filter by brand kind: brand (own brand/products), brand_other (competitors/other brands), non_brand (generic, no brand named). For fair 1:1 brand-vs-competitor comparisons (visibility, share of voice), use non_brand: brand-focused prompts skew results toward the brand they name. The in-app Overview page applies non_brand by default. | [Optional] [Defaults to `undefined`] [Enum: brand, brand_other, non_brand] |
+| **page** | `number` |  | [Optional] [Defaults to `1`] |
+| **perPage** | `number` |  | [Optional] [Defaults to `20`] |
+
+### Return type
+
+[**AiModelDeclinedAnswersResponse**](AiModelDeclinedAnswersResponse.md)
+
+### Authorization
+
+[BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Decline counts and rates for the window, per tracking period and per prompt |  -  |
+| **401** | Authentication failed |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Invalid parameters |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
