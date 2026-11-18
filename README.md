@@ -1,4 +1,4 @@
-# @llmpulse/sdk@1.97.0
+# @llmpulse/sdk@1.98.0
 
 A TypeScript SDK client for the api.llmpulse.ai API.
 
@@ -192,12 +192,19 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 *ShoppingAdsApi* | [**listAds**](docs/ShoppingAdsApi.md#listads) | **GET** /dimensions/ads | List AI ad placements
 *ShoppingAdsApi* | [**listLocalBusinesses**](docs/ShoppingAdsApi.md#listlocalbusinesses) | **GET** /dimensions/local_businesses | List local businesses
 *ShoppingAdsApi* | [**listShopping**](docs/ShoppingAdsApi.md#listshopping) | **GET** /dimensions/shopping | List shopping results
+*SourcesCitationIntelligenceApi* | [**addUrlListEntries**](docs/SourcesCitationIntelligenceApi.md#addurllistentries) | **POST** /url_lists/{id}/entries | Add entries to a URL list
+*SourcesCitationIntelligenceApi* | [**createUrlList**](docs/SourcesCitationIntelligenceApi.md#createurllist) | **POST** /url_lists | Create a URL list
+*SourcesCitationIntelligenceApi* | [**deleteUrlList**](docs/SourcesCitationIntelligenceApi.md#deleteurllist) | **DELETE** /url_lists/{id} | Delete a URL list
 *SourcesCitationIntelligenceApi* | [**getCitedUrlContent**](docs/SourcesCitationIntelligenceApi.md#getcitedurlcontent) | **GET** /citation_intelligence/urls/{url_sha256}/content | Cited URL cached content
 *SourcesCitationIntelligenceApi* | [**getCitedUrlDetail**](docs/SourcesCitationIntelligenceApi.md#getcitedurldetail) | **GET** /citation_intelligence/urls/{url_sha256} | Cited URL detail
 *SourcesCitationIntelligenceApi* | [**getMentionsByCitingDomain**](docs/SourcesCitationIntelligenceApi.md#getmentionsbycitingdomain) | **GET** /citation_intelligence/mentions_by_domain | Mention share by citing domain
+*SourcesCitationIntelligenceApi* | [**getUrlList**](docs/SourcesCitationIntelligenceApi.md#geturllist) | **GET** /url_lists/{id} | Get a URL list report
 *SourcesCitationIntelligenceApi* | [**listCitationGroups**](docs/SourcesCitationIntelligenceApi.md#listcitationgroups) | **GET** /citation_intelligence/groups | Grouped citation intelligence
 *SourcesCitationIntelligenceApi* | [**listCitedUrlOccurrences**](docs/SourcesCitationIntelligenceApi.md#listcitedurloccurrences) | **GET** /citation_intelligence/urls/{url_sha256}/occurrences | Cited URL occurrences
 *SourcesCitationIntelligenceApi* | [**listSources**](docs/SourcesCitationIntelligenceApi.md#listsources) | **GET** /dimensions/sources | List source URLs
+*SourcesCitationIntelligenceApi* | [**listUrlLists**](docs/SourcesCitationIntelligenceApi.md#listurllists) | **GET** /url_lists | List URL lists
+*SourcesCitationIntelligenceApi* | [**removeUrlListEntries**](docs/SourcesCitationIntelligenceApi.md#removeurllistentries) | **POST** /url_lists/{id}/entries/remove | Remove entries from a URL list
+*SourcesCitationIntelligenceApi* | [**updateUrlList**](docs/SourcesCitationIntelligenceApi.md#updateurllist) | **PATCH** /url_lists/{id} | Update a URL list
 *StoreIntegrationsApi* | [**acceptCatalogPromptSuggestions**](docs/StoreIntegrationsApi.md#acceptcatalogpromptsuggestions) | **POST** /catalog_prompt_suggestions/accept | Accept catalog prompt suggestions
 *StoreIntegrationsApi* | [**createCatalogPromptSuggestions**](docs/StoreIntegrationsApi.md#createcatalogpromptsuggestions) | **POST** /catalog_prompt_suggestions | Suggest buyer prompts from catalog products
 *StoreIntegrationsApi* | [**getStoreConnection**](docs/StoreIntegrationsApi.md#getstoreconnection) | **GET** /store_connection | Match a store to a project
@@ -544,6 +551,26 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 - [UpdateProjectRequest](docs/UpdateProjectRequest.md)
 - [UpdatePromptRequest](docs/UpdatePromptRequest.md)
 - [UpdateRecommendationItemRequest](docs/UpdateRecommendationItemRequest.md)
+- [UrlList](docs/UrlList.md)
+- [UrlListCreateRequest](docs/UrlListCreateRequest.md)
+- [UrlListCreateResponse](docs/UrlListCreateResponse.md)
+- [UrlListDeleteResponse](docs/UrlListDeleteResponse.md)
+- [UrlListDetailResponse](docs/UrlListDetailResponse.md)
+- [UrlListEntriesAddRequest](docs/UrlListEntriesAddRequest.md)
+- [UrlListEntriesAddResponse](docs/UrlListEntriesAddResponse.md)
+- [UrlListEntriesRemoveRequest](docs/UrlListEntriesRemoveRequest.md)
+- [UrlListEntriesRemoveResponse](docs/UrlListEntriesRemoveResponse.md)
+- [UrlListEntry](docs/UrlListEntry.md)
+- [UrlListEntryInput](docs/UrlListEntryInput.md)
+- [UrlListFilters](docs/UrlListFilters.md)
+- [UrlListInvalidEntry](docs/UrlListInvalidEntry.md)
+- [UrlListStatusCounts](docs/UrlListStatusCounts.md)
+- [UrlListSummary](docs/UrlListSummary.md)
+- [UrlListUpdateRequest](docs/UrlListUpdateRequest.md)
+- [UrlListUpdateResponse](docs/UrlListUpdateResponse.md)
+- [UrlListWithCounts](docs/UrlListWithCounts.md)
+- [UrlListWithStats](docs/UrlListWithStats.md)
+- [UrlListsResponse](docs/UrlListsResponse.md)
 - [WebAnalyticsQueryResponse](docs/WebAnalyticsQueryResponse.md)
 - [WebAnalyticsQueryResponseColumnsInner](docs/WebAnalyticsQueryResponseColumnsInner.md)
 - [WebAnalyticsSchemaResponse](docs/WebAnalyticsSchemaResponse.md)
@@ -564,8 +591,8 @@ This TypeScript SDK client supports the [Fetch API](https://fetch.spec.whatwg.or
 and is automatically generated by the
 [OpenAPI Generator](https://openapi-generator.tech) project:
 
-- API version: `1.97.0`
-- Package version: `1.97.0`
+- API version: `1.98.0`
+- Package version: `1.98.0`
 - Generator version: `7.24.0`
 - Build package: `org.openapitools.codegen.languages.TypeScriptFetchClientCodegen`
 
