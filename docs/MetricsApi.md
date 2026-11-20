@@ -18,7 +18,7 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 
 Per-prompt metrics summary
 
-Paginated per-prompt aggregated metrics. Returns responses, mentions, citations, mention_rate, citation_rate, avg_mention_position and avg_position per prompt, plus the brand sentiment of its responses (sentiment_responses, the five sentiment percentages and net_sentiment, computed like the sentiment timeseries) and the prompt\&#39;s classification (country_code, language_code, prompt_type, brand_kind and tags, as in /dimensions/prompts). Citations and citation rate include visible citations and background source references; avg_position uses visible citations only. Pass &#x60;breakdown&#x3D;model&#x60; to split each prompt by model.
+Paginated per-prompt aggregated metrics. Returns responses, mentions, citations, mention_rate, citation_rate, avg_mention_position and avg_position per prompt, plus the brand sentiment of its responses (sentiment_responses, the five sentiment percentages and net_sentiment, computed like the sentiment timeseries; they need the Growth plan or above, and below it they are left out of every row and listed in &#x60;plan_required_fields&#x60;, which is always present and empty when nothing is left out) and the prompt\&#39;s classification (country_code, language_code, prompt_type, brand_kind and tags, as in /dimensions/prompts). Citations and citation rate include visible citations and background source references; avg_position uses visible citations only. Pass &#x60;breakdown&#x3D;model&#x60; to split each prompt by model.
 
 ### Example
 
@@ -276,7 +276,7 @@ async function example() {
   const body = {
     // number | Project ID
     projectId: 56,
-    // string | Comma-separated list of metrics: mentions, citations, responses, mention_rate, visibility (alias for mention_rate), weighted_visibility, ai_visibility_score (alias for weighted_visibility), citation_rate, avg_position, avg_mention_position, net_sentiment, sentiment_very_positive, sentiment_positive, sentiment_neutral, sentiment_negative, sentiment_very_negative. Citations and citation_rate include visible citations and background source references; avg_position uses visible citations only. weighted_visibility (ai_visibility_score) is position-weighted points divided by the tracking runs (days, weeks or months at the account\'s tracking frequency) with responses, per period and for the summary total. (optional)
+    // string | Comma-separated list of metrics: mentions, citations, responses, mention_rate, visibility (alias for mention_rate), weighted_visibility, ai_visibility_score (alias for weighted_visibility), citation_rate, avg_position, avg_mention_position, net_sentiment, sentiment_very_positive, sentiment_positive, sentiment_neutral, sentiment_negative, sentiment_very_negative. Citations and citation_rate include visible citations and background source references; avg_position uses visible citations only. weighted_visibility (ai_visibility_score) is position-weighted points divided by the tracking runs (days, weeks or months at the account\'s tracking frequency) with responses, per period and for the summary total. The sentiment metrics (net_sentiment and the five sentiment_* shares) need the Growth plan or above: below it a request that names one answers 403 ERR_PLAN_REQUIRED. (optional)
     metrics: metrics_example,
     // 'day' | 'week' | 'month' (optional)
     granularity: granularity_example,
@@ -326,7 +326,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
-| **metrics** | `string` | Comma-separated list of metrics: mentions, citations, responses, mention_rate, visibility (alias for mention_rate), weighted_visibility, ai_visibility_score (alias for weighted_visibility), citation_rate, avg_position, avg_mention_position, net_sentiment, sentiment_very_positive, sentiment_positive, sentiment_neutral, sentiment_negative, sentiment_very_negative. Citations and citation_rate include visible citations and background source references; avg_position uses visible citations only. weighted_visibility (ai_visibility_score) is position-weighted points divided by the tracking runs (days, weeks or months at the account\&#39;s tracking frequency) with responses, per period and for the summary total. | [Optional] [Defaults to `undefined`] |
+| **metrics** | `string` | Comma-separated list of metrics: mentions, citations, responses, mention_rate, visibility (alias for mention_rate), weighted_visibility, ai_visibility_score (alias for weighted_visibility), citation_rate, avg_position, avg_mention_position, net_sentiment, sentiment_very_positive, sentiment_positive, sentiment_neutral, sentiment_negative, sentiment_very_negative. Citations and citation_rate include visible citations and background source references; avg_position uses visible citations only. weighted_visibility (ai_visibility_score) is position-weighted points divided by the tracking runs (days, weeks or months at the account\&#39;s tracking frequency) with responses, per period and for the summary total. The sentiment metrics (net_sentiment and the five sentiment_* shares) need the Growth plan or above: below it a request that names one answers 403 ERR_PLAN_REQUIRED. | [Optional] [Defaults to `undefined`] |
 | **granularity** | `day`, `week`, `month` |  | [Optional] [Defaults to `undefined`] [Enum: day, week, month] |
 | **range** | `number` | Number of days to look back, today included. Required unless from is given, and from/to win when both are given: a request with neither range nor from, or a range that is not a plain positive number (even beside from/to), returns 422 ERR_INVALID_PARAM. | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` | Start of the window, instead of range (to then defaults to the end of today). Required unless range is given. | [Optional] [Defaults to `undefined`] |
@@ -361,6 +361,7 @@ example().catch(console.error);
 |-------------|-------------|------------------|
 | **200** | Summary metrics |  -  |
 | **401** | Authentication failed |  -  |
+| **403** | Endpoint requires the Growth plan or above |  -  |
 | **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
@@ -394,7 +395,7 @@ async function example() {
   const body = {
     // number | Project ID
     projectId: 56,
-    // string | Comma-separated list of metrics: mentions, citations, responses, mention_rate, visibility (alias for mention_rate), weighted_visibility, ai_visibility_score (alias for weighted_visibility), citation_rate, avg_position, avg_mention_position, net_sentiment, sentiment_very_positive, sentiment_positive, sentiment_neutral, sentiment_negative, sentiment_very_negative. Citations and citation_rate include visible citations and background source references; avg_position uses visible citations only. weighted_visibility (ai_visibility_score) is position-weighted points divided by the tracking runs (days, weeks or months at the account\'s tracking frequency) with responses, per period and for the summary total. (optional)
+    // string | Comma-separated list of metrics: mentions, citations, responses, mention_rate, visibility (alias for mention_rate), weighted_visibility, ai_visibility_score (alias for weighted_visibility), citation_rate, avg_position, avg_mention_position, net_sentiment, sentiment_very_positive, sentiment_positive, sentiment_neutral, sentiment_negative, sentiment_very_negative. Citations and citation_rate include visible citations and background source references; avg_position uses visible citations only. weighted_visibility (ai_visibility_score) is position-weighted points divided by the tracking runs (days, weeks or months at the account\'s tracking frequency) with responses, per period and for the summary total. The sentiment metrics (net_sentiment and the five sentiment_* shares) need the Growth plan or above: below it a request that names one answers 403 ERR_PLAN_REQUIRED. (optional)
     metrics: metrics_example,
     // 'day' | 'week' | 'month' (optional)
     granularity: granularity_example,
@@ -444,7 +445,7 @@ example().catch(console.error);
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **projectId** | `number` | Project ID | [Defaults to `undefined`] |
-| **metrics** | `string` | Comma-separated list of metrics: mentions, citations, responses, mention_rate, visibility (alias for mention_rate), weighted_visibility, ai_visibility_score (alias for weighted_visibility), citation_rate, avg_position, avg_mention_position, net_sentiment, sentiment_very_positive, sentiment_positive, sentiment_neutral, sentiment_negative, sentiment_very_negative. Citations and citation_rate include visible citations and background source references; avg_position uses visible citations only. weighted_visibility (ai_visibility_score) is position-weighted points divided by the tracking runs (days, weeks or months at the account\&#39;s tracking frequency) with responses, per period and for the summary total. | [Optional] [Defaults to `undefined`] |
+| **metrics** | `string` | Comma-separated list of metrics: mentions, citations, responses, mention_rate, visibility (alias for mention_rate), weighted_visibility, ai_visibility_score (alias for weighted_visibility), citation_rate, avg_position, avg_mention_position, net_sentiment, sentiment_very_positive, sentiment_positive, sentiment_neutral, sentiment_negative, sentiment_very_negative. Citations and citation_rate include visible citations and background source references; avg_position uses visible citations only. weighted_visibility (ai_visibility_score) is position-weighted points divided by the tracking runs (days, weeks or months at the account\&#39;s tracking frequency) with responses, per period and for the summary total. The sentiment metrics (net_sentiment and the five sentiment_* shares) need the Growth plan or above: below it a request that names one answers 403 ERR_PLAN_REQUIRED. | [Optional] [Defaults to `undefined`] |
 | **granularity** | `day`, `week`, `month` |  | [Optional] [Defaults to `undefined`] [Enum: day, week, month] |
 | **range** | `number` | Number of days to look back, today included. Required unless from is given, and from/to win when both are given: a request with neither range nor from, or a range that is not a plain positive number (even beside from/to), returns 422 ERR_INVALID_PARAM. | [Optional] [Defaults to `undefined`] |
 | **from** | `Date` | Start of the window, instead of range (to then defaults to the end of today). Required unless range is given. | [Optional] [Defaults to `undefined`] |
@@ -479,6 +480,7 @@ example().catch(console.error);
 |-------------|-------------|------------------|
 | **200** | Time-series data |  -  |
 | **401** | Authentication failed |  -  |
+| **403** | Endpoint requires the Growth plan or above |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Invalid parameters |  -  |
 

@@ -13,6 +13,7 @@ Name | Type
 `filters` | [AiModelInsightsFiltersEcho](AiModelInsightsFiltersEcho.md)
 `models` | [Array&lt;AiModelInsightsModel&gt;](AiModelInsightsModel.md)
 `summary` | [AiModelInsightsSummaryResponseSummary](AiModelInsightsSummaryResponseSummary.md)
+`planRequiredFields` | Array&lt;string&gt;
 `requestId` | string
 
 ## Example
@@ -28,6 +29,7 @@ const example = {
   "filters": null,
   "models": null,
   "summary": null,
+  "planRequiredFields": null,
   "requestId": null,
 } satisfies AiModelInsightsSummaryResponse
 

@@ -17,6 +17,7 @@ Name | Type
 `perPage` | number
 `total` | number
 `data` | [Array&lt;PromptSummaryRow&gt;](PromptSummaryRow.md)
+`planRequiredFields` | Array&lt;string&gt;
 `requestId` | string
 
 ## Example
@@ -37,6 +38,7 @@ const example = {
   "perPage": null,
   "total": null,
   "data": null,
+  "planRequiredFields": null,
   "requestId": null,
 } satisfies PromptSummaryResponse
 

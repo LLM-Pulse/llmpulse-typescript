@@ -369,7 +369,7 @@ async function example() {
     to: 2013-10-20T19:20:30+01:00,
     // 'owned' | 'competitor' | 'third_party' | 'social_media' | 'own_domain' | 'ugc' | 'background' (optional)
     sourceType: sourceType_example,
-    // 'negative' (optional)
+    // 'negative' | Keeps the citations of answers with a negative brand sentiment. Needs the Growth plan or above: below it the filter answers 403 ERR_PLAN_REQUIRED. (optional)
     sentiment: sentiment_example,
     // 'mentioned' | 'gap' | mentioned: the cited page mentions your brand. gap: it mentions a competitor but not your brand. Only pages with usable content whose mention analysis has completed for this project match. (optional)
     contentGap: contentGap_example,
@@ -405,7 +405,7 @@ example().catch(console.error);
 | **from** | `Date` |  | [Optional] [Defaults to `undefined`] |
 | **to** | `Date` | End of the window. A date-only value such as 2026-09-01 covers that whole day. Pass a full timestamp to end the window earlier. | [Optional] [Defaults to `undefined`] |
 | **sourceType** | `owned`, `competitor`, `third_party`, `social_media`, `own_domain`, `ugc`, `background` |  | [Optional] [Defaults to `undefined`] [Enum: owned, competitor, third_party, social_media, own_domain, ugc, background] |
-| **sentiment** | `negative` |  | [Optional] [Defaults to `undefined`] [Enum: negative] |
+| **sentiment** | `negative` | Keeps the citations of answers with a negative brand sentiment. Needs the Growth plan or above: below it the filter answers 403 ERR_PLAN_REQUIRED. | [Optional] [Defaults to `undefined`] [Enum: negative] |
 | **contentGap** | `mentioned`, `gap` | mentioned: the cited page mentions your brand. gap: it mentions a competitor but not your brand. Only pages with usable content whose mention analysis has completed for this project match. | [Optional] [Defaults to `undefined`] [Enum: mentioned, gap] |
 | **includeSeries** | `boolean` | Adds citation_series. Without it the response is unchanged. | [Optional] [Defaults to `false`] |
 
@@ -427,6 +427,7 @@ example().catch(console.error);
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | URL-level intelligence |  -  |
+| **403** | Endpoint requires the Growth plan or above |  -  |
 | **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
@@ -712,7 +713,7 @@ async function example() {
     query: query_example,
     // 'owned' | 'competitor' | 'third_party' | 'social_media' | 'own_domain' | 'ugc' | 'background' (optional)
     sourceType: sourceType_example,
-    // 'negative' (optional)
+    // 'negative' | Keeps the citations of answers with a negative brand sentiment. Needs the Growth plan or above: below it the filter answers 403 ERR_PLAN_REQUIRED. (optional)
     sentiment: sentiment_example,
     // 'mentioned' | 'gap' | mentioned: the cited page mentions your brand. gap: it mentions a competitor but not your brand. Only pages with usable content whose mention analysis has completed for this project match. (optional)
     contentGap: contentGap_example,
@@ -753,7 +754,7 @@ example().catch(console.error);
 | **includeSeries** | `boolean` | Requires key, else 422 ERR_INVALID_PARAM. Adds citation_series to the group\&#39;s row. | [Optional] [Defaults to `false`] |
 | **query** | `string` |  | [Optional] [Defaults to `undefined`] |
 | **sourceType** | `owned`, `competitor`, `third_party`, `social_media`, `own_domain`, `ugc`, `background` |  | [Optional] [Defaults to `undefined`] [Enum: owned, competitor, third_party, social_media, own_domain, ugc, background] |
-| **sentiment** | `negative` |  | [Optional] [Defaults to `undefined`] [Enum: negative] |
+| **sentiment** | `negative` | Keeps the citations of answers with a negative brand sentiment. Needs the Growth plan or above: below it the filter answers 403 ERR_PLAN_REQUIRED. | [Optional] [Defaults to `undefined`] [Enum: negative] |
 | **contentGap** | `mentioned`, `gap` | mentioned: the cited page mentions your brand. gap: it mentions a competitor but not your brand. Only pages with usable content whose mention analysis has completed for this project match. | [Optional] [Defaults to `undefined`] [Enum: mentioned, gap] |
 
 ### Return type
@@ -774,6 +775,7 @@ example().catch(console.error);
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Grouped citation intelligence |  -  |
+| **403** | Endpoint requires the Growth plan or above |  -  |
 | **422** | Invalid parameters |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
@@ -781,7 +783,7 @@ example().catch(console.error);
 
 ## listCitedUrlOccurrences
 
-> listCitedUrlOccurrences(projectId, urlSha256, page, perPage)
+> listCitedUrlOccurrences(projectId, urlSha256, page, perPage, sentiment)
 
 Cited URL occurrences
 
@@ -811,6 +813,8 @@ async function example() {
     page: 56,
     // number (optional)
     perPage: 56,
+    // 'negative' | Keeps the occurrences in answers with a negative brand sentiment. Needs the Growth plan or above: below it the filter answers 403 ERR_PLAN_REQUIRED. (optional)
+    sentiment: sentiment_example,
   } satisfies ListCitedUrlOccurrencesRequest;
 
   try {
@@ -834,6 +838,7 @@ example().catch(console.error);
 | **urlSha256** | `string` | 64-character hex SHA-256 of the cited URL | [Defaults to `undefined`] |
 | **page** | `number` |  | [Optional] [Defaults to `1`] |
 | **perPage** | `number` |  | [Optional] [Defaults to `20`] |
+| **sentiment** | `negative` | Keeps the occurrences in answers with a negative brand sentiment. Needs the Growth plan or above: below it the filter answers 403 ERR_PLAN_REQUIRED. | [Optional] [Defaults to `undefined`] [Enum: negative] |
 
 ### Return type
 
@@ -853,6 +858,7 @@ example().catch(console.error);
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Paginated occurrences |  -  |
+| **403** | Endpoint requires the Growth plan or above |  -  |
 | **404** | Resource not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
