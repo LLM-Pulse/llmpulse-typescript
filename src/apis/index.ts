@@ -6,6 +6,7 @@ export * from './APIKeysApi';
 export * from './AccountApi';
 export * from './AnnotationsApi';
 export * from './AnswersApi';
+export * from './BingWebmasterToolsApi';
 export * from './CollectionsTagsApi';
 export * from './CompetitorsApi';
 export * from './CustomReportsApi';

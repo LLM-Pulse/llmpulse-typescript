@@ -36,6 +36,7 @@ Name | Type
 `pitchRun` | [ProjectDetailsAllOfPitchRun](ProjectDetailsAllOfPitchRun.md)
 `dataCoverage` | [ProjectDetailsAllOfDataCoverage](ProjectDetailsAllOfDataCoverage.md)
 `searchConsole` | [ProjectDetailsAllOfSearchConsole](ProjectDetailsAllOfSearchConsole.md)
+`bingWebmaster` | [ProjectDetailsAllOfBingWebmaster](ProjectDetailsAllOfBingWebmaster.md)
 `aiTraffic` | [ProjectDetailsAllOfAiTraffic](ProjectDetailsAllOfAiTraffic.md)
 `agentTraffic` | [ProjectDetailsAllOfAgentTraffic](ProjectDetailsAllOfAgentTraffic.md)
 `requestId` | string
@@ -77,6 +78,7 @@ const example = {
   "pitchRun": null,
   "dataCoverage": null,
   "searchConsole": null,
+  "bingWebmaster": null,
   "aiTraffic": null,
   "agentTraffic": null,
   "requestId": null,
