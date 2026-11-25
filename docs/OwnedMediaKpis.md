@@ -14,6 +14,7 @@ Name | Type
 `uniqueSubreddits` | number
 `uniqueAuthors` | number
 `positivePct` | number
+`connectedCount` | number
 
 ## Example
 
@@ -30,6 +31,7 @@ const example = {
   "uniqueSubreddits": null,
   "uniqueAuthors": null,
   "positivePct": null,
+  "connectedCount": null,
 } satisfies OwnedMediaKpis
 
 console.log(example)
