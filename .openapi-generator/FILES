@@ -268,6 +268,7 @@ docs/OwnedMediaSummaryResponse.md
 docs/OwnedMediaSummaryResponsePrevious.md
 docs/OwnedMediaWeek.md
 docs/PaginatedEnvelope.md
+docs/PeecExportImportResponse.md
 docs/Ping200Response.md
 docs/Project.md
 docs/ProjectCreateRequest.md
@@ -320,6 +321,7 @@ docs/PromptsApi.md
 docs/PromptsCreateRequest.md
 docs/PromptsCreateResponse.md
 docs/PromptsCreateResponseDataInner.md
+docs/PromptsImportFileResponse.md
 docs/PromptsImportRequest.md
 docs/PromptsImportRequestRowsInner.md
 docs/PromptsImportResponse.md
@@ -762,6 +764,7 @@ src/models/OwnedMediaSummaryResponse.ts
 src/models/OwnedMediaSummaryResponsePrevious.ts
 src/models/OwnedMediaWeek.ts
 src/models/PaginatedEnvelope.ts
+src/models/PeecExportImportResponse.ts
 src/models/Ping200Response.ts
 src/models/Project.ts
 src/models/ProjectCreateRequest.ts
@@ -812,6 +815,7 @@ src/models/PromptTagsRemoveResponse.ts
 src/models/PromptsCreateRequest.ts
 src/models/PromptsCreateResponse.ts
 src/models/PromptsCreateResponseDataInner.ts
+src/models/PromptsImportFileResponse.ts
 src/models/PromptsImportRequest.ts
 src/models/PromptsImportRequestRowsInner.ts
 src/models/PromptsImportResponse.ts
