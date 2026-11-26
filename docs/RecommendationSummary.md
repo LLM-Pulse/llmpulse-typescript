@@ -16,7 +16,7 @@ Name | Type
 `updatedAt` | Date
 `totalRecommendations` | number
 `highPriorityCount` | number
-`summary` | [RecommendationSummarySummary](RecommendationSummarySummary.md)
+`summary` | [RecommendationDetailResponseSummary](RecommendationDetailResponseSummary.md)
 `context` | object
 
 ## Example

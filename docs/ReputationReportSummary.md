@@ -1,7 +1,7 @@
 
 # ReputationReportSummary
 
-One reputation report\'s status and analyst model coverage
+One reputation or custom-study report\'s status and analyst model coverage
 
 ## Properties
 

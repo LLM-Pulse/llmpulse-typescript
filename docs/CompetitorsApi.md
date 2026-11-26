@@ -88,7 +88,7 @@ example().catch(console.error);
 
 ## deleteCompetitor
 
-> deleteCompetitor(projectId, id)
+> CompetitorDeleteResponse deleteCompetitor(projectId, id)
 
 Delete a competitor
 
@@ -140,7 +140,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**CompetitorDeleteResponse**](CompetitorDeleteResponse.md)
 
 ### Authorization
 
@@ -398,7 +398,7 @@ example().catch(console.error);
 
 ## updateCompetitor
 
-> updateCompetitor(id, updateCompetitorRequest)
+> CompetitorUpdateResponse updateCompetitor(id, updateCompetitorRequest)
 
 Update a competitor
 
@@ -450,7 +450,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**CompetitorUpdateResponse**](CompetitorUpdateResponse.md)
 
 ### Authorization
 

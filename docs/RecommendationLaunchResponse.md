@@ -1,27 +1,26 @@
 
-# RecommendationSummarySummary
+# RecommendationLaunchResponse
 
-Empty until the generation completes
 
 ## Properties
 
 Name | Type
 ------------ | -------------
-`totalRecommendations` | number
-`highPriorityCount` | number
-`categories` | Array&lt;string&gt;
+`projectId` | number
+`recommendation` | [RecommendationLaunchResponseRecommendation](RecommendationLaunchResponseRecommendation.md)
+`requestId` | string
 
 ## Example
 
 ```typescript
-import type { RecommendationSummarySummary } from '@llmpulse/sdk'
+import type { RecommendationLaunchResponse } from '@llmpulse/sdk'
 
 // TODO: Update the object below with actual values
 const example = {
-  "totalRecommendations": null,
-  "highPriorityCount": null,
-  "categories": null,
-} satisfies RecommendationSummarySummary
+  "projectId": null,
+  "recommendation": null,
+  "requestId": null,
+} satisfies RecommendationLaunchResponse
 
 console.log(example)
 
@@ -30,7 +29,7 @@ const exampleJSON: string = JSON.stringify(example)
 console.log(exampleJSON)
 
 // Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as RecommendationSummarySummary
+const exampleParsed = JSON.parse(exampleJSON) as RecommendationLaunchResponse
 console.log(exampleParsed)
 ```
 

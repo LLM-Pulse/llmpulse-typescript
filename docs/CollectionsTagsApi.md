@@ -162,7 +162,7 @@ example().catch(console.error);
 
 ## deleteCollection
 
-> deleteCollection(projectId, id)
+> CollectionDeleteResponse deleteCollection(projectId, id)
 
 Delete a tag
 
@@ -214,7 +214,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**CollectionDeleteResponse**](CollectionDeleteResponse.md)
 
 ### Authorization
 
@@ -455,7 +455,7 @@ example().catch(console.error);
 
 ## updateCollection
 
-> updateCollection(id, updateCollectionRequest)
+> CollectionUpdateResponse updateCollection(id, updateCollectionRequest)
 
 Update a tag
 
@@ -507,7 +507,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**CollectionUpdateResponse**](CollectionUpdateResponse.md)
 
 ### Authorization
 

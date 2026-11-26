@@ -89,7 +89,7 @@ example().catch(console.error);
 
 ## listAnswers
 
-> listAnswers(projectId, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, mentionFilter, citationFilter, competitors, from, to, page, perPage, query, noResult)
+> AnswersResponse listAnswers(projectId, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, mentionFilter, citationFilter, competitors, from, to, page, perPage, query, noResult)
 
 List AI responses
 
@@ -186,7 +186,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**AnswersResponse**](AnswersResponse.md)
 
 ### Authorization
 

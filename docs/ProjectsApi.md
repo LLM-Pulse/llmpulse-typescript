@@ -94,7 +94,7 @@ example().catch(console.error);
 
 ## createProjectDraft
 
-> createProjectDraft(createProjectDraftRequest)
+> ProjectDraftResponse createProjectDraft(createProjectDraftRequest)
 
 Start a project draft (wizard step 1)
 
@@ -143,7 +143,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**ProjectDraftResponse**](ProjectDraftResponse.md)
 
 ### Authorization
 
@@ -390,7 +390,7 @@ example().catch(console.error);
 
 ## getProjectDraft
 
-> getProjectDraft(id, includeSuggestions)
+> ProjectDraftResponse getProjectDraft(id, includeSuggestions)
 
 Read a project draft
 
@@ -440,7 +440,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**ProjectDraftResponse**](ProjectDraftResponse.md)
 
 ### Authorization
 
@@ -753,7 +753,7 @@ example().catch(console.error);
 
 ## updateProjectDraft
 
-> updateProjectDraft(id, updateProjectDraftRequest)
+> ProjectDraftResponse updateProjectDraft(id, updateProjectDraftRequest)
 
 Submit a wizard step
 
@@ -805,7 +805,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**ProjectDraftResponse**](ProjectDraftResponse.md)
 
 ### Authorization
 

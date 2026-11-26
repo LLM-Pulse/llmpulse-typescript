@@ -15,7 +15,7 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 
 ## listAllCitations
 
-> listAllCitations(projectId, competitors, page, perPage, model, collectionId, prompt, from, to, output, countryCode, languageCode, promptType, brandKind, range)
+> AllCitationsResponse listAllCitations(projectId, competitors, page, perPage, model, collectionId, prompt, from, to, output, countryCode, languageCode, promptType, brandKind, range)
 
 List all citations (brand + competitor)
 
@@ -106,7 +106,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**AllCitationsResponse**](AllCitationsResponse.md)
 
 ### Authorization
 
@@ -115,7 +115,7 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
@@ -128,7 +128,7 @@ example().catch(console.error);
 
 ## listAllMentions
 
-> listAllMentions(projectId, competitors, page, perPage, model, collectionId, prompt, from, to, output, countryCode, languageCode, promptType, brandKind, range)
+> AllMentionsResponse listAllMentions(projectId, competitors, page, perPage, model, collectionId, prompt, from, to, output, countryCode, languageCode, promptType, brandKind, range)
 
 List all mentions (brand + competitor)
 
@@ -219,7 +219,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**AllMentionsResponse**](AllMentionsResponse.md)
 
 ### Authorization
 
@@ -228,7 +228,7 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
@@ -351,7 +351,7 @@ example().catch(console.error);
 
 ## listCompetitorCitations
 
-> listCompetitorCitations(projectId, competitors, page, perPage, model, collectionId, prompt, from, to, output, countryCode, languageCode, promptType, brandKind, range)
+> CompetitorCitationsResponse listCompetitorCitations(projectId, competitors, page, perPage, model, collectionId, prompt, from, to, output, countryCode, languageCode, promptType, brandKind, range)
 
 List competitor citations
 
@@ -442,7 +442,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**CompetitorCitationsResponse**](CompetitorCitationsResponse.md)
 
 ### Authorization
 
@@ -451,7 +451,7 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details

@@ -14,7 +14,7 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 
 ## createTechnicalGeoReports
 
-> createTechnicalGeoReports(createTechnicalGeoReportsRequest)
+> TechnicalGeoReportsCreateResponse createTechnicalGeoReports(createTechnicalGeoReportsRequest)
 
 Run technical GEO analysis
 
@@ -63,7 +63,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**TechnicalGeoReportsCreateResponse**](TechnicalGeoReportsCreateResponse.md)
 
 ### Authorization
 
@@ -87,7 +87,7 @@ example().catch(console.error);
 
 ## getTechnicalGeoReport
 
-> getTechnicalGeoReport(projectId, reportType, id)
+> TechnicalGeoReportResponse getTechnicalGeoReport(projectId, reportType, id)
 
 Get a technical GEO report
 
@@ -142,7 +142,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**TechnicalGeoReportResponse**](TechnicalGeoReportResponse.md)
 
 ### Authorization
 
@@ -166,7 +166,7 @@ example().catch(console.error);
 
 ## listTechnicalGeoReports
 
-> listTechnicalGeoReports(projectId, reportType, status, batchId, page, perPage)
+> TechnicalGeoReportsResponse listTechnicalGeoReports(projectId, reportType, status, batchId, page, perPage)
 
 List technical GEO reports
 
@@ -230,7 +230,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**TechnicalGeoReportsResponse**](TechnicalGeoReportsResponse.md)
 
 ### Authorization
 

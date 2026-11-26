@@ -91,7 +91,7 @@ example().catch(console.error);
 
 ## getReputationReport
 
-> getReputationReport(id, projectId, page, perPage, model, brand, dimension, output)
+> ReputationReportScoresResponse getReputationReport(id, projectId, page, perPage, model, brand, dimension, output)
 
 Get reputation report scores
 
@@ -161,7 +161,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**ReputationReportScoresResponse**](ReputationReportScoresResponse.md)
 
 ### Authorization
 
@@ -185,7 +185,7 @@ example().catch(console.error);
 
 ## getStudy
 
-> getStudy(id)
+> StudyResponse getStudy(id)
 
 Get a custom AI study
 
@@ -234,7 +234,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**StudyResponse**](StudyResponse.md)
 
 ### Authorization
 
@@ -257,7 +257,7 @@ example().catch(console.error);
 
 ## getStudyReport
 
-> getStudyReport(id, reportId, page, perPage, model, subject, dimension, output)
+> StudyReportScoresResponse getStudyReport(id, reportId, page, perPage, model, subject, dimension, output)
 
 Get custom study report scores
 
@@ -327,7 +327,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**StudyReportScoresResponse**](StudyReportScoresResponse.md)
 
 ### Authorization
 
@@ -351,7 +351,7 @@ example().catch(console.error);
 
 ## listReputationReports
 
-> listReputationReports(projectId, page, perPage, output)
+> ReputationReportsResponse listReputationReports(projectId, page, perPage, output)
 
 List reputation reports
 
@@ -409,7 +409,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**ReputationReportsResponse**](ReputationReportsResponse.md)
 
 ### Authorization
 
@@ -418,7 +418,7 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
@@ -431,7 +431,7 @@ example().catch(console.error);
 
 ## listStudies
 
-> listStudies(projectId, status, page, perPage, output)
+> StudiesResponse listStudies(projectId, status, page, perPage, output)
 
 List custom AI studies
 
@@ -492,7 +492,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**StudiesResponse**](StudiesResponse.md)
 
 ### Authorization
 
@@ -501,7 +501,7 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details

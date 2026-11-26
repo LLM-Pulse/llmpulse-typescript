@@ -13,7 +13,7 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 
 ## getRecommendation
 
-> getRecommendation(projectId, id, itemStatus, resolveSourceRefs)
+> RecommendationDetailResponse getRecommendation(projectId, id, itemStatus, resolveSourceRefs)
 
 Get recommendation run with items
 
@@ -69,7 +69,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**RecommendationDetailResponse**](RecommendationDetailResponse.md)
 
 ### Authorization
 
@@ -92,7 +92,7 @@ example().catch(console.error);
 
 ## launchRecommendations
 
-> launchRecommendations(launchRecommendationsRequest)
+> RecommendationLaunchResponse launchRecommendations(launchRecommendationsRequest)
 
 Launch a recommendations generation
 
@@ -141,7 +141,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**RecommendationLaunchResponse**](RecommendationLaunchResponse.md)
 
 ### Authorization
 

@@ -261,7 +261,7 @@ example().catch(console.error);
 
 ## listSentimentCategories
 
-> listSentimentCategories(projectId, output)
+> SentimentCategoriesResponse listSentimentCategories(projectId, output)
 
 List sentiment categories (Growth plan or above)
 
@@ -313,7 +313,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**SentimentCategoriesResponse**](SentimentCategoriesResponse.md)
 
 ### Authorization
 

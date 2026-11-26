@@ -114,7 +114,7 @@ example().catch(console.error);
 
 ## getAiModelPositionDistribution
 
-> getAiModelPositionDistribution(projectId, range, from, to, granularity, collectionId, countryCode, languageCode, promptType, brandKind, model, brand1, brand2)
+> AiModelPositionDistributionResponse getAiModelPositionDistribution(projectId, range, from, to, granularity, collectionId, countryCode, languageCode, promptType, brandKind, model, brand1, brand2)
 
 Position distribution comparison
 
@@ -197,7 +197,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**AiModelPositionDistributionResponse**](AiModelPositionDistributionResponse.md)
 
 ### Authorization
 
@@ -206,7 +206,7 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
@@ -219,7 +219,7 @@ example().catch(console.error);
 
 ## getAiOverviewResults
 
-> getAiOverviewResults(projectId, range, from, to, granularity, collectionId, countryCode, languageCode, promptType, brandKind, page, perPage)
+> AiOverviewResultsResponse getAiOverviewResults(projectId, range, from, to, granularity, collectionId, countryCode, languageCode, promptType, brandKind, page, perPage)
 
 Google AI Overview result availability
 
@@ -299,7 +299,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**AiOverviewResultsResponse**](AiOverviewResultsResponse.md)
 
 ### Authorization
 
@@ -308,7 +308,7 @@ example().catch(console.error);
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details

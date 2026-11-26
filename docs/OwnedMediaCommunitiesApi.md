@@ -423,7 +423,7 @@ example().catch(console.error);
 
 ## listRedditCitations
 
-> listRedditCitations(projectId, page, perPage, view, subreddit, author, status, owned, brand, order, direction, model, collectionId, countryCode, languageCode, brandKind, range, from, to, output)
+> RedditResponse listRedditCitations(projectId, page, perPage, view, subreddit, author, status, owned, brand, order, direction, model, collectionId, countryCode, languageCode, brandKind, range, from, to, output)
 
 List cited Reddit content
 
@@ -529,7 +529,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**RedditResponse**](RedditResponse.md)
 
 ### Authorization
 

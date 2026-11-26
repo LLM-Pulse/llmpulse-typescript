@@ -108,7 +108,7 @@ example().catch(console.error);
 
 ## getAiTraffic
 
-> getAiTraffic(projectId, range, from, to, source, granularity)
+> AiTrafficResponse getAiTraffic(projectId, range, from, to, source, granularity)
 
 AI referral traffic (Scale plan or above)
 
@@ -172,7 +172,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**AiTrafficResponse**](AiTrafficResponse.md)
 
 ### Authorization
 

@@ -12,7 +12,7 @@ All URIs are relative to *https://api.llmpulse.ai/api/v1*
 
 ## listAds
 
-> listAds(projectId, page, perPage, view, owned, order, direction, query, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, range, from, to, output)
+> AdsResponse listAds(projectId, page, perPage, view, owned, order, direction, query, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, range, from, to, output)
 
 List AI ad placements
 
@@ -115,7 +115,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**AdsResponse**](AdsResponse.md)
 
 ### Authorization
 
@@ -261,7 +261,7 @@ example().catch(console.error);
 
 ## listShopping
 
-> listShopping(projectId, page, perPage, view, owned, order, direction, query, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, range, from, to, output)
+> ShoppingResponse listShopping(projectId, page, perPage, view, owned, order, direction, query, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, range, from, to, output)
 
 List shopping results
 
@@ -364,7 +364,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**ShoppingResponse**](ShoppingResponse.md)
 
 ### Authorization
 

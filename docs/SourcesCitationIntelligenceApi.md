@@ -248,7 +248,7 @@ example().catch(console.error);
 
 ## getCitedUrlContent
 
-> getCitedUrlContent(projectId, urlSha256)
+> CitedUrlContentResponse getCitedUrlContent(projectId, urlSha256)
 
 Cited URL cached content
 
@@ -300,7 +300,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**CitedUrlContentResponse**](CitedUrlContentResponse.md)
 
 ### Authorization
 
@@ -323,7 +323,7 @@ example().catch(console.error);
 
 ## getCitedUrlDetail
 
-> getCitedUrlDetail(projectId, urlSha256, model, collectionId, countryCode, languageCode, prompt, brandKind, from, to, sourceType, sentiment, contentGap, includeSeries)
+> CitedUrlDetailsResponse getCitedUrlDetail(projectId, urlSha256, model, collectionId, countryCode, languageCode, prompt, brandKind, from, to, sourceType, sentiment, contentGap, includeSeries)
 
 Cited URL detail
 
@@ -411,7 +411,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**CitedUrlDetailsResponse**](CitedUrlDetailsResponse.md)
 
 ### Authorization
 
@@ -435,7 +435,7 @@ example().catch(console.error);
 
 ## getMentionsByCitingDomain
 
-> getMentionsByCitingDomain(projectId, domains, model, collectionId, countryCode, languageCode, prompt, brandKind, from, to)
+> CitingDomainMentionShareResponse getMentionsByCitingDomain(projectId, domains, model, collectionId, countryCode, languageCode, prompt, brandKind, from, to)
 
 Mention share by citing domain
 
@@ -511,7 +511,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**CitingDomainMentionShareResponse**](CitingDomainMentionShareResponse.md)
 
 ### Authorization
 
@@ -653,7 +653,7 @@ example().catch(console.error);
 
 ## listCitationGroups
 
-> listCitationGroups(projectId, view, page, perPage, order, direction, model, collectionId, countryCode, languageCode, prompt, brandKind, from, to, key, includeSeries, query, sourceType, sentiment, contentGap)
+> CitationGroupsResponse listCitationGroups(projectId, view, page, perPage, order, direction, model, collectionId, countryCode, languageCode, prompt, brandKind, from, to, key, includeSeries, query, sourceType, sentiment, contentGap)
 
 Grouped citation intelligence
 
@@ -759,7 +759,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**CitationGroupsResponse**](CitationGroupsResponse.md)
 
 ### Authorization
 
@@ -783,7 +783,7 @@ example().catch(console.error);
 
 ## listCitedUrlOccurrences
 
-> listCitedUrlOccurrences(projectId, urlSha256, page, perPage, sentiment)
+> CitedUrlOccurrencesResponse listCitedUrlOccurrences(projectId, urlSha256, page, perPage, sentiment)
 
 Cited URL occurrences
 
@@ -842,7 +842,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**CitedUrlOccurrencesResponse**](CitedUrlOccurrencesResponse.md)
 
 ### Authorization
 
@@ -866,7 +866,7 @@ example().catch(console.error);
 
 ## listSources
 
-> listSources(projectId, page, perPage, model, collectionId, countryCode, languageCode, prompt, from, to, sourceType, mentionFilter, competitors, output, promptType, brandKind, range)
+> SourcesResponse listSources(projectId, page, perPage, model, collectionId, countryCode, languageCode, prompt, from, to, sourceType, mentionFilter, competitors, output, promptType, brandKind, range)
 
 List source URLs
 
@@ -961,7 +961,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**SourcesResponse**](SourcesResponse.md)
 
 ### Authorization
 

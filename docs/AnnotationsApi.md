@@ -86,7 +86,7 @@ example().catch(console.error);
 
 ## deleteAnnotation
 
-> deleteAnnotation(projectId, id)
+> AnnotationDeleteResponse deleteAnnotation(projectId, id)
 
 Delete a timeline annotation
 
@@ -138,7 +138,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**AnnotationDeleteResponse**](AnnotationDeleteResponse.md)
 
 ### Authorization
 
@@ -162,7 +162,7 @@ example().catch(console.error);
 
 ## listAnnotations
 
-> listAnnotations(projectId, from, to, annotationCategoryId, page, perPage)
+> AnnotationsResponse listAnnotations(projectId, from, to, annotationCategoryId, page, perPage)
 
 List timeline annotations
 
@@ -226,7 +226,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**AnnotationsResponse**](AnnotationsResponse.md)
 
 ### Authorization
 
@@ -249,7 +249,7 @@ example().catch(console.error);
 
 ## updateAnnotation
 
-> updateAnnotation(id, updateAnnotationRequest)
+> AnnotationUpdateResponse updateAnnotation(id, updateAnnotationRequest)
 
 Update a timeline annotation
 
@@ -301,7 +301,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**AnnotationUpdateResponse**](AnnotationUpdateResponse.md)
 
 ### Authorization
 

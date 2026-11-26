@@ -242,7 +242,7 @@ example().catch(console.error);
 
 ## deletePrompt
 
-> deletePrompt(projectId, id)
+> PromptDeleteResponse deletePrompt(projectId, id)
 
 Delete a prompt
 
@@ -294,7 +294,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**PromptDeleteResponse**](PromptDeleteResponse.md)
 
 ### Authorization
 
@@ -689,7 +689,7 @@ example().catch(console.error);
 
 ## listQueryFanOuts
 
-> listQueryFanOuts(projectId, page, perPage, view, order, direction, query, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, range, from, to, output)
+> QueryFanOutsResponse listQueryFanOuts(projectId, page, perPage, view, order, direction, query, model, collectionId, countryCode, languageCode, prompt, promptType, brandKind, range, from, to, output)
 
 List query fan-out
 
@@ -789,7 +789,7 @@ example().catch(console.error);
 
 ### Return type
 
-`void` (Empty response body)
+[**QueryFanOutsResponse**](QueryFanOutsResponse.md)
 
 ### Authorization
 
