@@ -15,6 +15,7 @@ Name | Type
 `geoAuditManualRuns` | [AccountQuota](AccountQuota.md)
 `promptExecutions` | [AccountExecutionQuota](AccountExecutionQuota.md)
 `pitchProjects` | [AccountPitchQuota](AccountPitchQuota.md)
+`agentUsage` | [AccountAgentUsage](AccountAgentUsage.md)
 
 ## Example
 
@@ -32,6 +33,7 @@ const example = {
   "geoAuditManualRuns": null,
   "promptExecutions": null,
   "pitchProjects": null,
+  "agentUsage": null,
 } satisfies GetAccount200ResponseLimits
 
 console.log(example)
