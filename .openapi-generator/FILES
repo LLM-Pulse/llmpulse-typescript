@@ -268,7 +268,6 @@ docs/OwnedMediaSummaryResponse.md
 docs/OwnedMediaSummaryResponsePrevious.md
 docs/OwnedMediaWeek.md
 docs/PaginatedEnvelope.md
-docs/PeecExportImportResponse.md
 docs/Ping200Response.md
 docs/Project.md
 docs/ProjectCreateRequest.md
@@ -764,7 +763,6 @@ src/models/OwnedMediaSummaryResponse.ts
 src/models/OwnedMediaSummaryResponsePrevious.ts
 src/models/OwnedMediaWeek.ts
 src/models/PaginatedEnvelope.ts
-src/models/PeecExportImportResponse.ts
 src/models/Ping200Response.ts
 src/models/Project.ts
 src/models/ProjectCreateRequest.ts
